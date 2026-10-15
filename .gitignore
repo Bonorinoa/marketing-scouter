@@ -3,3 +3,23 @@ state/
 .env.*
 __pycache__/
 *.pyc
+
+# --- model weights & raw data (never commit: large, and re-downloads may differ) ---
+# Small deliberate fixtures stay tracked (a few-KB anchor table, a test shard).
+# Ambiguous formats (.arrow/.npy/.parquet/.h5) are intentionally NOT banned here:
+# several repos track small shards of exactly those on purpose.
+/models/
+*.gguf
+*.safetensors
+*.ckpt
+*.onnx
+*.pt
+*.pth
+/data/raw/
+/data/external/
+/data/interim/
+/raw/
+*.dta
+*.sav
+*.rds
+# --- end model weights & raw data ---
