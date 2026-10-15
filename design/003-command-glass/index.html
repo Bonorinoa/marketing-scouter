@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Scouter — Command Glass</title>
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden}
+body{
+  background:#0b0d10;
+  color:rgba(255,255,255,.85);
+  font-family:'Inter','Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  position:relative;
+  min-width:1100px;
+  user-select:none;
+}
+
+/* ===== AURORA ===== */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(ellipse at 25% 40%,rgba(45,25,70,.10) 0%,transparent 55%),
+    radial-gradient(ellipse at 75% 55%,rgba(25,55,60,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 20%,rgba(65,40,25,.05) 0%,transparent 55%);
+  background-size:180% 180%;
+  animation:aurora 45s ease-in-out infinite;
+}
+@keyframes aurora{
+  0%,100%{background-position:0% 40%}
+  25%{background-position:50% 25%}
+  50%{background-position:100% 60%}
+  75%{background-position:40% 80%}
+}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
+/* ===== APP SHELL ===== */
+#app{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;
+  height:100vh;padding:0 20px;
+}
+
+/* ===== COMMAND BAR ===== */
+#command-bar{
+  position:relative;
+  margin:24px auto 16px;
+  width:620px;height:44px;
+  background:rgba(11,13,16,.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.06);
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;
+  padding:0 18px;
+  transition:width .3s ease,box-shadow .3s ease;
+}
+#command-bar:focus-within,
+#command-bar.active{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 4px 20px rgba(0,0,0,.4)}
+#command-prefix{color:rgba(255,255,255,.3);font-size:13px;font-weight:400;margin-right:6px;letter-spacing:.5px}
+#command-input{
+  flex:1;height:32px;
+  background:transparent;border:none;outline:none;
+  color:rgba(255,255,255,.85);
+  font-size:14px;font-weight:400;font-family:inherit;
+  letter-spacing:.2px;
+}
+#command-input::placeholder{color:rgba(255,255,255,.25);font-weight:300;letter-spacing:.3px}
+#command-hint{
+  position:absolute;
+  left:18px;top:100%;margin-top:6px;
+  font-size:11px;font-weight:300;
+  color:rgba(255,255,255,.2);
+  letter-spacing:.2px;
+  white-space:nowrap;
+  pointer-events:none;
+  transition:opacity .2s;
+}
+#command-hint.hidden{opacity:0}
+#command-result{
+  position:absolute;
+  left:50%;top:100%;margin-top:6px;
+  transform:translateX(-50%);
+  font-size:12px;font-weight:400;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.2px;
+  white-space:nowrap;
+  display:none;
+  transition:opacity .3s;
+}
+#command-result.show{display:block;opacity:1}
+#command-result.hide{opacity:0}
+.command-spinner{
+  display:inline-block;width:14px;height:14px;
+  border:1.5px solid rgba(255,255,255,.15);
+  border-top-color:rgba(255,255,255,.5);
+  border-radius:50%;animation:spin .6s linear infinite;
+  vertical-align:middle;margin-right:6px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== PANELS ===== */
+#panels{
+  display:flex;gap:8px;
+  flex:1;
+  margin-top:4px;
+  min-height:0;
+  padding-bottom:40px;
+}
+.panel{
+  position:relative;
+  flex:1 1 0;
+  background:rgba(11,13,16,.48);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.05);
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-direction:column;
+  transition:flex .4s cubic-bezier(.25,.1,.25,1),box-shadow .3s;
+  overflow:hidden;
+  min-width:0;
+}
+.panel::after{
+  content:'';
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle at var(--sweep-x,50%) var(--sweep-y,50%),rgba(255,255,255,.035) 0%,transparent 55%);
+  opacity:0;
+  transition:opacity .35s;
+  z-index:2;
+}
+.panel:hover::after{opacity:1}
+.panel:hover{border-color:rgba(255,255,255,.09);border-top-color:rgba(255,255,255,.16)}
+.panel[data-expanded=true]{flex:2.8 1 0}
+.panel[data-collapsed=true]{flex:1.1 1 0}
+
+/* ===== PANEL HEADER ===== */
+.panel-header{
+  padding:12px 16px 8px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;
+}
+.panel-header h2{
+  font-size:13px;font-weight:500;
+  letter-spacing:.4px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.panel-count{
+  font-size:12px;font-weight:400;
+  color:rgba(255,255,255,.35);
+  -webkit-font-feature-settings:"tnum" 1;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ===== CARDS VIEW ===== */
+.panel-body{
+  flex:1;overflow-y:auto;
+  padding:6px 12px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.08) transparent;
+}
+.cards-view{display:flex;flex-direction:column;gap:4px}
+
+/* Card structure: compact state (default) + expanded preview text */
+.card{
+  position:relative;
+  background:rgba(255,255,255,.02);
+  border-radius:8px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.03);
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)}
+.card-source{
+  font-size:10px;font-weight:400;
+  color:rgba(255,255,255,.3);
+  letter-spacing:.3px;
+  margin-bottom:2px;
+}
+.card-title{
+  font-size:12px;font-weight:400;
+  line-height:1.35;
+  color:rgba(255,255,255,.8);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-summary{
+  font-size:10.5px;font-weight:300;
+  color:rgba(255,255,255,.4);
+  line-height:1.3;
+  margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-footer{
+  display:flex;align-items:center;gap:6px;
+  margin-top:4px;
+}
+.card-relevance{
+  height:3px;
+  background:linear-gradient(90deg,rgba(120,160,200,.5) 0%,rgba(120,160,200,.2) 100%);
+  border-radius:2px;
+  flex:1;
+  transform-origin:left;
+  transition:width .3s;
+}
+.card-status{
+  font-size:9px;font-weight:400;
+  color:rgba(255,255,255,.25);
+  letter-spacing:.3px;
+}
+.card-preview{
+  display:none;
+  margin-top:5px;
+  padding:4px 6px;
+  background:rgba(255,255,255,.02);
+  border-radius:4px;
+  font-size:10.5px;font-weight:300;
+  color:rgba(255,255,255,.4);
+  line-height:1.3;
+  font-style:italic;
+}
+.panel[data-expanded=true] .card-preview{display:block}
+
+/* card drafted state */
+.card.status-drafted .card-status{color:rgba(255,255,255,.45)}
+
+/* ===== WORKSPACE VIEW ===== */
+.workspace-view{
+  flex:1;overflow-y:auto;
+  padding:8px 14px;
+  scrollbar-width:thin;
+}
+.workspace-header{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:8px;
+}
+.back-btn{
+  background:none;border:none;
+  color:rgba(255,255,255,.45);
+  font-size:12px;font-weight:400;cursor:pointer;
+  padding:2px 6px;
+  border-radius:4px;
+  transition:color .15s;
+}
+.back-btn:hover{color:rgba(255,255,255,.7)}
+.privacy-chip{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:1px 8px;
+  background:rgba(220,160,80,.15);
+  border-radius:8px;
+  font-size:10px;font-weight:400;
+  color:rgba(220,160,80,.7);
+  letter-spacing:.3px;
+}
+.lang-chip{
+  display:inline-flex;align-items:center;
+  padding:1px 6px;
+  background:rgba(255,255,255,.06);
+  border-radius:6px;
+  font-size:10px;font-weight:500;
+  color:rgba(255,255,255,.45);
+  letter-spacing:.8px;
+}
+
+/* Source block */
+.source-block{
+  margin-bottom:6px;
+}
+.source-block .source-name{
+  font-size:10px;font-weight:400;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.3px;
+}
+.source-block .ws-title{
+  font-size:12px;font-weight:400;
+  line-height:1.3;
+  color:rgba(255,255,255,.8);
+  margin-top:2px;
+}
+.source-block .ws-url{
+  font-size:10px;font-weight:300;
+  color:rgba(255,255,255,.25);
+  margin-top:1px;
+}
+
+/* Relevance */
+.relevance-section{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:4px;
+}
+.relevance-meter{
+  height:10px;
+  background:rgba(255,255,255,.06);
+  border-radius:5px;overflow:hidden;
+  flex:1;
+}
+.relevance-meter .meter-fill{
+  height:100%;
+  background:linear-gradient(90deg,rgba(120,160,200,.5) 0%,rgba(100,140,255,.6) 100%);
+  border-radius:5px;
+  transition:width .3s;
+}
+.relevance-pct{
+  font-size:11px;font-weight:400;
+  color:rgba(255,255,255,.55);
+  -webkit-font-feature-settings:"tnum" 1;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Lenses */
+.lenses-section{margin-bottom:4px}
+.main-lens{
+  font-size:11px;font-weight:400;
+  color:rgba(255,255,255,.55);
+}
+.alt-lenses{margin-top:3px;display:flex;flex-direction:column;gap:2px}
+.alt-lens-row{
+  display:flex;align-items:center;gap:4px;
+  height:7px;
+}
+.alt-lens-label{
+  font-size:9px;font-weight:300;
+  color:rgba(255,255,255,.3);
+  width:auto;min-width:0;
+  white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;
+  flex-shrink:1;
+}
+.alt-lens-bar{
+  height:7px;
+  background:rgba(255,255,255,.04);
+  border-radius:3px;overflow:hidden;
+  flex:1;
+}
+.alt-lens-bar .fill{
+  height:100%;
+  background:rgba(255,255,255,.15);
+  border-radius:3px;
+  transition:width .3s;
+}
+.alt-lens-p{
+  font-size:9px;font-weight:300;
+  color:rgba(255,255,255,.3);
+  -webkit-font-feature-settings:"tnum" 1;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Your take */
+.your-take{margin-bottom:6px}
+.your-take label{
+  display:block;
+  font-size:10px;font-weight:400;
+  color:rgba(255,255,255,.4);
+  letter-spacing:.3px;
+  margin-bottom:2px;
+}
+.your-take textarea{
+  width:100%;min-height:40px;
+  background:rgba(11,13,16,.4);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:6px;
+  padding:5px 8px;
+  color:rgba(255,255,255,.75);
+  font-size:11px;font-weight:300;font-family:inherit;
+  line-height:1.35;
+  resize:vertical;
+  transition:border-color .2s;
+}
+.your-take textarea:focus{border-color:rgba(255,255,255,.12);outline:none}
+
+/* Editor area (per panel type, rendered by JS) */
+.editor-section{margin-bottom:6px}
+.editor-section .editor-label{
+  font-size:10px;font-weight:400;
+  color:rgba(255,255,255,.4);
+  display:flex;align-items:center;gap:6px;
+}
+.editor-section .counter{
+  font-size:10px;font-weight:300;
+  color:rgba(255,255,255,.35);
+  -webkit-font-feature-settings:"tnum" 1;
+  font-variant-numeric:tabular-nums;
+}
+.editor-section .counter.over{color:rgba(220,100,80,.7)}
+.editor-section textarea{
+  width:100%;min-height:56px;
+  background:rgba(11,13,16,.4);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:6px;
+  padding:6px 8px;
+  color:rgba(255,255,255,.75);
+  font-size:11px;font-weight:300;font-family:inherit;
+  line-height:1.4;
+  resize:vertical;
+  transition:border-color .2s;
+}
+.editor-section textarea:focus{border-color:rgba(255,255,255,.12);outline:none}
+
+/* Preview card (trends) */
+.preview-card{
+  margin-top:4px;
+  padding:6px 10px;
+  background:rgba(255,255,255,.02);
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,.04);
+  font-size:11px;font-weight:300;
+  color:rgba(255,255,255,.4);
+  line-height:1.35;
+}
+
+/* Commentary thread context (flex row) */
+.commentary-layout{
+  display:flex;gap:8px;
+}
+.thread-context{
+  flex:1;
+  padding:6px 8px;
+  background:rgba(255,255,255,.02);
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,.04);
+  font-size:11px;font-weight:300;
+  color:rgba(255,255,255,.45);
+  line-height:1.35;
+  overflow-y:auto;
+}
+.commentary-editor{
+  flex:1;
+}
+
+/* Workspace actions */
+.ws-actions{
+  display:flex;flex-wrap:wrap;gap:5px;
+  margin-top:6px;
+}
+.ws-actions button{
+  padding:4px 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.6);
+  font-size:11px;font-weight:400;font-family:inherit;
+  cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s;
+}
+.ws-actions button:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.12);
+}
+.ws-actions .draft-btn{color:rgba(200,180,255,.7)}
+.ws-actions .draft-btn:hover{color:rgba(200,180,255,.95)}
+.ws-actions .copy-btn{color:rgba(255,255,255,.5)}
+.ws-actions .approve-btn{color:rgba(100,200,140,.7)}
+.ws-actions .approve-btn:hover{color:rgba(100,200,140,.95)}
+.ws-actions .dismiss-btn{color:rgba(200,100,100,.6)}
+.ws-actions .dismiss-btn:hover{color:rgba(200,100,100,.9)}
+
+/* Draft feedback */
+.draft-feedback{margin-top:6px}
+.draft-rationale{
+  padding:5px 8px;
+  background:rgba(255,255,255,.01);
+  border-radius:6px;
+  font-size:10.5px;font-weight:300;
+  color:rgba(255,255,255,.4);
+  line-height:1.3;
+}
+.draft-rationale .model-label{
+  font-size:9px;font-weight:400;
+  color:rgba(255,255,255,.3);
+  letter-spacing:.3px;
+  text-transform:uppercase;
+}
+.flags-checklist{margin-top:4px}
+.flags-checklist .flag-item{
+  display:flex;align-items:flex-start;gap:4px;
+  font-size:10px;font-weight:300;
+  color:rgba(255,255,255,.4);
+  line-height:1.3;
+  margin-bottom:2px;
+}
+.flags-checklist .flag-item input[type=checkbox]{
+  accent-color:rgba(100,200,140,.5);
+  margin-top:0;vertical-align:top;
+  width:10px;height:10px;
+}
+
+/* Toast */
+#toast{
+  position:fixed;
+  bottom:44px;left:50%;
+  transform:translateX(-50%);
+  padding:5px 14px;
+  background:rgba(11,13,16,.5);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:11px;font-weight:400;
+  color:rgba(255,255,255,.55);
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(-2px)}
+
+/* ===== FOOTER ===== */
+.footer-line{
+  position:fixed;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:10px;font-weight:300;
+  color:rgba(255,255,255,.2);
+  letter-spacing:.4px;
+  pointer-events:none;
+  z-index:50;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:3px}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Command bar -->
+  <div id="command-bar">
+    <span id="command-prefix">/</span>
+    <input id="command-input" type="text" placeholder="Scout..." spellcheck="false" autocomplete="off">
+    <div id="command-hint">scout all · scout op-eds · scout trends · scout commentary</div>
+    <div id="command-result"></div>
+  </div>
+
+  <!-- Panels -->
+  <div id="panels">
+    <div class="panel" data-panel="op-eds">
+      <div class="panel-header"><h2>Op-eds</h2><span class="panel-count"></span></div>
+      <div class="panel-body"></div>
+    </div>
+    <div class="panel" data-panel="trends">
+      <div class="panel-header"><h2>Trends</h2><span class="panel-count"></span></div>
+      <div class="panel-body"></div>
+    </div>
+    <div class="panel" data-panel="commentary">
+      <div class="panel-header"><h2>Commentary</h2><span class="panel-count"></span></div>
+      <div class="panel-body"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div class="footer-line">nothing leaves this app without you</div>
+
+<script>
+// ============================================================
+// DATA — embedded from design/data.json
+// ============================================================
+const DATA = {"note":"Real items scored by Jev on 2026-10-06","panels":{"op-eds":[
+{id:"980b562e7667",source_id:"la_gaceta",source_name:"La Gaceta",title:"Dólar e inflación: qué esperan los analistas consultados por el Banco Central",summary:"La autoridad monetaria difundió el REM de septiembre, elaborado a partir de las proyecciones de 44 participantes. Los analistas también estimaron una caída del PIB en el tercer trimestre y una desocupación del 7,5%.",url:"https://www.lagaceta.com.ar/nota/1157012/economia/dolar-e-inflacion-esperan-analistas-consultados-banco-central.html",published:"Tue, 06 Oct 2026 20:31:00 +0000",relevance:.88,lens:"Latin American economy and institutions",alt_lenses:[{name:"Causal inference",p:.02},{name:"Synthetic agents as models of human values",p:.01}],personal_flag:.02,status:"drafted",meta:{lang:"es"}},
+{id:"4a093cb6fb92",source_id:"la_nacion_economia",source_name:"La Nación · Economía",title:"El Banco Mundial volvió a recortar la proyección de crecimiento para la Argentina en 2026",summary:"El organismo prevé que el PBI se expanda 2,1%, frente al 3,6% que había pronosticado en junio y al 4% de enero; destacó que habrá tres años consecutivos de crecimiento (2025-2027) por primera vez en casi dos décadas",url:"https://www.lanacion.com.ar/economia/el-banco-mundial-volvio-a-recortar-la-proyeccion-de-crecimiento-para-la-argentina-en-2026-nid06102026/",published:"Tue, 06 Oct 2026 19:47:04 +0000",relevance:.86,lens:"Latin American economy and institutions",alt_lenses:[{name:"Synthetic agents as models of human values",p:.01},{name:"Formal verification for economics",p:.01}],personal_flag:.02,status:"new",meta:{lang:"es"}},
+{id:"a2f173acc01f",source_id:"la_nacion_economia",source_name:"La Nación · Economía",title:"Impulsan una baja del IVA del huevo del 21% al 10,5% y buscan debatirla con el presupuesto",summary:"El diputado del PRO Javier Sánchez Wrba trabaja en una propuesta y mantiene conversaciones con el oficialismo; según Capia, la formalización de la actividad permitiría compensar la caída inicial de la recaudación y cerrar el primer año con US$40 millones adicionales para el Estado",url:"https://www.lanacion.com.ar/economia/campo/impulsan-una-baja-del-iva-del-huevo-del-21-al-105-y-buscan-debatirla-con-el-presupuesto-nid06102026/",published:"Tue, 06 Oct 2026 16:57:45 +0000",relevance:.84,lens:"Latin American economy and institutions",alt_lenses:[{name:"Causal inference",p:.02},{name:"Synthetic agents as models of human values",p:.01}],personal_flag:.03,status:"new",meta:{lang:"es"}},
+{id:"8ccfbe8b8f9d",source_id:"la_nacion_economia",source_name:"La Nación · Economía",title:"Para los analistas, la economía cayó en recesión y solo crecería entre 1,2 y 1,5% este año",summary:"Estiman que la inflación se mantendría estabilizada debajo del 2% mensual pero sin bajar mucho, lo que la haría cerrar el año al 30%, apenas por debajo de la del 2025",url:"https://www.lanacion.com.ar/economia/para-los-analistas-la-economia-cayo-en-recesion-y-solo-creceria-entre-12-y-15-este-ano-nid06102026/",published:"Tue, 06 Oct 2026 22:39:05 +0000",relevance:.83,lens:"Latin American economy and institutions",alt_lenses:[{name:"Causal inference",p:.02},{name:"Formal verification for economics",p:.01}],personal_flag:.02,status:"new",meta:{lang:"es"}},
+{id:"c3d155406d47",source_id:"la_gaceta",source_name:"La Gaceta",title:"El Banco Mundial recortó su pronóstico para Argentina: cuánto crecerá la economía en 2026",summary:"Se trata de la segunda vez consecutiva que el organismo reduce sus proyecciones para el país en su informe de Actualización Económica de América Latina y el Caribe.",url:"https://www.lagaceta.com.ar/nota/1156996/economia/banco-mundial-recorto-pronostico-para-argentina-cuanto-crecera-economia-2026.html",published:"Tue, 06 Oct 2026 18:21:00 +0000",relevance:.8,lens:"Latin American economy and institutions",alt_lenses:[{name:"Synthetic agents as models of human values",p:.01},{name:"Formal verification for economics",p:.01}],personal_flag:.02,status:"new",meta:{lang:"es"}},
+{id:"36dc3a83db1b",source_id:"la_gaceta",source_name:"La Gaceta",title:"Dólar hoy: el oficial operó estable y el mayorista quedó a $405 del techo de la banda cambiaria",summary:"En la jornada de este martes, la divisa minorita terminó a $1.540 en las pantallas del Banco Nación.",url:"https://www.lagaceta.com.ar/nota/1156991/economia/dolar-hoy-oficial-opero-estable-mayorista-quedo-405-techo-banda-cambiaria.html",published:"Tue, 06 Oct 2026 17:52:00 +0000",relevance:.72,lens:"Latin American economy and institutions",alt_lenses:[{name:"Synthetic agents as models of human values",p:.01},{name:"Formal verification for economics",p:.01}],personal_flag:.02,status:"new",meta:{lang:"es"}},
+{id:"e54382e68730",source_id:"la_nacion_opinion",source_name:"La Nación · Opinión",title:"Perdedores, de Taormina a la Argentina",summary:"Las actuales tensiones económicas solo podrán resolverse con inversión, mayor productividad y crecimiento, palabras ajenas al vocabulario populista",url:"https://www.lanacion.com.ar/editoriales/perdedores-de-hoy-condenados-de-ayer-nid20092026/",published:"Sun, 20 Sep 2026 03:10:00 +0000",relevance:.67,lens:"Latin American economy and institutions",alt_lenses:[{name:"Economics of AI and productivity",p:.05},{name:"Culture, norms and technology",p:.02}],personal_flag:.03,status:"new",meta:{lang:"es"}}
+],"trends":[
+{id:"4be705e8da97",source_id:"nber_new",source_name:"NBER · New working papers",title:"Avoiding Regulation: Evidence from Nursing Homes -- by Alden Cheng, Riley League",summary:"We study strategic responses by firms to threshold-based regulations. We document extensive bunching in response to additional staffing requirements for California nursing homes with at least 100 beds. To estimate the regulation\u2019s effect on staffing, we develop a novel treatment effects estimator for threshold-based re",url:"https://www.nber.org/papers/w35849#fromrss",published:"",relevance:.92,lens:"Causal inference",alt_lenses:[{name:"Economics of AI and productivity",p:.02},{name:"Synthetic agents as models of human values",p:.01}],personal_flag:.03,status:"new",meta:{lang:"en"}},
+{id:"275d9953ac2b",source_id:"gelman_blog",source_name:"Statistical Modeling blog",title:"When are Causal Inference Methods Needed to Answer Causal Questions?",summary:"Earlier this year we discussed Donna Spiegelman\u2019s talk, \u201cRethinking SUTVA and Causal Identification: An Epidemiologist\u2019s Perspective,\u201d which she summarized as follows: She\u2019s giving a followup talk online on Mon 12 Oct, 3:30pm. Here\u2019s the abstract: When do specialized causal inference \u2026 Continue reading \u2192",url:"https://statmodeling.stat.columbia.edu/2026/10/01/when-are-causal-inference-methods-needed-to-answer-causal-questions/",published:"Thu, 01 Oct 2026 20:59:15 +0000",relevance:.9,lens:"Causal inference",alt_lenses:[{name:"Automated research and AI agents for science",p:.02},{name:"Culture, norms and technology",p:.02}],personal_flag:.04,status:"new",meta:{lang:"en"}},
+{id:"a39a7216e62b",source_id:"nber_new",source_name:"NBER · New working papers",title:"Randomized to Opportunity: Measuring Place Effects for Refugee Children -- by N. Meltem Daysal, Joseph J. Doyle Jr., Naeim S. Samandari, Emil A. L. Simonsen, Mircea Trandafir",summary:"Area-level measures of economic opportunity are increasingly used to guide place-based policies. We study whether these measures predict long-run outcomes for a vulnerable population: over 12,000 refugee children quasi-randomly assigned to municipalities under Denmark\u2019s 1986\u20131998 dispersal policy. We focus on predeterm",url:"https://www.nber.org/papers/w35853#fromrss",published:"",relevance:.88,lens:"Causal inference",alt_lenses:[{name:"Measurement and construct validity with LLMs",p:.02},{name:"Culture, norms and technology",p:.02}],personal_flag:.08,status:"new",meta:{lang:"en"}},
+{id:"14edfa994468",source_id:"nber_new",source_name:"NBER · New working papers",title:"Does Food Assistance Drive Spending on Sugary Foods? Evidence from the Pandemic Electronic Benefit Transfer Program -- by Georgina Cisneros, Brandyn F. Churchill",summary:"We provide evidence on the extent to which food assistance affects spending on sugary items by studying the Pandemic Electronic Benefit Transfer (P-EBT) program, which provided funds to families of children who lost access to free and reduced-price school meals due to COVID-19 pandemic school closures. Leveraging state",url:"https://www.nber.org/papers/w35835#fromrss",published:"",relevance:.8,lens:"Causal inference",alt_lenses:[{name:"Culture, norms and technology",p:.02},{name:"Synthetic agents as models of human values",p:.01}],personal_flag:.05,status:"new",meta:{lang:"en"}},
+{id:"374af4a8b5a0",source_id:"gelman_blog",source_name:"Statistical Modeling blog",title:"Hey\u2014we\u2019re hiring two postdocs!",summary:"I\u2019ll post more formal ads soon, but, very briefly: One project is on generalization for causal inference with a focus on education research, following up on MRPW: Regression, poststratification, and small-area estimation with sampling weights. The other project is on \u2026 Continue reading \u2192",url:"https://statmodeling.stat.columbia.edu/2026/10/06/hey-were-hiring-two-postdocs/",published:"Tue, 06 Oct 2026 14:07:51 +0000",relevance:.72,lens:"Causal inference",alt_lenses:[{name:"AI in education",p:.05},{name:"Automated research and AI agents for science",p:.03}],personal_flag:.08,status:"new",meta:{lang:"en"}},
+{id:"117f48cdc85f",source_id:"gelman_blog",source_name:"Statistical Modeling blog",title:"Using the computer to p-hack . . . I\u2019d rather use it to fit multilevel models.",summary:"Brian Stone writes: Cognitive psychologist and long time reader of the blog here. I thought you and your audience might appreciate this recent post from Andy Hall: AI is about to write thousands of papers. Will it p-hack them? We ran \u2026 Continue reading \u2192",url:"https://statmodeling.stat.columbia.edu/2026/10/03/using-the-computer-to-p-hack-id-rather-use-it-to-fit-multilevel-models/",published:"Sat, 03 Oct 2026 13:10:29 +0000",relevance:.58,lens:"Automated research and AI agents for science",alt_lenses:[{name:"Culture, norms and technology",p:.12},{name:"Measurement and construct validity with LLMs",p:.06}],personal_flag:.04,status:"new",meta:{lang:"en"}},
+{id:"bae1a89cdc19",source_id:"hn_trends",source_name:"Hacker News \u00b7 14-day discussions",title:"Show HN: HN.watch \u2013 Videos of all Hacker News posts",summary:"Hi HN, I\u2019m Per, founder of Scrimba (YC S20). We\u2019ve spent the last decade teaching people how to code with an HTML-based video format. We\u2019ve now plugged an LLM into it, so that people can create explainer videos about anything. It\u2019s called \u201cScrimba Explain\u201d. To demo this technology for Hacker News, we built HN.watch. It",url:"https://news.ycombinator.com/item?id=49879401",published:"2026-09-28T15:16:13Z",relevance:.2,lens:"AI in education",alt_lenses:[{name:"AI and journalism",p:.09},{name:"Culture, norms and technology",p:.08}],personal_flag:.04,status:"new",meta:{lang:"en",points:225,comments:97,external_url:"https://hn.watch/",query:"complex systems"}}
+],"commentary":[
+{id:"029aa81d6451",source_id:"reddit_economics",source_name:"r/Economics",title:"Don\u2019t be fooled - Canada lags in AI as well as economic growth",summary:"submitted by /u/rdh2dmd [link] [comments]",url:"https://www.reddit.com/r/Economics/comments/1wzgacw/dont_be_fooled_canada_lags_in_ai_as_well_as/",published:"2026-10-06T22:30:27+00:00",relevance:.49,lens:"Economics of AI and productivity",alt_lenses:[{name:"Culture, norms and technology",p:.08},{name:"AI and journalism",p:.04}],personal_flag:.03,status:"new",meta:{lang:"en",subreddit:"Economics"}},
+{id:"77ddfdf47d33",source_id:"hn_front",source_name:"Hacker News \u00b7 front page",title:"Sharing AI progress in mathematics",summary:"https://github.com/openai/math https://github.com/openai/math/tree/main/preprints",url:"https://news.ycombinator.com/item?id=49984923",published:"2026-10-06T22:17:21Z",relevance:.41,lens:"Automated research and AI agents for science",alt_lenses:[{name:"AI in education",p:.08},{name:"Culture, norms and technology",p:.07}],personal_flag:.03,status:"new",meta:{lang:"en",points:344,comments:291,external_url:"https://openai.com/index/sharing-ai-progress-in-mathematics/"}},
+{id:"3af25830f129",source_id:"hn_front",source_name:"Hacker News \u00b7 front page",title:"Claude Code\u2019s suggested message feature: I think the real customer is the model",summary:"",url:"https://news.ycombinator.com/item?id=49981905",published:"2026-10-06T18:00:34Z",relevance:.17,lens:"Culture, norms and technology",alt_lenses:[{name:"Economics of AI and productivity",p:.11},{name:"Automated research and AI agents for science",p:.08}],personal_flag:.04,status:"new",meta:{lang:"en",points:83,comments:46,external_url:"https://www.zohaib.cc/blog/smartest-claude-code-feature"}},
+{id:"7a44c4bc58d4",source_id:"hn_front",source_name:"Hacker News \u00b7 front page",title:"Vibecoding Photoshop: Time and pressure",summary:"",url:"https://news.ycombinator.com/item?id=49983780",published:"2026-10-06T20:40:48Z",relevance:.17,lens:"Culture, norms and technology",alt_lenses:[{name:"Economics of AI and productivity",p:.09},{name:"AI and journalism",p:.04}],personal_flag:.09,status:"new",meta:{lang:"en",points:48,comments:53,external_url:"https://andreklein.net/vibecoding-photoshop-time-and-pressure/"}},
+{id:"841c3bd387ec",source_id:"reddit_economics",source_name:"r/Economics",title:"Transport Affordability and Automobile Debt in the United States",summary:"submitted by /u/Helicase21 [link] [comments]",url:"https://www.reddit.com/r/Economics/comments/1wz359q/transport_affordability_and_automobile_debt_in/",published:"2026-10-06T13:51:25+00:00",relevance:.07,lens:"Causal inference",alt_lenses:[{name:"Culture, norms and technology",p:.04},{name:"Synthetic agents as models of human values",p:.01}],personal_flag:.09,status:"new",meta:{lang:"en",subreddit:"Economics"}},
+{id:"09dccc8c3d13",source_id:"reddit_econometrics",source_name:"r/econometrics",title:"Economics Or Statistics",summary:"Hey everyone, I recently finished my FSc and I\u2019m planning to start university, but I\u2019m confused about whether I should pursue economics or statistics .I have very little knowledge about either field, so I\u2019m not really sure what the coursework, career prospects, or difficulty of each degree are like. For people who have",url:"https://www.reddit.com/r/econometrics/comments/1wzcuzv/economics_or_statistics/",published:"2026-10-06T20:09:01+00:00",relevance:.03,lens:"Causal inference",alt_lenses:[{name:"Synthetic agents as models of human values",p:.01},{name:"Formal verification for economics",p:.01}],personal_flag:.06,status:"new",meta:{lang:"en",subreddit:"econometrics"}}
+]}};
+
+const SAMPLE_DRAFT = {
+  candidate_id:"980b562e7667",
+  user_take:"Los pronósticos de inflación de analistas suelen subestimar la dispersión; lo importante es cuánta incertidumbre reportan, no el número central.",
+  text:"El REM de septiembre que difundió el Banco Central resume las proyecciones de 44 consultoras y bancos con un solo número: la mediana. Inflación de 1,9% para septiembre, dólar a $1.614 en diciembre, PIB cayendo 1,0% en el tercer trimestre. Todo muy preciso. Pero la nota omite un dato que el propio BCRA publica: la dispersión de esas proyecciones.\n\nCuando 44 analistas pronostican la inflación, el número central es apenas la mitad de la historia. Si diez esperan 1,2% y otros diez esperan 2,6%, la mediana de 1,9% escondería un desacuerdo enorme sobre la dirección de los precios. Lo relevante para un empresario que fija salarios o para un ahorrista que elige entre plazo fijo y dólar no es cuánto dicen los analistas en promedio sino cuánto discrepan entre ellos. La incertidumbre se mide con varianza, no con medianas.\n\nEl REM incluye esa información —el BCRA reporta el rango de pronósticos para cada variable— pero la cobertura periodística la ignora sistemáticamente. Una lástima: el número central es el dato menos informativo del relevamiento.",
+  rationale:"The author's take argues that analyst forecast dispersion matters more than the central estimate. The article reports only medians from 44 participants and never mentions disagreement ranges, making it a clean target for this argument with a concrete, self-contained example drawn from the article's own numbers.",
+  flags:[
+    "Verificar que el REM efectivamente publica el rango o deciles de los pronósticos (el BCRA suele incluir esta información; el autor sabrá el formato exacto del informe de septiembre).",
+    "Conteo de palabras: ~165; dentro del límite de 200 pero conviene verificarlo con un contador exacto antes de enviar."
+  ],
+  model:"openrouter/deepseek/deepseek-v4-pro",
+  lens:"Latin American economy and institutions"
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let workspaceOpen = false;    // true when any panel has a workspace open
+const activeWorkspace = {};   // { panelName: item }
+
+// ============================================================
+// HELPERS
+// ============================================================
+function countWords(s){return s.trim()?s.trim().split(/\s+/).length:0}
+function countChars(s){return s.length}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function generatePreview(item){
+  const t = item.title.length>60 ? item.title.substring(0,57)+'…' : item.title;
+  return 'Proposed: examine “'+esc(t)+'” through the lens of '+item.lens+'.';
+}
+function generateDraftText(item){
+  if(item.id===SAMPLE_DRAFT.candidate_id) return SAMPLE_DRAFT.text;
+  return '['+item.source_name+'] '+item.title+'\n\nA critical look at this through the lens of '+item.lens+'. (Draft text placeholder — run Scout to generate a full post.)';
+}
+function generateDraftRationale(item){
+  if(item.id===SAMPLE_DRAFT.candidate_id) return SAMPLE_DRAFT.rationale;
+  return 'Generated based on relevance to '+item.lens+' and content from '+item.source_name+'. Review and adjust the take before posting.';
+}
+function generateFlags(item){
+  if(item.id===SAMPLE_DRAFT.candidate_id) return SAMPLE_DRAFT.flags;
+  return ['Verify accuracy of all claims and data points.','Check that the lens '+item.lens+' is clearly reflected in the draft.','Confirm tone matches the target publication.'];
+}
+
+// ============================================================
+// RENDER CARDS
+// ============================================================
+function renderCards(){
+  const panels = ['op-eds','trends','commentary'];
+  panels.forEach(p=>{
+    const panelEl=document.querySelector('.panel[data-panel="'+p+'"]');
+    const bodyEl=panelEl.querySelector('.panel-body');
+    const countEl=panelEl.querySelector('.panel-count');
+    const items=DATA.panels[p];
+    countEl.textContent=items.length;
+
+    let html='<div class="cards-view">';
+    items.forEach(item=>{
+      const preview=generatePreview(item);
+      const relPct=Math.round(item.relevance*100);
+      html+='<div class="card'+(item.status==='drafted'?' status-drafted':'')+'" data-item-id="'+item.id+'" data-panel="'+p+'" onclick="openWorkspace(\''+p+'\',\''+item.id+'\')">';
+      html+='<div class="card-source">'+esc(item.source_name)+'</div>';
+      html+='<div class="card-title">'+esc(item.title)+'</div>';
+      html+='<div class="card-summary">'+esc(item.summary.substring(0,120))+'</div>';
+      html+='<div class="card-preview">'+esc(preview)+'</div>';
+      html+='<div class="card-footer"><div class="card-relevance" style="width:'+relPct+'%"></div><span class="card-status">'+(item.status==='drafted'?'drafted · ':'')+relPct+'</span></div>';
+      html+='</div>';
+    });
+    html+='</div>';
+    bodyEl.innerHTML=html;
+  });
+}
+
+// ============================================================
+// ACCORDION
+// ============================================================
+function setupAccordion(){
+  const container=document.getElementById('panels');
+  const panels=container.querySelectorAll('.panel');
+  function resetAll(){
+    panels.forEach(p=>{p.style.flex='';p.removeAttribute('data-expanded');p.removeAttribute('data-collapsed');});
+  }
+  container.addEventListener('mouseleave',resetAll);
+  panels.forEach(p=>{
+    p.addEventListener('mouseenter',function(){
+      if(workspaceOpen) return;
+      panels.forEach(other=>{
+        if(other===p){other.style.flex='2.8 1 0';other.dataset.expanded='true';other.removeAttribute('data-collapsed');}
+        else{other.style.flex='1.1 1 0';other.dataset.collapsed='true';other.removeAttribute('data-expanded');}
+      });
+    });
+  });
+}
+
+// ============================================================
+// SPECULAR SWEEP
+// ============================================================
+function setupSpecular(){
+  const panels=document.querySelectorAll('.panel');
+  panels.forEach(p=>{
+    p.addEventListener('mousemove',function(e){
+      const r=this.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width)*100;
+      const y=((e.clientY-r.top)/r.height)*100;
+      this.style.setProperty('--sweep-x',x+'%');
+      this.style.setProperty('--sweep-y',y+'%');
+    });
+  });
+}
+
+// ============================================================
+// WORKSPACE
+// ============================================================
+function findItem(panelName,itemId){
+  return DATA.panels[panelName].find(i=>i.id===itemId);
+}
+
+function openWorkspace(panelName,itemId){
+  const item=findItem(panelName,itemId);
+  if(!item) return;
+  workspaceOpen=true;
+  activeWorkspace[panelName]=item;
+
+  const panelEl=document.querySelector('.panel[data-panel="'+panelName+'"]');
+  const bodyEl=panelEl.querySelector('.panel-body');
+  // Reset accordion: expand this panel slightly
+  const allPanels=document.querySelectorAll('.panel');
+  allPanels.forEach(p=>{
+    if(p.getAttribute('data-panel')===panelName){p.style.flex='1.6 1 0';}
+    else{p.style.flex='1.2 1 0';}
+    p.removeAttribute('data-expanded');
+    p.removeAttribute('data-collapsed');
+  });
+
+  bodyEl.innerHTML=buildWorkspaceHTML(panelName,item);
+}
+
+function closeWorkspace(panelName){
+  workspaceOpen=false;
+  delete activeWorkspace[panelName];
+  const panelEl=document.querySelector('.panel[data-panel="'+panelName+'"]');
+  // Reset all panel flex
+  document.querySelectorAll('.panel').forEach(p=>{p.style.flex='';p.removeAttribute('data-expanded');p.removeAttribute('data-collapsed');});
+  // Re-render cards for that panel
+  const bodyEl=panelEl.querySelector('.panel-body');
+  const items=DATA.panels[panelName];
+  let html='<div class="cards-view">';
+  items.forEach(item=>{
+    const preview=generatePreview(item);
+    const relPct=Math.round(item.relevance*100);
+    html+='<div class="card'+(item.status==='drafted'?' status-drafted':'')+'" data-item-id="'+item.id+'" data-panel="'+panelName+'" onclick="openWorkspace(\''+panelName+'\',\''+item.id+'\')">';
+    html+='<div class="card-source">'+esc(item.source_name)+'</div>';
+    html+='<div class="card-title">'+esc(item.title)+'</div>';
+    html+='<div class="card-summary">'+esc(item.summary.substring(0,120))+'</div>';
+    html+='<div class="card-preview">'+esc(preview)+'</div>';
+    html+='<div class="card-footer"><div class="card-relevance" style="width:'+relPct+'%"></div><span class="card-status">'+(item.status==='drafted'?'drafted · ':'')+relPct+'</span></div>';
+    html+='</div>';
+  });
+  html+='</div>';
+  bodyEl.innerHTML=html;
+}
+
+function buildWorkspaceHTML(panelName,item){
+  const relPct=Math.round(item.relevance*100);
+  const lang=item.meta&&item.meta.lang?item.meta.lang:'en';
+  const isSample=(item.id===SAMPLE_DRAFT.candidate_id);
+  const userTakeText=isSample?esc(SAMPLE_DRAFT.user_take):'';
+  const privacyHtml=item.personal_flag>.3?'<span class="privacy-chip">Personal</span>':'';
+  const langHtml='<span class="lang-chip">'+(lang==='es'?'ES':'EN')+'</span>';
+
+  let html='<div class="workspace-view">';
+
+  // Header
+  html+='<div class="workspace-header"><button class="back-btn" onclick="closeWorkspace(\''+panelName+'\')">← Back</button>'+privacyHtml+'</div>';
+
+  // Source block
+  html+='<div class="source-block"><span class="source-name">'+esc(item.source_name)+'</span><div class="ws-title">'+esc(item.title)+'</div>';
+  html+='<div class="ws-url">'+esc(item.url||'')+'</div></div>';
+
+  // Relevance meter
+  html+='<div class="relevance-section"><div class="relevance-meter"><div class="meter-fill" style="width:'+relPct+'%"></div></div><span class="relevance-pct">'+relPct+'%</span></div>';
+
+  // Main lens
+  html+='<div class="lenses-section"><span class="main-lens">'+esc(item.lens)+'</span></div>';
+
+  // Alt lenses
+  if(item.alt_lenses&&item.alt_lenses.length){
+    html+='<div class="alt-lenses">';
+    item.alt_lenses.forEach(al=>{
+      const ap=Math.round(al.p*100);
+      html+='<div class="alt-lens-row"><span class="alt-lens-label">'+esc(al.name)+'</span><div class="alt-lens-bar"><div class="fill" style="width:'+ap+'%"></div></div><span class="alt-lens-p">'+ap+'%</span></div>';
+    });
+    html+='</div>';
+  }
+
+  // Lang chip
+  html+=langHtml;
+
+  // Your take
+  html+='<div class="your-take"><label>Your take</label><textarea id="yt-'+panelName+'" placeholder="Your verbatim take on this topic\u2026">'+userTakeText+'</textarea></div>';
+
+  // Editor (per panel type)
+  html+=buildEditor(panelName,item,lang);
+
+  // Actions
+  html+='<div class="ws-actions">';
+  html+='<button class="draft-btn" onclick="handleDraft(\''+panelName+'\')">Draft</button>';
+  html+='<button class="copy-btn" onclick="handleCopy(\''+panelName+'\')">Copy to clipboard</button>';
+  html+='<button class="approve-btn" onclick="handleApprove(\''+panelName+'\',\''+item.id+'\')">Approve</button>';
+  html+='<button class="dismiss-btn" onclick="handleDismiss(\''+panelName+'\',\''+item.id+'\')">Dismiss</button>';
+  html+='</div>';
+
+  // Draft feedback area
+  html+='<div class="draft-feedback" id="df-'+panelName+'" style="display:none">';
+  html+='<div class="draft-rationale"><span class="model-label">Model suggestion</span><p id="dr-'+panelName+'"></p></div>';
+  html+='<div class="flags-checklist" id="fc-'+panelName+'"></div>';
+  html+='</div>';
+
+  html+='</div>';
+  return html;
+}
+
+function buildEditor(panelName,item,lang){
+  let html='<div class="editor-section">';
+  if(panelName==='op-eds'){
+    html+='<div class="editor-label">Letter <span class="lang-chip">'+(lang==='es'?'ES':'EN')+'</span> <span class="counter" id="ec-'+panelName+'">0 / 200 words</span></div>';
+    html+='<textarea id="editor-'+panelName+'" class="editor-opeds" placeholder="Write your letter\u2026" oninput="updateCounter(\''+panelName+'\',\'word\')"></textarea>';
+  }else if(panelName==='trends'){
+    html+='<div class="editor-label">Post <span class="counter" id="ec-'+panelName+'">0 / 1200 chars</span></div>';
+    html+='<textarea id="editor-'+panelName+'" class="editor-trends" placeholder="Write your post\u2026" oninput="updateCounter(\''+panelName+'\',\'char\')"></textarea>';
+    html+='<div class="preview-card" id="pc-'+panelName+'">Preview will appear here once drafted.</div>';
+  }else if(panelName==='commentary'){
+    html+='<div class="commentary-layout"><div class="thread-context"><div style="font-size:10px;font-weight:400;color:rgba(255,255,255,.5);margin-bottom:3px">Thread</div>';
+    html+='<div style="font-size:11px;font-weight:400;color:rgba(255,255,255,.7);margin-bottom:2px">'+esc(item.title)+'</div>';
+    html+='<div style="font-size:10px;font-weight:300;color:rgba(255,255,255,.4)">'+esc(item.summary.substring(0,200))+'</div></div>';
+    html+='<div class="commentary-editor"><div class="editor-label">Reply <span class="counter" id="ec-'+panelName+'">0 / 200 words</span></div>';
+    html+='<textarea id="editor-'+panelName+'" class="editor-commentary" placeholder="Write your reply\u2026" oninput="updateCounter(\''+panelName+'\',\'word\')"></textarea></div></div>';
+  }
+  html+='</div>';
+  return html;
+}
+
+// ============================================================
+// COUNTERS
+// ============================================================
+function updateCounter(panelName,mode){
+  const editor=document.getElementById('editor-'+panelName);
+  const counter=document.getElementById('ec-'+panelName);
+  if(!editor||!counter) return;
+  const text=editor.value||'';
+  let cnt,lim;
+  if(mode==='word'){cnt=countWords(text);lim=panelName==='trends'?1200:200;}
+  else{cnt=countChars(text);lim=1200;}
+  const over=cnt>lim;
+  counter.textContent=cnt+' / '+lim+(mode==='word'?' words':' chars');
+  if(over) counter.classList.add('over');
+  else counter.classList.remove('over');
+}
+
+// ============================================================
+// DRAFT
+// ============================================================
+function handleDraft(panelName){
+  const btn=document.querySelector('[data-panel="'+panelName+'"] .draft-btn');
+  if(!btn||btn.disabled) return;
+  btn.disabled=true;
+  btn.textContent='Generating…';
+
+  setTimeout(function(){
+    const item=activeWorkspace[panelName];
+    if(!item) return;
+    const editor=document.getElementById('editor-'+panelName);
+    if(!editor) return;
+
+    editor.value=generateDraftText(item);
+
+    // Update counter
+    const mode=panelName==='trends'?'char':'word';
+    updateCounter(panelName,mode);
+
+    // Preview card for trends
+    if(panelName==='trends'){
+      const pc=document.getElementById('pc-'+panelName);
+      if(pc){
+        const previewText=editor.value.length>280?editor.value.substring(0,277)+'…':editor.value;
+        pc.innerHTML='<div style="font-size:9px;font-weight:400;color:rgba(255,255,255,.3);margin-bottom:2px">Preview</div>'+esc(previewText);
+      }
+    }
+
+    // Show rationale & flags
+    const df=document.getElementById('df-'+panelName);
+    if(df){
+      df.style.display='block';
+      const dr=document.getElementById('dr-'+panelName);
+      if(dr) dr.textContent=generateDraftRationale(item);
+      const fc=document.getElementById('fc-'+panelName);
+      if(fc){
+        const flags=generateFlags(item);
+        let fhtml='';
+        flags.forEach(f=>{fhtml+='<label class="flag-item"><input type="checkbox"> '+esc(f)+'</label>';});
+        fc.innerHTML=fhtml;
+      }
+    }
+
+    btn.textContent='Draft ✓';
+    btn.disabled=false;
+  },1500);
+}
+
+// ============================================================
+// CLIPBOARD
+// ============================================================
+function handleCopy(panelName){
+  const editor=document.getElementById('editor-'+panelName);
+  if(!editor||!editor.value) return;
+  navigator.clipboard.writeText(editor.value).then(function(){
+    showToast('Copied to clipboard');
+  }).catch(function(){
+    // fallback
+    try{
+      document.execCommand('copy');
+      showToast('Copied to clipboard');
+    }catch(e){showToast('Could not copy');}
+  });
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.remove('show');
+  void t.offsetWidth; // reflow
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+// ============================================================
+// APPROVE / DISMISS
+// ============================================================
+function handleApprove(panelName,itemId){
+  const item=findItem(panelName,itemId);
+  if(!item) return;
+  item.status='approved';
+  showToast('Approved');
+  closeWorkspace(panelName);
+}
+function handleDismiss(panelName,itemId){
+  const item=findItem(panelName,itemId);
+  if(!item) return;
+  item.status='dismissed';
+  showToast('Dismissed');
+  closeWorkspace(panelName);
+}
+
+// ============================================================
+// COMMAND PALETTE
+// ============================================================
+function setupCommandPalette(){
+  const input=document.getElementById('command-input');
+  const bar=document.getElementById('command-bar');
+  const hint=document.getElementById('command-hint');
+  const result=document.getElementById('command-result');
+
+  // Global key listeners
+  function onKey(e){
+    if(e.key==='/' && document.activeElement!==input){
+      e.preventDefault();
+      input.focus();
+      input.setSelectionRange(input.value.length,input.value.length);
+    }
+    if((e.key==='k'||e.key==='K') && (e.metaKey||e.ctrlKey)){
+      e.preventDefault();
+      if(document.activeElement===input){input.blur();}
+      else{input.focus();}
+    }
+    if(e.key==='Escape' && document.activeElement===input){
+      input.blur();
+    }
+  }
+  document.addEventListener('keydown',onKey);
+
+  input.addEventListener('focus',function(){
+    bar.classList.add('active');
+    hint.classList.add('hidden');
+  });
+  input.addEventListener('blur',function(){
+    bar.classList.remove('active');
+    setTimeout(function(){hint.classList.remove('hidden');},200);
+  });
+
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key==='Return'){
+      e.preventDefault();
+      const val=input.value.trim().toLowerCase();
+      if(!val) return;
+      handleCommand(val);
+    }
+  });
+}
+
+function handleCommand(cmd){
+  const input=document.getElementById('command-input');
+  const result=document.getElementById('command-result');
+  const bar=document.getElementById('command-bar');
+
+  // Show loading
+  result.innerHTML='<span class="command-spinner"></span>Scouting\u2026';
+  result.style.display='block';
+  result.className='show';
+  input.disabled=true;
+
+  setTimeout(function(){
+    // Generate result text
+    let msg='';
+    if(cmd==='scout all'){
+      const total=DATA.panels['op-eds'].length+DATA.panels['trends'].length+DATA.panels['commentary'].length;
+      msg='Fetched '+total+' items across 3 panels (demo)';
+    }else if(cmd==='scout op-eds'){
+      msg='Fetched '+DATA.panels['op-eds'].length+' op-ed items (demo)';
+    }else if(cmd==='scout trends'){
+      msg='Fetched '+DATA.panels['trends'].length+' trend items (demo)';
+    }else if(cmd==='scout commentary'){
+      msg='Fetched '+DATA.panels['commentary'].length+' commentary items (demo)';
+    }else{
+      msg='Unknown command: "'+cmd+'". Try: scout all, scout op-eds, scout trends, scout commentary';
+    }
+    result.innerHTML=msg;
+    result.className='show';
+    input.disabled=false;
+    input.value='';
+    input.focus();
+
+    // Hide result after 4s
+    setTimeout(function(){
+      result.className='hide';
+      setTimeout(function(){result.style.display='none';result.innerHTML='';},300);
+    },4000);
+  },2000);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderCards();
+setupAccordion();
+setupSpecular();
+setupCommandPalette();
+</script>
+</body>
+</html>

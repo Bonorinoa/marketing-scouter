@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing Scouter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%236b1e23%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-size=%2720%27 font-family=%27Georgia%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%23f4eee1%27%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="wash" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="mast-side" id="mastLeft"></div>
+  <div class="mast-center">
+    <h1>Marketing Scouter</h1>
+    <p class="tagline">Read widely. Reply carefully.</p>
+  </div>
+  <div class="mast-side right" id="mastRight"></div>
+</header>
+<div class="rule-double" aria-hidden="true"></div>
+
+<nav class="toolbar" aria-label="Commands">
+  <div class="tool-group">
+    <div class="split">
+      <button class="btn primary" id="scoutBtn" type="button">Scout</button>
+      <select id="scoutScope" aria-label="What to scout">
+        <option value="">everything</option>
+        <option value="op-eds">op-eds</option>
+        <option value="trends">trends</option>
+        <option value="commentary">commentary</option>
+      </select>
+    </div>
+    <button class="btn" id="captureBtn" type="button">Capture a post…</button>
+    <button class="btn quiet" id="interestsBtn" type="button">Interests</button>
+  </div>
+  <div class="tabs" id="panelTabs" role="tablist" aria-label="Panels"></div>
+  <label class="floor" title="Relevance is the highest probability that an item is substantively about one of your interests. It ranks; it does not predict success.">
+    <span>Show relevance at least</span>
+    <output id="floorOut">0.15</output>
+    <input type="range" id="floor" min="0" max="0.9" step="0.05" value="0.15" aria-label="Minimum relevance">
+  </label>
+</nav>
+<div class="progress" id="progress" hidden><i></i></div>
+<div class="banner" id="banner" hidden></div>
+
+<main class="columns" id="columns" data-active="op-eds"></main>
+
+<footer class="foot">
+  <span class="seal" aria-hidden="true"></span>
+  Nothing leaves this app without you. Copying is the only way out.
+</footer>
+
+<!-- The workspace: opens from the clicked card and fills the page as a two-page spread -->
+<section class="spread" id="spread" hidden aria-label="Workspace">
+  <div class="spread-bar">
+    <button class="back" id="backBtn" type="button"><span aria-hidden="true">←</span> Back to the paper <kbd>Esc</kbd></button>
+    <div class="spread-title" id="spreadTitle"></div>
+    <div class="spread-state" id="spreadState"></div>
+  </div>
+  <div class="pages">
+    <article class="page left" id="pageLeft"></article>
+    <div class="fold" aria-hidden="true"></div>
+    <article class="page right" id="pageRight"></article>
+  </div>
+</section>
+
+<dialog id="captureDlg">
+  <form method="dialog" id="captureForm">
+    <h2>Capture a post</h2>
+    <p class="dlg-note">For something you found yourself. An X post link is read through X's public embed, one request per link. For LinkedIn or anything else, paste the text. Nothing is scraped.</p>
+    <label>Link <input name="url" type="url" required placeholder="https://x.com/…/status/…"></label>
+    <label>Text <span class="opt">(required unless it is an X link)</span><textarea name="text" rows="4" placeholder="Paste the post text"></textarea></label>
+    <label>Panel
+      <select name="panel"><option value="trends">trends</option><option value="commentary">commentary</option><option value="op-eds">op-eds</option></select>
+    </label>
+    <div class="dlg-actions">
+      <button class="btn" value="cancel" type="button" id="captureCancel">Cancel</button>
+      <button class="btn primary" type="submit" id="captureGo">Capture and score</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="interestsDlg">
+  <h2>What the ranker looks for</h2>
+  <p class="dlg-note">Each item gets one yes/no question per interest. Edit <code>interests.json</code> and the next Scout re-scores everything. Keep descriptions topic-level: they are sent to Jev.</p>
+  <ol class="interest-list" id="interestList"></ol>
+  <div class="dlg-actions"><button class="btn" type="button" id="interestsClose">Close</button></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/app.js"></script>
+</body>
+</html>

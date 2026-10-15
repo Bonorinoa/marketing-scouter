@@ -1,0 +1,572 @@
+{
+ "note": "Real items scored by Jev on 2026-10-06. relevance = highest per-interest probability. Use these exactly; do not invent others.",
+ "interests": [
+  "Synthetic agents as models of human values",
+  "Formal verification for economics",
+  "AI and journalism",
+  "AI in education",
+  "Measurement and construct validity with LLMs",
+  "Economics of AI and productivity",
+  "Automated research and AI agents for science",
+  "Latin American economy and institutions",
+  "Culture, norms and technology",
+  "Causal inference",
+  "Complexity science and the Santa Fe Institute"
+ ],
+ "panels": {
+  "op-eds": [
+   {
+    "id": "980b562e7667",
+    "source_id": "la_gaceta",
+    "source_name": "La Gaceta",
+    "title": "Dólar e inflación: qué esperan los analistas consultados por el Banco Central",
+    "summary": "La autoridad monetaria difundió el REM de septiembre, elaborado a partir de las proyecciones de 44 participantes. Los analistas también estimaron una caída del PIB en el tercer trimestre y una desocupación del 7,5%.",
+    "url": "https://www.lagaceta.com.ar/nota/1157012/economia/dolar-e-inflacion-esperan-analistas-consultados-banco-central.html",
+    "published": "Tue, 06 Oct 2026 20:31:00 +0000",
+    "relevance": 0.88,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Causal inference",
+      "p": 0.02
+     },
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.02,
+    "status": "drafted",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "4a093cb6fb92",
+    "source_id": "la_nacion_economia",
+    "source_name": "La Nación · Economía",
+    "title": "El Banco Mundial volvió a recortar la proyección de crecimiento para la Argentina en 2026",
+    "summary": "El organismo prevé que el PBI se expanda 2,1%, frente al 3,6% que había pronosticado en junio y al 4% de enero; destacó que habrá tres años consecutivos de crecimiento (2025-2027) por primera vez en casi dos décadas",
+    "url": "https://www.lanacion.com.ar/economia/el-banco-mundial-volvio-a-recortar-la-proyeccion-de-crecimiento-para-la-argentina-en-2026-nid06102026/",
+    "published": "Tue, 06 Oct 2026 19:47:04 +0000",
+    "relevance": 0.86,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     },
+     {
+      "name": "Formal verification for economics",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.02,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "a2f173acc01f",
+    "source_id": "la_nacion_economia",
+    "source_name": "La Nación · Economía",
+    "title": "Impulsan una baja del IVA del huevo del 21% al 10,5% y buscan debatirla con el presupuesto",
+    "summary": "El diputado del PRO Javier Sánchez Wrba trabaja en una propuesta y mantiene conversaciones con el oficialismo; según Capia, la formalización de la actividad permitiría compensar la caída inicial de la recaudación y cerrar el primer año con US$40 millones adicionales para el Estado",
+    "url": "https://www.lanacion.com.ar/economia/campo/impulsan-una-baja-del-iva-del-huevo-del-21-al-105-y-buscan-debatirla-con-el-presupuesto-nid06102026/",
+    "published": "Tue, 06 Oct 2026 16:57:45 +0000",
+    "relevance": 0.84,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Causal inference",
+      "p": 0.02
+     },
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.03,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "8ccfbe8b8f9d",
+    "source_id": "la_nacion_economia",
+    "source_name": "La Nación · Economía",
+    "title": "Para los analistas, la economía cayó en recesión y solo crecería entre 1,2 y 1,5% este año",
+    "summary": "Estiman que la inflación se mantendría estabilizada debajo del 2% mensual pero sin bajar mucho, lo que la haría cerrar el año al 30%, apenas por debajo de la del 2025",
+    "url": "https://www.lanacion.com.ar/economia/para-los-analistas-la-economia-cayo-en-recesion-y-solo-creceria-entre-12-y-15-este-ano-nid06102026/",
+    "published": "Tue, 06 Oct 2026 22:39:05 +0000",
+    "relevance": 0.83,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Causal inference",
+      "p": 0.02
+     },
+     {
+      "name": "Formal verification for economics",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.02,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "c3d155406d47",
+    "source_id": "la_gaceta",
+    "source_name": "La Gaceta",
+    "title": "El Banco Mundial recortó su pronóstico para Argentina: cuánto crecerá la economía en 2026",
+    "summary": "Se trata de la segunda vez consecutiva que el organismo reduce sus proyecciones para el país en su informe de Actualización Económica de América Latina y el Caribe.",
+    "url": "https://www.lagaceta.com.ar/nota/1156996/economia/banco-mundial-recorto-pronostico-para-argentina-cuanto-crecera-economia-2026.html",
+    "published": "Tue, 06 Oct 2026 18:21:00 +0000",
+    "relevance": 0.8,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     },
+     {
+      "name": "Formal verification for economics",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.02,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "36dc3a83db1b",
+    "source_id": "la_gaceta",
+    "source_name": "La Gaceta",
+    "title": "Dólar hoy: el oficial operó estable y el mayorista quedó a $405 del techo de la banda cambiaria",
+    "summary": "En la jornada de este martes, la divisa minorita terminó a $1.540 en las pantallas del Banco Nación.",
+    "url": "https://www.lagaceta.com.ar/nota/1156991/economia/dolar-hoy-oficial-opero-estable-mayorista-quedo-405-techo-banda-cambiaria.html",
+    "published": "Tue, 06 Oct 2026 17:52:00 +0000",
+    "relevance": 0.72,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     },
+     {
+      "name": "Formal verification for economics",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.02,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   },
+   {
+    "id": "e54382e68730",
+    "source_id": "la_nacion_opinion",
+    "source_name": "La Nación · Opinión",
+    "title": "Perdedores, de Taormina a la Argentina",
+    "summary": "Las actuales tensiones económicas solo podrán resolverse con inversión, mayor productividad y crecimiento, palabras ajenas al vocabulario populista",
+    "url": "https://www.lanacion.com.ar/editoriales/perdedores-de-hoy-condenados-de-ayer-nid20092026/",
+    "published": "Sun, 20 Sep 2026 03:10:00 +0000",
+    "relevance": 0.67,
+    "lens": "Latin American economy and institutions",
+    "alt_lenses": [
+     {
+      "name": "Economics of AI and productivity",
+      "p": 0.05
+     },
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.02
+     }
+    ],
+    "personal_flag": 0.03,
+    "status": "new",
+    "meta": {
+     "lang": "es"
+    }
+   }
+  ],
+  "trends": [
+   {
+    "id": "4be705e8da97",
+    "source_id": "nber_new",
+    "source_name": "NBER · New working papers",
+    "title": "Avoiding Regulation: Evidence from Nursing Homes -- by Alden Cheng, Riley League",
+    "summary": "We study strategic responses by firms to threshold-based regulations. We document extensive bunching in response to additional staffing requirements for California nursing homes with at least 100 beds. To estimate the regulation’s effect on staffing, we develop a novel treatment effects estimator for threshold-based re",
+    "url": "https://www.nber.org/papers/w35849#fromrss",
+    "published": "",
+    "relevance": 0.92,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Economics of AI and productivity",
+      "p": 0.02
+     },
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.03,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "275d9953ac2b",
+    "source_id": "gelman_blog",
+    "source_name": "Statistical Modeling blog",
+    "title": "When are Causal Inference Methods Needed to Answer Causal Questions?",
+    "summary": "Earlier this year we discussed Donna Spiegelman’s talk, “Rethinking SUTVA and Causal Identification: An Epidemiologist’s Perspective,” which she summarized as follows: She’s giving a followup talk online on Mon 12 Oct, 3:30pm. Here’s the abstract: When do specialized causal inference … Continue reading →",
+    "url": "https://statmodeling.stat.columbia.edu/2026/10/01/when-are-causal-inference-methods-needed-to-answer-causal-questions/",
+    "published": "Thu, 01 Oct 2026 20:59:15 +0000",
+    "relevance": 0.9,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Automated research and AI agents for science",
+      "p": 0.02
+     },
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.02
+     }
+    ],
+    "personal_flag": 0.04,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "a39a7216e62b",
+    "source_id": "nber_new",
+    "source_name": "NBER · New working papers",
+    "title": "Randomized to Opportunity: Measuring Place Effects for Refugee Children -- by N. Meltem Daysal, Joseph J. Doyle Jr., Naeim S. Samandari, Emil A. L. Simonsen, Mircea Trandafir",
+    "summary": "Area-level measures of economic opportunity are increasingly used to guide place-based policies. We study whether these measures predict long-run outcomes for a vulnerable population: over 12,000 refugee children quasi-randomly assigned to municipalities under Denmark's 1986–1998 dispersal policy. We focus on predeterm",
+    "url": "https://www.nber.org/papers/w35853#fromrss",
+    "published": "",
+    "relevance": 0.88,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Measurement and construct validity with LLMs",
+      "p": 0.02
+     },
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.02
+     }
+    ],
+    "personal_flag": 0.08,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "14edfa994468",
+    "source_id": "nber_new",
+    "source_name": "NBER · New working papers",
+    "title": "Does Food Assistance Drive Spending on Sugary Foods? Evidence from the Pandemic Electronic Benefit Transfer Program -- by Georgina Cisneros, Brandyn F. Churchill",
+    "summary": "We provide evidence on the extent to which food assistance affects spending on sugary items by studying the Pandemic Electronic Benefit Transfer (P-EBT) program, which provided funds to families of children who lost access to free and reduced-price school meals due to COVID-19 pandemic school closures. Leveraging state",
+    "url": "https://www.nber.org/papers/w35835#fromrss",
+    "published": "",
+    "relevance": 0.8,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.02
+     },
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.05,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "374af4a8b5a0",
+    "source_id": "gelman_blog",
+    "source_name": "Statistical Modeling blog",
+    "title": "Hey—we’re hiring two postdocs!",
+    "summary": "I’ll post more formal ads soon, but, very briefly: One project is on generalization for causal inference with a focus on education research, following up on MRPW: Regression, poststratification, and small-area estimation with sampling weights. The other project is on … Continue reading →",
+    "url": "https://statmodeling.stat.columbia.edu/2026/10/06/hey-were-hiring-two-postdocs/",
+    "published": "Tue, 06 Oct 2026 14:07:51 +0000",
+    "relevance": 0.72,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "AI in education",
+      "p": 0.05
+     },
+     {
+      "name": "Automated research and AI agents for science",
+      "p": 0.03
+     }
+    ],
+    "personal_flag": 0.08,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "117f48cdc85f",
+    "source_id": "gelman_blog",
+    "source_name": "Statistical Modeling blog",
+    "title": "Using the computer to p-hack . . . I’d rather use it to fit multilevel models.",
+    "summary": "Brian Stone writes: Cognitive psychologist and long time reader of the blog here. I thought you and your audience might appreciate this recent post from Andy Hall: AI is about to write thousands of papers. Will it p-hack them? We ran … Continue reading →",
+    "url": "https://statmodeling.stat.columbia.edu/2026/10/03/using-the-computer-to-p-hack-id-rather-use-it-to-fit-multilevel-models/",
+    "published": "Sat, 03 Oct 2026 13:10:29 +0000",
+    "relevance": 0.58,
+    "lens": "Automated research and AI agents for science",
+    "alt_lenses": [
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.12
+     },
+     {
+      "name": "Measurement and construct validity with LLMs",
+      "p": 0.06
+     }
+    ],
+    "personal_flag": 0.04,
+    "status": "new",
+    "meta": {
+     "lang": "en"
+    }
+   },
+   {
+    "id": "bae1a89cdc19",
+    "source_id": "hn_trends",
+    "source_name": "Hacker News · 14-day discussions",
+    "title": "Show HN: HN.watch – Videos of all Hacker News posts",
+    "summary": "Hi HN, I’m Per, founder of Scrimba (YC S20). We’ve spent the last decade teaching people how to code with an HTML-based video format. We’ve now plugged an LLM into it, so that people can create explainer videos about anything. It’s called “Scrimba Explain”. To demo this technology for Hacker News, we built HN.watch. It",
+    "url": "https://news.ycombinator.com/item?id=49879401",
+    "published": "2026-09-28T15:16:13Z",
+    "relevance": 0.2,
+    "lens": "AI in education",
+    "alt_lenses": [
+     {
+      "name": "AI and journalism",
+      "p": 0.09
+     },
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.08
+     }
+    ],
+    "personal_flag": 0.04,
+    "status": "new",
+    "meta": {
+     "points": 225,
+     "comments": 97,
+     "external_url": "https://hn.watch/",
+     "lang": "en",
+     "query": "complex systems"
+    }
+   }
+  ],
+  "commentary": [
+   {
+    "id": "029aa81d6451",
+    "source_id": "reddit_economics",
+    "source_name": "r/Economics",
+    "title": "Don’t be fooled - Canada lags in AI as well as economic growth",
+    "summary": "submitted by /u/rdh2dmd [link] [comments]",
+    "url": "https://www.reddit.com/r/Economics/comments/1wzgacw/dont_be_fooled_canada_lags_in_ai_as_well_as/",
+    "published": "2026-10-06T22:30:27+00:00",
+    "relevance": 0.49,
+    "lens": "Economics of AI and productivity",
+    "alt_lenses": [
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.08
+     },
+     {
+      "name": "AI and journalism",
+      "p": 0.04
+     }
+    ],
+    "personal_flag": 0.03,
+    "status": "new",
+    "meta": {
+     "lang": "en",
+     "subreddit": "Economics"
+    }
+   },
+   {
+    "id": "77ddfdf47d33",
+    "source_id": "hn_front",
+    "source_name": "Hacker News · front page",
+    "title": "Sharing AI progress in mathematics",
+    "summary": "https://github.com/openai/math https://github.com/openai/math/tree/main/preprints",
+    "url": "https://news.ycombinator.com/item?id=49984923",
+    "published": "2026-10-06T22:17:21Z",
+    "relevance": 0.41,
+    "lens": "Automated research and AI agents for science",
+    "alt_lenses": [
+     {
+      "name": "AI in education",
+      "p": 0.08
+     },
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.07
+     }
+    ],
+    "personal_flag": 0.03,
+    "status": "new",
+    "meta": {
+     "points": 344,
+     "comments": 291,
+     "external_url": "https://openai.com/index/sharing-ai-progress-in-mathematics/",
+     "lang": "en"
+    }
+   },
+   {
+    "id": "3af25830f129",
+    "source_id": "hn_front",
+    "source_name": "Hacker News · front page",
+    "title": "Claude Code’s suggested message feature: I think the real customer is the model",
+    "summary": "",
+    "url": "https://news.ycombinator.com/item?id=49981905",
+    "published": "2026-10-06T18:00:34Z",
+    "relevance": 0.17,
+    "lens": "Culture, norms and technology",
+    "alt_lenses": [
+     {
+      "name": "Economics of AI and productivity",
+      "p": 0.11
+     },
+     {
+      "name": "Automated research and AI agents for science",
+      "p": 0.08
+     }
+    ],
+    "personal_flag": 0.04,
+    "status": "new",
+    "meta": {
+     "points": 83,
+     "comments": 46,
+     "external_url": "https://www.zohaib.cc/blog/smartest-claude-code-feature",
+     "lang": "en"
+    }
+   },
+   {
+    "id": "7a44c4bc58d4",
+    "source_id": "hn_front",
+    "source_name": "Hacker News · front page",
+    "title": "Vibecoding Photoshop: Time and pressure",
+    "summary": "",
+    "url": "https://news.ycombinator.com/item?id=49983780",
+    "published": "2026-10-06T20:40:48Z",
+    "relevance": 0.17,
+    "lens": "Culture, norms and technology",
+    "alt_lenses": [
+     {
+      "name": "Economics of AI and productivity",
+      "p": 0.09
+     },
+     {
+      "name": "AI and journalism",
+      "p": 0.04
+     }
+    ],
+    "personal_flag": 0.09,
+    "status": "new",
+    "meta": {
+     "points": 48,
+     "comments": 53,
+     "external_url": "https://andreklein.net/vibecoding-photoshop-time-and-pressure/",
+     "lang": "en"
+    }
+   },
+   {
+    "id": "841c3bd387ec",
+    "source_id": "reddit_economics",
+    "source_name": "r/Economics",
+    "title": "Transport Affordability and Automobile Debt in the United States",
+    "summary": "submitted by /u/Helicase21 [link] [comments]",
+    "url": "https://www.reddit.com/r/Economics/comments/1wz359q/transport_affordability_and_automobile_debt_in/",
+    "published": "2026-10-06T13:51:25+00:00",
+    "relevance": 0.07,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Culture, norms and technology",
+      "p": 0.04
+     },
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.09,
+    "status": "new",
+    "meta": {
+     "lang": "en",
+     "subreddit": "Economics"
+    }
+   },
+   {
+    "id": "09dccc8c3d13",
+    "source_id": "reddit_econometrics",
+    "source_name": "r/econometrics",
+    "title": "Economics Or Statistics",
+    "summary": "Hey everyone, I recently finished my FSc and I’m planning to start university, but I’m confused about whether I should pursue economics or statistics .I have very little knowledge about either field, so I’m not really sure what the coursework, career prospects, or difficulty of each degree are like. For people who have",
+    "url": "https://www.reddit.com/r/econometrics/comments/1wzcuzv/economics_or_statistics/",
+    "published": "2026-10-06T20:09:01+00:00",
+    "relevance": 0.03,
+    "lens": "Causal inference",
+    "alt_lenses": [
+     {
+      "name": "Synthetic agents as models of human values",
+      "p": 0.01
+     },
+     {
+      "name": "Formal verification for economics",
+      "p": 0.01
+     }
+    ],
+    "personal_flag": 0.06,
+    "status": "new",
+    "meta": {
+     "lang": "en",
+     "subreddit": "econometrics"
+    }
+   }
+  ]
+ },
+ "sample_draft": {
+  "candidate_id": "980b562e7667",
+  "user_take": "Los pronósticos de inflación de analistas suelen subestimar la dispersión; lo importante es cuánta incertidumbre reportan, no el número central.",
+  "text": "El REM de septiembre que difundió el Banco Central resume las proyecciones de 44 consultoras y bancos con un solo número: la mediana. Inflación de 1,9% para septiembre, dólar a $1.614 en diciembre, PIB cayendo 1,0% en el tercer trimestre. Todo muy preciso. Pero la nota omite un dato que el propio BCRA publica: la dispersión de esas proyecciones.\n\nCuando 44 analistas pronostican la inflación, el número central es apenas la mitad de la historia. Si diez esperan 1,2% y otros diez esperan 2,6%, la mediana de 1,9% escondería un desacuerdo enorme sobre la dirección de los precios. Lo relevante para un empresario que fija salarios o para un ahorrista que elige entre plazo fijo y dólar no es cuánto dicen los analistas en promedio sino cuánto discrepan entre ellos. La incertidumbre se mide con varianza, no con medianas.\n\nEl REM incluye esa información —el BCRA reporta el rango de pronósticos para cada variable— pero la cobertura periodística la ignora sistemáticamente. Una lástima: el número central es el dato menos informativo del relevamiento.",
+  "rationale": "The author's take argues that analyst forecast dispersion matters more than the central estimate. The article reports only medians from 44 participants and never mentions disagreement ranges, making it a clean target for this argument with a concrete, self-contained example drawn from the article's own numbers.",
+  "flags": [
+   "Verificar que el REM efectivamente publica el rango o deciles de los pronósticos (el BCRA suele incluir esta información; el autor sabrá el formato exacto del informe de septiembre).",
+   "Conteo de palabras: ~165; dentro del límite de 200 pero conviene verificarlo con un contador exacto antes de enviar."
+  ],
+  "model": "openrouter/deepseek/deepseek-v4-pro",
+  "lens": "Latin American economy and institutions"
+ }
+}

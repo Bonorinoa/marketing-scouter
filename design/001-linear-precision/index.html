@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Scouter · Linear Precision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;510;590&display=swap" rel="stylesheet">
+<style>
+/* ── Design tokens ── */
+:root {
+  --bg-page: #08090a;
+  --bg-panel: #0f1011;
+  --bg-elevated: #191a1b;
+  --text-primary: #f7f8f8;
+  --text-secondary: #d0d6e0;
+  --text-tertiary: #8a8f98;
+  --text-muted: #62666d;
+  --accent: #5e6ad2;
+  --accent-hover: #828fff;
+  --border-white-5: rgba(255,255,255,0.05);
+  --border-white-8: rgba(255,255,255,0.08);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emph: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-ui);
+  font-feature-settings: "cv01" on, "ss03" on;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.45;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Command bar ── */
+#cmdbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border-white-8);
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 24px; height: 48px;
+}
+#cmdbar .logo {
+  font-weight: 510; font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+#cmdbar .quiet-line {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: -0.005em;
+  margin-left: auto;
+}
+.cmd-group { display: flex; gap: 6px; align-items: center; }
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 510;
+  font-size: 12px;
+  letter-spacing: -0.005em;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px; cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn:hover { background: var(--bg-elevated); }
+.btn-accent {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.btn-accent:hover {
+  background: var(--bg-elevated);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.panel-tab {
+  background: transparent;
+  border: 0; border-bottom: 2px solid transparent;
+  padding: 4px 0 6px 0; cursor: pointer;
+  font-family: var(--font-ui); font-weight: 510; font-size: 11px;
+  color: var(--text-muted);
+  transition: color 0.12s, border-color 0.12s;
+}
+.panel-tab.active { color: var(--text-primary); border-bottom-color: var(--accent); }
+.panel-tab:not(.active):hover { color: var(--text-tertiary); }
+
+/* ── Dashboard ── */
+#dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+@media (max-width: 1100px) {
+  #dashboard { gap: 14px; padding: 14px 16px; }
+}
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+.panel-header {
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--border-white-5);
+}
+.panel-header h2 {
+  font-weight: 510; font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.panel-header .sub {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--text-muted);
+  margin-top: 2px;
+}
+.panel-cards {
+  flex: 1; overflow-y: auto;
+  padding: 8px 12px 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+  overflow: hidden;
+}
+.card:hover {
+  background: #202224;
+  border-color: var(--border-white-8);
+}
+.card-title {
+  font-weight: 510; font-size: 12px;
+  line-height: 1.35;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.card-source {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--text-tertiary);
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 4px;
+}
+.card-status {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 9px;
+  padding: 1px 5px; border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+}
+.card-status.drafted { color: var(--accent); background: rgba(94,106,210,0.12); }
+
+/* ── Liquid glass hover effect ── */
+.card-glass {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.card:hover .card-glass { opacity: 1; }
+.card-glass-surface {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.015);
+  backdrop-filter: blur(2px);
+  border-radius: var(--radius-md);
+}
+.card-glass-specular {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 0 0, rgba(130,143,255,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: var(--radius-md);
+}
+.card:hover .card-glass-specular { opacity: 1; }
+.card-glass-preview {
+  position: absolute;
+  bottom: 8px; left: 10px; right: 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px; color: var(--text-tertiary);
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s var(--ease-out);
+  max-height: 40px; overflow: hidden;
+}
+.card:hover .card-glass-preview { opacity: 1; transform: translateY(0); }
+
+/* ── Workspace overlay ── */
+#workspace {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  background: var(--bg-page);
+}
+#workspace.open { display: flex; }
+#workspace-inner {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  width: 100%; height: 100%;
+}
+@media (max-width: 1100px) {
+  #workspace-inner { grid-template-columns: 200px 1fr; }
+}
+#workspace-side {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border-white-8);
+  padding: 24px 16px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 10px;
+}
+#workspace-main {
+  background: var(--bg-page);
+  padding: 24px 28px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+}
+#workspace .ws-back {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary); cursor: pointer;
+  background: none; border: none; padding: 0;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+#workspace .ws-back:hover { color: var(--text-primary); }
+#workspace .ws-panel-label {
+  font-family: var(--font-mono);
+  font-size: 9px; color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+#workspace .ws-source-block {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+#workspace .ws-source-block .ws-source-title {
+  font-weight: 510; font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+#workspace .ws-source-block .ws-source-meta {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--text-tertiary);
+  margin-top: 4px;
+}
+.ws-section-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px; color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+/* Relevance meter */
+.ws-meter {
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.ws-meter-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.2s;
+}
+.ws-meter-val {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary);
+}
+.ws-lens-tag {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(94,106,210,0.1);
+  color: var(--accent);
+}
+.ws-lens-bar {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--text-tertiary);
+}
+.ws-lens-bar .bar-track {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  flex: 1;
+  overflow: hidden;
+}
+.ws-lens-bar .bar-fill {
+  height: 100%;
+  background: var(--text-secondary);
+  border-radius: 2px;
+}
+.ws-privacy-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(255,200,50,0.08);
+  color: #d4a82c;
+  border: 1px solid rgba(212,168,44,0.2);
+}
+.ws-label {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary);
+}
+textarea.ws-take {
+  font-family: var(--font-ui);
+  font-weight: 400; font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  min-height: 60px;
+  width: 100%;
+  resize: vertical;
+  outline: none;
+}
+textarea.ws-take:focus {
+  border-color: var(--accent);
+}
+.ws-char-count, .ws-word-count {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+}
+.ws-char-count.warn, .ws-word-count.warn { color: #d4a82c; }
+.ws-char-count.over, .ws-word-count.over { color: #e05a5a; }
+
+/* Draft area */
+.ws-draft-text {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-weight: 400; font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+.ws-rationale {
+  font-weight: 400; font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.ws-flag-item {
+  display: flex; align-items: flex-start; gap: 6px;
+  font-family: var(--font-mono); font-size: 9.5px;
+  color: var(--text-tertiary);
+  line-height: 1.35;
+}
+.ws-flag-item input[type=checkbox] { accent-color: var(--accent); }
+
+/* Preview card (trends) */
+.ws-preview-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  max-width: 320px;
+}
+.ws-preview-card .pcard-title {
+  font-weight: 510; font-size: 11.5px;
+  color: var(--text-primary);
+}
+.ws-preview-card .pcard-body {
+  font-size: 11px; color: var(--text-tertiary);
+  line-height: 1.35;
+}
+
+/* Thread context (commentary) */
+.ws-thread {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 11.5px; color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Action buttons */
+.ws-actions { display: flex; gap: 8px; }
+.btn-approve {
+  font-family: var(--font-ui); font-weight: 510; font-size: 12px;
+  background: #1b2a1b;
+  color: #7fc87f;
+  border: 1px solid rgba(127,200,127,0.2);
+  border-radius: var(--radius-sm);
+  padding: 5px 16px; cursor: pointer;
+}
+.btn-approve:hover { background: #243a24; }
+.btn-dismiss {
+  font-family: var(--font-ui); font-weight: 510; font-size: 12px;
+  background: #1b1b2a;
+  color: #d06a6a;
+  border: 1px solid rgba(208,106,106,0.2);
+  border-radius: var(--radius-sm);
+  padding: 5px 16px; cursor: pointer;
+}
+.btn-dismiss:hover { background: #24243a; }
+
+/* Editor-specific chrome */
+.ws-editor-chrome {
+  display: flex; gap: 8px; align-items: center;
+  flex-wrap: wrap;
+}
+.ws-lang-chip {
+  font-family: var(--font-mono); font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-white-5);
+}
+
+/* ── Scout progress ── */
+#scout-progress {
+  display: none;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary);
+  padding: 6px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+}
+#scout-progress.active { display: flex; align-items: center; gap: 8px; }
+.spinner {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--accent);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#scout-result {
+  display: none;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary);
+  padding: 4px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-5);
+  border-radius: var(--radius-sm);
+}
+#scout-result.show { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ── Toast ── */
+#toast {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 300;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-white-8);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.18s, transform 0.18s var(--ease-out);
+  pointer-events: none;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── COMMAND BAR ── -->
+<header id="cmdbar">
+  <span class="logo">Marketing Scouter</span>
+  <div class="cmd-group">
+    <button class="btn btn-accent" id="btn-scout">Scout</button>
+    <span id="scout-progress"><span class="spinner"></span>fetching sources…</span>
+    <span id="scout-result"></span>
+  </div>
+  <div class="cmd-group">
+    <button class="panel-tab active" data-panel="op-eds">Op-eds</button>
+    <button class="panel-tab" data-panel="trends">Trends</button>
+    <button class="panel-tab" data-panel="commentary">Commentary</button>
+  </div>
+  <span class="quiet-line">nothing leaves this app without you</span>
+</header>
+
+<!-- ── DASHBOARD ── -->
+<main id="dashboard">
+  <section id="panel-op-eds" class="panel">
+    <div class="panel-header">
+      <h2>Op-eds</h2>
+      <div class="sub">La Nación · La Gaceta · LA Times</div>
+    </div>
+    <div class="panel-cards" id="cards-op-eds"></div>
+  </section>
+  <section id="panel-trends" class="panel">
+    <div class="panel-header">
+      <h2>Trends</h2>
+      <div class="sub">HN · NBER · Statistical Modeling</div>
+    </div>
+    <div class="panel-cards" id="cards-trends"></div>
+  </section>
+  <section id="panel-commentary" class="panel">
+    <div class="panel-header">
+      <h2>Commentary</h2>
+      <div class="sub">Reddit · HN · Threads</div>
+    </div>
+    <div class="panel-cards" id="cards-commentary"></div>
+  </section>
+</main>
+
+<!-- ── WORKSPACE OVERLAY ── -->
+<div id="workspace">
+  <div id="workspace-inner">
+    <aside id="workspace-side">
+      <button class="ws-back" id="ws-close">← Back</button>
+      <div style="margin-top:8px;">
+        <div class="ws-section-label">Panel</div>
+        <span class="ws-panel-label" id="ws-panel-label">op-eds</span>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="ws-section-label">Source</div>
+        <div id="ws-source-block" class="ws-source-block">
+          <div class="ws-source-title" id="ws-source-title"></div>
+          <div class="ws-source-meta" id="ws-source-meta"></div>
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="ws-section-label">Relevance</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="ws-meter"><div class="ws-meter-fill" id="ws-meter-fill" style="width:0%"></div></div>
+          <span class="ws-meter-val" id="ws-meter-val">0.00</span>
+        </div>
+      </div>
+      <div style="margin-top:6px;">
+        <div class="ws-section-label">Lens</div>
+        <span class="ws-lens-tag" id="ws-lens-tag"></span>
+      </div>
+      <div style="margin-top:6px;">
+        <div class="ws-section-label">Runner-up</div>
+        <div id="ws-alt-lenses"></div>
+      </div>
+      <div id="ws-privacy-container" style="margin-top:8px;display:none;">
+        <span class="ws-privacy-chip">⚠ Personal</span>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="ws-section-label">Status</div>
+        <span class="card-status" id="ws-card-status">new</span>
+      </div>
+    </aside>
+    <div id="workspace-main">
+      <!-- Editor chrome area (panel-specific) -->
+      <div id="ws-editor-chrome" class="ws-editor-chrome"></div>
+      <div class="ws-section-label">Your take</div>
+      <textarea id="ws-take" class="ws-take" placeholder="What is your angle? What do you see that the article misses?"></textarea>
+      <div id="ws-count-area"></div>
+      <!-- Draft section (hidden until generated) -->
+      <div id="ws-draft-area" style="display:none;">
+        <div class="ws-section-label">Draft</div>
+        <div class="ws-draft-text" id="ws-draft-text"></div>
+        <div style="margin-top:8px;">
+          <div class="ws-section-label">Model suggestion</div>
+          <div class="ws-rationale" id="ws-rationale"></div>
+        </div>
+        <div style="margin-top:8px;">
+          <div class="ws-section-label">Checklist</div>
+          <div id="ws-flags"></div>
+        </div>
+      </div>
+      <!-- Thread context (commentary only) -->
+      <div id="ws-thread-area" style="display:none;">
+        <div class="ws-section-label">Thread</div>
+        <div class="ws-thread" id="ws-thread-text"></div>
+      </div>
+      <!-- Actions -->
+      <div class="ws-actions" style="margin-top:8px;justify-content:space-between;">
+        <div>
+          <button class="btn" id="btn-draft" style="color:var(--accent);border-color:var(--accent);">Draft</button>
+          <button class="btn" id="btn-copy" style="margin-left:6px;">Copy to clipboard</button>
+        </div>
+        <div>
+          <button class="btn-approve" id="btn-approve">Approve</button>
+          <button class="btn-dismiss" id="btn-dismiss">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// Embedded data from data.json (real items, not invented)
+// ═══════════════════════════════════════════════════
+var DATA = {
+  "interests": [
+    "Synthetic agents as models of human values",
+    "Formal verification for economics",
+    "AI and journalism",
+    "AI in education",
+    "Measurement and construct validity with LLMs",
+    "Economics of AI and productivity",
+    "Automated research and AI agents for science",
+    "Latin American economy and institutions",
+    "Culture, norms and technology",
+    "Causal inference",
+    "Complexity science and the Santa Fe Institute"
+  ],
+  "panels": {
+    "op-eds": [
+      {"id":"980b562e7667","source_id":"la_gaceta","source_name":"La Gaceta","title":"D\u00f3lar e inflaci\u00f3n: qu\u00e9 esperan los analistas consultados por el Banco Central","summary":"La autoridad monetaria difundi\u00f3 el REM de septiembre, elaborado a partir de las proyecciones de 44 participantes. Los analistas tambi\u00e9n estimaron una ca\u00edda del PIB en el tercer trimestre y una desocupaci\u00f3n del 7,5%.","url":"https://www.lagaceta.com.ar/nota/1157012/economia/dolar-e-inflacion-esperan-analistas-consultados-banco-central.html","published":"Tue, 06 Oct 2026 20:31:00 +0000","relevance":0.88,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.02,"status":"drafted","meta":{"lang":"es"}},
+      {"id":"4a093cb6fb92","source_id":"la_nacion_economia","source_name":"La Naci\u00f3n \u00b7 Econom\u00eda","title":"El Banco Mundial volvi\u00f3 a recortar la proyecci\u00f3n de crecimiento para la Argentina en 2026","summary":"El organismo prev\u00e9 que el PBI se expanda 2,1%, frente al 3,6% que hab\u00eda pronosticado en junio y al 4% de enero; destac\u00f3 que habr\u00e1 tres a\u00f1os consecutivos de crecimiento (2025-2027) por primera vez en casi dos d\u00e9cadas","url":"https://www.lanacion.com.ar/economia/el-banco-mundial-volvio-a-recortar-la-proyeccion-de-crecimiento-para-la-argentina-en-2026-nid06102026/","published":"Tue, 06 Oct 2026 19:47:04 +0000","relevance":0.86,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+      {"id":"a2f173acc01f","source_id":"la_nacion_economia","source_name":"La Naci\u00f3n \u00b7 Econom\u00eda","title":"Impulsan una baja del IVA del huevo del 21% al 10,5% y buscan debatirla con el presupuesto","summary":"El diputado del PRO Javier S\u00e1nchez Wrba trabaja en una propuesta y mantiene conversaciones con el oficialismo; seg\u00fan Capia, la formalizaci\u00f3n de la actividad permitir\u00eda compensar la ca\u00edda inicial de la recaudaci\u00f3n y cerrar el primer a\u00f1o con US$40 millones adicionales para el Estado","url":"https://www.lanacion.com.ar/economia/campo/impulsan-una-baja-del-iva-del-huevo-del-21-al-105-y-buscan-debatirla-con-el-presupuesto-nid06102026/","published":"Tue, 06 Oct 2026 16:57:45 +0000","relevance":0.84,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.03,"status":"new","meta":{"lang":"es"}},
+      {"id":"8ccfbe8b8f9d","source_id":"la_nacion_economia","source_name":"La Naci\u00f3n \u00b7 Econom\u00eda","title":"Para los analistas, la econom\u00eda cay\u00f3 en recesi\u00f3n y solo crecer\u00eda entre 1,2 y 1,5% este a\u00f1o","summary":"Estiman que la inflaci\u00f3n se mantendr\u00eda estabilizada debajo del 2% mensual pero sin bajar mucho, lo que la har\u00eda cerrar el a\u00f1o al 30%, apenas por debajo de la del 2025","url":"https://www.lanacion.com.ar/economia/para-los-analistas-la-economia-cayo-en-recesion-y-solo-creceria-entre-12-y-15-este-ano-nid06102026/","published":"Tue, 06 Oct 2026 22:39:05 +0000","relevance":0.83,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+      {"id":"c3d155406d47","source_id":"la_gaceta","source_name":"La Gaceta","title":"El Banco Mundial recort\u00f3 su pron\u00f3stico para Argentina: cu\u00e1nto crecer\u00e1 la econom\u00eda en 2026","summary":"Se trata de la segunda vez consecutiva que el organismo reduce sus proyecciones para el pa\u00eds en su informe de Actualizaci\u00f3n Econ\u00f3mica de Am\u00e9rica Latina y el Caribe.","url":"https://www.lagaceta.com.ar/nota/1156996/economia/banco-mundial-recorto-pronostico-para-argentina-cuanto-crecera-economia-2026.html","published":"Tue, 06 Oct 2026 18:21:00 +0000","relevance":0.8,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+      {"id":"36dc3a83db1b","source_id":"la_gaceta","source_name":"La Gaceta","title":"D\u00f3lar hoy: el oficial oper\u00f3 estable y el mayorista qued\u00f3 a $405 del techo de la banda cambiaria","summary":"En la jornada de este martes, la divisa minorita termin\u00f3 a $1.540 en las pantallas del Banco Naci\u00f3n.","url":"https://www.lagaceta.com.ar/nota/1156991/economia/dolar-hoy-oficial-opero-estable-mayorista-quedo-405-techo-banda-cambiaria.html","published":"Tue, 06 Oct 2026 17:52:00 +0000","relevance":0.72,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+      {"id":"e54382e68730","source_id":"la_nacion_opinion","source_name":"La Naci\u00f3n \u00b7 Opini\u00f3n","title":"Perdedores, de Taormina a la Argentina","summary":"Las actuales tensiones econ\u00f3micas solo podr\u00e1n resolverse con inversi\u00f3n, mayor productividad y crecimiento, palabras ajenas al vocabulario populista","url":"https://www.lanacion.com.ar/editoriales/perdedores-de-hoy-condenados-de-ayer-nid20092026/","published":"Sun, 20 Sep 2026 03:10:00 +0000","relevance":0.67,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Economics of AI and productivity","p":0.05},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.03,"status":"new","meta":{"lang":"es"}}
+    ],
+    "trends": [
+      {"id":"4be705e8da97","source_id":"nber_new","source_name":"NBER \u00b7 New working papers","title":"Avoiding Regulation: Evidence from Nursing Homes -- by Alden Cheng, Riley League","summary":"We study strategic responses by firms to threshold-based regulations. We document extensive bunching in response to additional staffing requirements for California nursing homes with at least 100 beds.","url":"https://www.nber.org/papers/w35849#fromrss","published":"","relevance":0.92,"lens":"Causal inference","alt_lenses":[{"name":"Economics of AI and productivity","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.03,"status":"new","meta":{"lang":"en"}},
+      {"id":"275d9953ac2b","source_id":"gelman_blog","source_name":"Statistical Modeling blog","title":"When are Causal Inference Methods Needed to Answer Causal Questions?","summary":"Earlier this year we discussed Donna Spiegelman\u2019s talk, \u201cRethinking SUTVA and Causal Identification: An Epidemiologist\u2019s Perspective,\u201d which she summarized as follows: She\u2019s giving a followup talk online on Mon 12 Oct, 3:30pm.","url":"https://statmodeling.stat.columbia.edu/2026/10/01/when-are-causal-inference-methods-needed-to-answer-causal-questions/","published":"Thu, 01 Oct 2026 20:59:15 +0000","relevance":0.90,"lens":"Causal inference","alt_lenses":[{"name":"Automated research and AI agents for science","p":0.02},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.04,"status":"new","meta":{"lang":"en"}},
+      {"id":"a39a7216e62b","source_id":"nber_new","source_name":"NBER \u00b7 New working papers","title":"Randomized to Opportunity: Measuring Place Effects for Refugee Children -- by N. Meltem Daysal, Joseph J. Doyle Jr., Naeim S. Samandari, Emil A. L. Simonsen, Mircea Trandafir","summary":"Area-level measures of economic opportunity are increasingly used to guide place-based policies. We study whether these measures predict long-run outcomes for over 12,000 refugee children quasi-randomly assigned to municipalities under Denmark\u2019s 1986\u20131998 dispersal policy.","url":"https://www.nber.org/papers/w35853#fromrss","published":"","relevance":0.88,"lens":"Causal inference","alt_lenses":[{"name":"Measurement and construct validity with LLMs","p":0.02},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.08,"status":"new","meta":{"lang":"en"}},
+      {"id":"14edfa994468","source_id":"nber_new","source_name":"NBER \u00b7 New working papers","title":"Does Food Assistance Drive Spending on Sugary Foods? Evidence from the Pandemic Electronic Benefit Transfer Program","summary":"We provide evidence on the extent to which food assistance affects spending on sugary items by studying the Pandemic Electronic Benefit Transfer (P-EBT) program.","url":"https://www.nber.org/papers/w35835#fromrss","published":"","relevance":0.80,"lens":"Causal inference","alt_lenses":[{"name":"Culture, norms and technology","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.05,"status":"new","meta":{"lang":"en"}},
+      {"id":"374af4a8b5a0","source_id":"gelman_blog","source_name":"Statistical Modeling blog","title":"Hey\u2014we\u2019re hiring two postdocs!","summary":"One project is on generalization for causal inference with a focus on education research, following up on MRPW: Regression, poststratification, and small-area estimation with sampling weights.","url":"https://statmodeling.stat.columbia.edu/2026/10/06/hey-were-hiring-two-postdocs/","published":"Tue, 06 Oct 2026 14:07:51 +0000","relevance":0.72,"lens":"Causal inference","alt_lenses":[{"name":"AI in education","p":0.05},{"name":"Automated research and AI agents for science","p":0.03}],"personal_flag":0.08,"status":"new","meta":{"lang":"en"}},
+      {"id":"117f48cdc85f","source_id":"gelman_blog","source_name":"Statistical Modeling blog","title":"Using the computer to p-hack \u2026 I\u2019d rather use it to fit multilevel models","summary":"Brian Stone writes: Cognitive psychologist and long time reader of the blog here. I thought you and your audience might appreciate this recent post from Andy Hall: AI is about to write thousands of papers. Will it p-hack them?","url":"https://statmodeling.stat.columbia.edu/2026/10/03/using-the-computer-to-p-hack-id-rather-use-it-to-fit-multilevel-models/","published":"Sat, 03 Oct 2026 13:10:29 +0000","relevance":0.58,"lens":"Automated research and AI agents for science","alt_lenses":[{"name":"Culture, norms and technology","p":0.12},{"name":"Measurement and construct validity with LLMs","p":0.06}],"personal_flag":0.04,"status":"new","meta":{"lang":"en"}},
+      {"id":"bae1a89cdc19","source_id":"hn_trends","source_name":"Hacker News \u00b7 14-day discussions","title":"Show HN: HN.watch \u2013 Videos of all Hacker News posts","summary":"Hi HN, I\u2019m Per, founder of Scrimba (YC S20). We\u2019ve spent the last decade teaching people how to code with an HTML-based video format. We\u2019ve now plugged an LLM into it, so that people can create explainer videos about anything.","url":"https://news.ycombinator.com/item?id=49879401","published":"2026-09-28T15:16:13Z","relevance":0.20,"lens":"AI in education","alt_lenses":[{"name":"AI and journalism","p":0.09},{"name":"Culture, norms and technology","p":0.08}],"personal_flag":0.04,"status":"new","meta":{"external_url":"https://hn.watch/","points":225,"comments":97,"lang":"en","query":"complex systems"}}
+    ],
+    "commentary": [
+      {"id":"029aa81d6451","source_id":"reddit_economics","source_name":"r/Economics","title":"Don\u2019t be fooled - Canada lags in AI as well as economic growth","summary":"submitted by /u/rdh2dmd","url":"https://www.reddit.com/r/Economics/comments/1wzgacw/dont_be_fooled_canada_lags_in_ai_as_well_as/","published":"2026-10-06T22:30:27+00:00","relevance":0.49,"lens":"Economics of AI and productivity","alt_lenses":[{"name":"Culture, norms and technology","p":0.08},{"name":"AI and journalism","p":0.04}],"personal_flag":0.03,"status":"new","meta":{"subreddit":"Economics","lang":"en"}},
+      {"id":"77ddfdf47d33","source_id":"hn_front","source_name":"Hacker News \u00b7 front page","title":"Sharing AI progress in mathematics","summary":"https://github.com/openai/math","url":"https://news.ycombinator.com/item?id=49984923","published":"2026-10-06T22:17:21Z","relevance":0.41,"lens":"Automated research and AI agents for science","alt_lenses":[{"name":"AI in education","p":0.08},{"name":"Culture, norms and technology","p":0.07}],"personal_flag":0.03,"status":"new","meta":{"points":344,"comments":291,"external_url":"https://openai.com/index/sharing-ai-progress-in-mathematics/","lang":"en"}},
+      {"id":"3af25830f129","source_id":"hn_front","source_name":"Hacker News \u00b7 front page","title":"Claude Code\u2019s suggested message feature: I think the real customer is the model","summary":"","url":"https://news.ycombinator.com/item?id=49981905","published":"2026-10-06T18:00:34Z","relevance":0.17,"lens":"Culture, norms and technology","alt_lenses":[{"name":"Economics of AI and productivity","p":0.11},{"name":"Automated research and AI agents for science","p":0.08}],"personal_flag":0.04,"status":"new","meta":{"points":83,"comments":46,"external_url":"https://www.zohaib.cc/blog/smartest-claude-code-feature","lang":"en"}},
+      {"id":"7a44c4bc58d4","source_id":"hn_front","source_name":"Hacker News \u00b7 front page","title":"Vibecoding Photoshop: Time and pressure","summary":"","url":"https://news.ycombinator.com/item?id=49983780","published":"2026-10-06T20:40:48Z","relevance":0.17,"lens":"Culture, norms and technology","alt_lenses":[{"name":"Economics of AI and productivity","p":0.09},{"name":"AI and journalism","p":0.04}],"personal_flag":0.09,"status":"new","meta":{"points":48,"comments":53,"external_url":"https://andreklein.net/vibecoding-photoshop-time-and-pressure/","lang":"en"}},
+      {"id":"841c3bd387ec","source_id":"reddit_economics","source_name":"r/Economics","title":"Transport Affordability and Automobile Debt in the United States","summary":"submitted by /u/Helicase21","url":"https://www.reddit.com/r/Economics/comments/1wz359q/transport_affordability_and_automobile_debt_in/","published":"2026-10-06T13:51:25+00:00","relevance":0.07,"lens":"Causal inference","alt_lenses":[{"name":"Culture, norms and technology","p":0.04},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.09,"status":"new","meta":{"subreddit":"Economics","lang":"en"}},
+      {"id":"09dccc8c3d13","source_id":"reddit_econometrics","source_name":"r/econometrics","title":"Economics Or Statistics","summary":"Hey everyone, I recently finished my FSc and I\u2019m planning to start university, but I\u2019m confused about whether I should pursue economics or statistics.","url":"https://www.reddit.com/r/econometrics/comments/1wzcuzv/economics_or_statistics/","published":"2026-10-06T20:09:01+00:00","relevance":0.03,"lens":"Causal inference","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.06,"status":"new","meta":{"subreddit":"econometrics","lang":"en"}}
+    ]
+  },
+  "sample_draft": {
+    "candidate_id": "980b562e7667",
+    "user_take": "Los pron\u00f3sticos de inflaci\u00f3n de analistas suelen subestimar la dispersi\u00f3n; lo importante es cu\u00e1nta incertidumbre reportan, no el n\u00famero central.",
+    "text": "El REM de septiembre que difundi\u00f3 el Banco Central resume las proyecciones de 44 consultoras y bancos con un solo n\u00famero: la mediana. Inflaci\u00f3n de 1,9% para septiembre, d\u00f3lar a $1.614 en diciembre, PIB cayendo 1,0% en el tercer trimestre. Todo muy preciso. Pero la nota omite un dato que el propio BCRA publica: la dispersi\u00f3n de esas proyecciones.\n\nCuando 44 analistas pronostican la inflaci\u00f3n, el n\u00famero central es apenas la mitad de la historia. Si diez esperan 1,2% y otros diez esperan 2,6%, la mediana de 1,9% esconder\u00eda un desacuerdo enorme sobre la direcci\u00f3n de los precios. Lo relevante para un empresario que fija salarios o para un ahorrista que elige entre plazo fijo y d\u00f3lar no es cu\u00e1nto dicen los analistas en promedio sino cu\u00e1nto discrepan entre ellos. La incertidumbre se mide con varianza, no con medianas.\n\nEl REM incluye esa informaci\u00f3n \u2014el BCRA reporta el rango de pron\u00f3sticos para cada variable\u2014 pero la cobertura period\u00edstica la ignora sistem\u00e1ticamente. Una l\u00e1stima: el n\u00famero central es el dato menos informativo del relevamiento.",
+    "rationale": "The author's take argues that analyst forecast dispersion matters more than the central estimate. The article reports only medians from 44 participants and never mentions disagreement ranges, making it a clean target for this argument with a concrete, self-contained example drawn from the article's own numbers.",
+    "flags": [
+      "Verificar que el REM efectivamente publica el rango o deciles de los pron\u00f3sticos (el BCRA suele incluir esta informaci\u00f3n; el autor sabr\u00e1 el formato exacto del informe de septiembre).",
+      "Conteo de palabras: ~165; dentro del l\u00edmite de 200 pero conviene verificarlo con un contador exacto antes de enviar."
+    ],
+    "model": "openrouter/deepseek/deepseek-v4-pro",
+    "lens": "Latin American economy and institutions"
+  }
+};
+
+// ═══════════════════════════════════════════════════
+// State
+// ═══════════════════════════════════════════════════
+var activePanel = 'op-eds';
+var currentItem = null;
+var currentPanelType = 'op-eds';
+
+// ═══════════════════════════════════════════════════
+// Render cards
+// ═══════════════════════════════════════════════════
+function renderAllCards() {
+  for (var p in DATA.panels) {
+    renderPanel(p);
+  }
+}
+
+function renderPanel(panelName) {
+  var container = document.getElementById('cards-' + panelName);
+  if (!container) return;
+  var items = DATA.panels[panelName];
+  var html = '';
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    var statusClass = it.status === 'drafted' ? ' drafted' : '';
+    var statusLabel = it.status === 'drafted' ? 'Drafted' : 'New';
+    var preview = it.summary;
+    if (preview.length > 100) preview = preview.substring(0, 97) + '…';
+    html += '<div class="card" data-id="' + it.id + '" data-panel="' + panelName + '">'
+      + '<div class="card-glass">'
+      + '<div class="card-glass-surface"></div>'
+      + '<div class="card-glass-specular"></div>'
+      + '<div class="card-glass-preview">' + escapeHtml(preview) + '</div>'
+      + '</div>'
+      + '<div class="card-title">' + escapeHtml(it.title) + '</div>'
+      + '<div class="card-source">' + escapeHtml(it.source_name)
+      + ' <span class="card-status' + statusClass + '">' + statusLabel + '</span>'
+      + '</div>'
+      + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ═══════════════════════════════════════════════════
+// Card hover specular light
+// ═══════════════════════════════════════════════════
+document.addEventListener('mouseenter', function(e) {
+  var card = e.target.closest ? e.target.closest('.card') : null;
+  if (!card) return;
+  card._trackMouse = true;
+});
+
+document.addEventListener('mousemove', function(e) {
+  var card = e.target.closest ? e.target.closest('.card') : null;
+  if (!card) return;
+  var rect = card.getBoundingClientRect();
+  var x = ((e.clientX - rect.left) / rect.width) * 100;
+  var y = ((e.clientY - rect.top) / rect.height) * 100;
+  var spec = card.querySelector('.card-glass-specular');
+  if (spec) {
+    spec.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, rgba(130,143,255,0.10) 0%, transparent 60%)';
+  }
+});
+
+// closest polyfill for older browsers
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function(s) {
+    var el = this;
+    do {
+      if (el.matches ? el.matches(s) : false) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+    return null;
+  };
+}
+
+// ═══════════════════════════════════════════════════
+// Card click → open workspace
+// ═══════════════════════════════════════════════════
+document.addEventListener('click', function(e) {
+  var card = e.target.closest ? e.target.closest('.card') : null;
+  if (!card) return;
+  var id = card.getAttribute('data-id');
+  var panelName = card.getAttribute('data-panel');
+  if (!id || !panelName) return;
+  openWorkspace(panelName, id);
+});
+
+function openWorkspace(panelName, itemId) {
+  currentPanelType = panelName;
+  var items = DATA.panels[panelName];
+  var item = null;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].id === itemId) { item = items[i]; break; }
+  }
+  if (!item) return;
+  currentItem = item;
+
+  var ws = document.getElementById('workspace');
+  ws.className = 'open';
+
+  document.getElementById('ws-panel-label').textContent = panelName;
+
+  // Source
+  document.getElementById('ws-source-title').textContent = item.title;
+  document.getElementById('ws-source-meta').textContent = item.source_name + ' · ' + (item.meta.lang === 'es' ? 'ES' : 'EN');
+
+  // Relevance
+  var pct = Math.round(item.relevance * 100);
+  document.getElementById('ws-meter-fill').style.width = pct + '%';
+  document.getElementById('ws-meter-val').textContent = item.relevance.toFixed(2);
+
+  // Lens
+  document.getElementById('ws-lens-tag').textContent = item.lens;
+
+  // Alt lenses
+  var altHtml = '';
+  if (item.alt_lenses && item.alt_lenses.length > 0) {
+    for (var j = 0; j < item.alt_lenses.length; j++) {
+      var al = item.alt_lenses[j];
+      var aw = Math.round(al.p * 100);
+      altHtml += '<div class="ws-lens-bar">'
+        + '<span>' + escapeHtml(al.name) + '</span>'
+        + '<div class="bar-track"><div class="bar-fill" style="width:' + aw + '%"></div></div>'
+        + '<span>' + al.p.toFixed(2) + '</span>'
+        + '</div>';
+    }
+  }
+  document.getElementById('ws-alt-lenses').innerHTML = altHtml;
+
+  // Privacy chip
+  var pc = document.getElementById('ws-privacy-container');
+  if (item.personal_flag > 0.3) {
+    pc.style.display = 'block';
+  } else {
+    pc.style.display = 'none';
+  }
+
+  // Status
+  var statusEl = document.getElementById('ws-card-status');
+  statusEl.textContent = item.status === 'drafted' ? 'Drafted' : 'New';
+  statusEl.className = 'card-status' + (item.status === 'drafted' ? ' drafted' : '');
+
+  // Editor chrome (panel-specific)
+  var chrome = document.getElementById('ws-editor-chrome');
+  chrome.innerHTML = '';
+  if (panelName === 'op-eds') {
+    chrome.innerHTML = '<span class="ws-lang-chip">' + (item.meta.lang === 'es' ? 'ES — Español' : 'EN — English') + '</span>'
+      + '<span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);">200 word limit</span>';
+  } else if (panelName === 'trends') {
+    chrome.innerHTML = '<span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);">1,200 character limit</span>';
+  } else if (panelName === 'commentary') {
+    chrome.innerHTML = '<span class="ws-lang-chip">' + (item.meta.lang === 'en' ? 'EN — English' : 'ES — Español') + '</span>'
+      + '<span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);">200 word target</span>';
+  }
+
+  // Thread context (commentary)
+  var threadArea = document.getElementById('ws-thread-area');
+  if (panelName === 'commentary') {
+    threadArea.style.display = 'block';
+    document.getElementById('ws-thread-text').textContent = item.title + '\n' + item.summary;
+  } else {
+    threadArea.style.display = 'none';
+  }
+
+  // Preview card (trends)
+  // Already handled via editor chrome label
+
+  // Your take
+  document.getElementById('ws-take').value = '';
+
+  // Count area
+  updateCounts();
+
+  // Hide draft
+  document.getElementById('ws-draft-area').style.display = 'none';
+
+  // Scroll to top
+  document.getElementById('workspace-main').scrollTop = 0;
+  document.getElementById('workspace-side').scrollTop = 0;
+}
+
+// ═══════════════════════════════════════════════════
+// Close workspace
+// ═══════════════════════════════════════════════════
+document.getElementById('ws-close').addEventListener('click', function() {
+  document.getElementById('workspace').className = '';
+});
+
+// ═══════════════════════════════════════════════════
+// Count
+// ═══════════════════════════════════════════════════
+function updateCounts() {
+  var text = document.getElementById('ws-take').value || '';
+  var area = document.getElementById('ws-count-area');
+  if (currentPanelType === 'op-eds') {
+    var words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    var cls = words > 200 ? ' over' : (words > 180 ? ' warn' : '');
+    area.innerHTML = '<div class="ws-word-count' + cls + '">' + words + ' / 200 words</div>';
+  } else if (currentPanelType === 'trends') {
+    var chars = text.length;
+    var cls2 = chars > 1200 ? ' over' : (chars > 1080 ? ' warn' : '');
+    area.innerHTML = '<div class="ws-char-count' + cls2 + '">' + chars + ' / 1,200 chars</div>';
+  } else if (currentPanelType === 'commentary') {
+    var w2 = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    var cl3 = w2 > 200 ? ' over' : (w2 > 180 ? ' warn' : '');
+    area.innerHTML = '<div class="ws-word-count' + cl3 + '">' + w2 + ' / 200 words</div>';
+  }
+}
+
+document.getElementById('ws-take').addEventListener('input', updateCounts);
+
+// ═══════════════════════════════════════════════════
+// Draft button
+// ═══════════════════════════════════════════════════
+document.getElementById('btn-draft').addEventListener('click', function() {
+  // Only works if we have a current item
+  if (!currentItem) return;
+
+  // Check if the current item's id matches sample_draft candidate_id
+  // If so, use the real sample_draft; otherwise show a fallback
+  var draft = DATA.sample_draft;
+
+  // Fake delay
+  var btn = document.getElementById('btn-draft');
+  btn.textContent = 'Generating…';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+
+  setTimeout(function() {
+    btn.textContent = 'Draft';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+
+    // Fill the draft area
+    document.getElementById('ws-draft-text').textContent = draft.text;
+    document.getElementById('ws-rationale').textContent = draft.rationale;
+
+    var flagsHtml = '';
+    for (var k = 0; k < draft.flags.length; k++) {
+      flagsHtml += '<div class="ws-flag-item"><input type="checkbox"> ' + escapeHtml(draft.flags[k]) + '</div>';
+    }
+    document.getElementById('ws-flags').innerHTML = flagsHtml;
+
+    document.getElementById('ws-draft-area').style.display = 'block';
+  }, 800);
+});
+
+// ═══════════════════════════════════════════════════
+// Copy to clipboard
+// ═══════════════════════════════════════════════════
+document.getElementById('btn-copy').addEventListener('click', function() {
+  var text = document.getElementById('ws-draft-text').textContent;
+  if (!text) return;
+  // Fallback for environments without navigator.clipboard
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+  showToast('Copied to clipboard');
+});
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show';
+  setTimeout(function() { t.className = ''; }, 2000);
+}
+
+// ═══════════════════════════════════════════════════
+// Approve / Dismiss
+// ═══════════════════════════════════════════════════
+document.getElementById('btn-approve').addEventListener('click', function() {
+  if (!currentItem) return;
+  currentItem.status = 'drafted';
+  document.getElementById('ws-card-status').textContent = 'Drafted';
+  document.getElementById('ws-card-status').className = 'card-status drafted';
+  updateCardInDashboard(currentItem.id, currentPanelType, 'drafted');
+  showToast('Marked as drafted');
+});
+
+document.getElementById('btn-dismiss').addEventListener('click', function() {
+  if (!currentItem) return;
+  currentItem.status = 'dismissed';
+  document.getElementById('ws-card-status').textContent = 'Dismissed';
+  document.getElementById('ws-card-status').className = 'card-status';
+  updateCardInDashboard(currentItem.id, currentPanelType, 'dismissed');
+  showToast('Dismissed');
+});
+
+function updateCardInDashboard(id, panelName, status) {
+  var container = document.getElementById('cards-' + panelName);
+  if (!container) return;
+  var cards = container.querySelectorAll('.card');
+  for (var c = 0; c < cards.length; c++) {
+    if (cards[c].getAttribute('data-id') === id) {
+      var statusSpan = cards[c].querySelector('.card-status');
+      if (statusSpan) {
+        statusSpan.textContent = status === 'drafted' ? 'Drafted' : 'Dismissed';
+        statusSpan.className = 'card-status' + (status === 'drafted' ? ' drafted' : '');
+      }
+      break;
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// Panel tabs
+// ═══════════════════════════════════════════════════
+var tabs = document.querySelectorAll('.panel-tab');
+for (var t = 0; t < tabs.length; t++) {
+  tabs[t].addEventListener('click', function() {
+    for (var u = 0; u < tabs.length; u++) tabs[u].className = 'panel-tab';
+    this.className = 'panel-tab active';
+    activePanel = this.getAttribute('data-panel');
+    // Scroll dashboard to that panel
+    var panel = document.getElementById('panel-' + activePanel);
+    if (panel) panel.scrollIntoView({behavior:'smooth', block:'nearest', inline:'start'});
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// Scout button
+// ═══════════════════════════════════════════════════
+document.getElementById('btn-scout').addEventListener('click', function() {
+  var progress = document.getElementById('scout-progress');
+  var result = document.getElementById('scout-result');
+  progress.className = 'active';
+  result.className = '';
+  this.disabled = true;
+  this.style.opacity = '0.5';
+
+  setTimeout(function() {
+    progress.className = '';
+    result.className = 'show';
+    // Fake counts
+    var total = 0;
+    for (var p in DATA.panels) total += DATA.panels[p].length;
+    result.innerHTML = 'Fetched ' + total + ' items · scored ' + total + ' (demo)';
+    document.getElementById('btn-scout').disabled = false;
+    document.getElementById('btn-scout').style.opacity = '1';
+  }, 2000);
+});
+
+// ═══════════════════════════════════════════════════
+// Init
+// ═══════════════════════════════════════════════════
+renderAllCards();
+</script>
+</body>
+</html>

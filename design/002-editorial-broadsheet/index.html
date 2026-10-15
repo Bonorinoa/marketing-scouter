@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1100">
+<title>Marketing Scouter</title>
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; -webkit-font-smoothing: antialiased; }
+
+/* ===== PALETTE ===== */
+:root {
+  --cream: #f6f0e4;
+  --sand: #e8dcc3;
+  --ink: #1d1a16;
+  --oxblood: #6b1e23;
+  --muted: #7a6a58;
+  --bg: var(--cream);
+}
+
+/* ===== TYPOGRAPHY ===== */
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  line-height: 1.45;
+  min-width: 1100px;
+  padding: 0 32px;
+}
+.sans {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+.mono {
+  font-family: "SF Mono", "Cascadia Code", "Fira Code", monospace;
+  font-size: 0.8rem;
+}
+
+/* ===== MASTHEAD ===== */
+#masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 24px 0 6px 0;
+  border-bottom: none;
+}
+.masthead-date { font-size: 0.7rem; color: var(--muted); }
+.masthead-title {
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+}
+.masthead-tagline {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: 4px 0 8px 0;
+}
+.double-rule {
+  border: none;
+  border-top: 1px solid var(--muted);
+  margin: 0;
+  position: relative;
+}
+.double-rule::after {
+  content: '';
+  display: block;
+  border-top: 1px solid var(--muted);
+  margin-top: 3px;
+}
+hr { border: none; border-top: 1px solid var(--sand); margin: 0; }
+.single-rule { border-top: 1px solid var(--muted); margin: 0; }
+
+/* ===== COMMAND AREA ===== */
+#command-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+#btn-scout {
+  background: var(--oxblood);
+  color: var(--cream);
+  border: none;
+  padding: 6px 20px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#btn-scout:hover { background: #7f2830; }
+#btn-scout.scouting {
+  background: var(--muted);
+  cursor: default;
+  pointer-events: none;
+}
+.panel-tabs {
+  display: flex;
+  gap: 2px;
+}
+.panel-tab {
+  background: transparent;
+  border: none;
+  padding: 4px 14px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.panel-tab:hover { color: var(--ink); }
+.panel-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--oxblood);
+}
+#scout-result {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin-left: auto;
+  min-height: 1.2em;
+}
+
+/* ===== COLUMNS ===== */
+#columns {
+  display: flex;
+  gap: 24px;
+  padding: 12px 0 24px 0;
+  min-height: 400px;
+}
+.column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.column-header {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--oxblood);
+  padding: 8px 0;
+  border-bottom: 2px solid var(--sand);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--sand);
+  border: 1px solid var(--muted);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.card-source {
+  font-size: 0.6rem;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.card-title {
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.card-summary {
+  font-size: 0.62rem;
+  line-height: 1.3;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.card-relevance {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-relevance-bar {
+  height: 5px;
+  background: var(--oxblood);
+  border-radius: 0;
+  min-width: 2px;
+}
+.card-relevance-label {
+  font-size: 0.6rem;
+  color: var(--oxblood);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.card-lens {
+  font-size: 0.55rem;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+.card-status {
+  font-size: 0.55rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  padding: 1px 6px;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+}
+.card-status.drafted { border-color: var(--oxblood); color: var(--oxblood); }
+.card-status.approved { border-color: #4a6b3a; color: #4a6b3a; }
+.card-status.dismissed { border-color: #8b4a4a; color: #8b4a4a; }
+
+/* ===== LIQUID GLASS OVERLAY ===== */
+.card-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  overflow: hidden;
+  z-index: 10;
+}
+.card-glass-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.card-glass-preview {
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 90%;
+}
+.card-glass-highlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(107,30,35,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  transition: background 0.05s;
+}
+.card:hover .card-glass { opacity: 1; }
+
+/* ===== QUIET LINE ===== */
+.quiet-line {
+  text-align: center;
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 12px 0;
+  border-top: 1px solid var(--sand);
+}
+
+/* ===== WORKSPACE OVERLAY ===== */
+#workspace-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(246,240,228,0.97);
+  z-index: 1000;
+  overflow-y: auto;
+}
+#workspace-overlay.open { display: flex; flex-direction: column; }
+.workspace-close {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  z-index: 1010;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+.workspace-spread {
+  display: flex;
+  gap: 32px;
+  padding: 40px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex: 1;
+}
+.workspace-page {
+  flex: 1;
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  padding: 28px 32px;
+  min-height: 400px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  position: relative;
+}
+.workspace-page-header {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--sand);
+  margin-bottom: 14px;
+}
+
+/* Source block */
+.ws-source-name {
+  font-size: 0.65rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.ws-source-title {
+  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.ws-source-summary {
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.ws-source-url {
+  font-size: 0.55rem;
+  color: var(--muted);
+  word-break: break-all;
+  margin-bottom: 14px;
+}
+
+/* relevance meter */
+.ws-meter {
+  margin: 10px 0 14px 0;
+}
+.ws-meter-label {
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.ws-meter-bar {
+  height: 8px;
+  background: linear-gradient(to right, var(--sand), var(--oxblood));
+  border: 1px solid var(--muted);
+  position: relative;
+}
+.ws-meter-fill {
+  height: 100%;
+  background: var(--oxblood);
+}
+.ws-meter-value {
+  position: absolute;
+  right: -30px;
+  top: -2px;
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--oxblood);
+}
+.ws-lens {
+  font-size: 0.65rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ws-alt-lenses {
+  margin: 6px 0 10px 0;
+}
+.ws-alt-lens {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px dotted var(--sand);
+  font-size: 0.58rem;
+}
+.ws-alt-lens:nth-child(even) { background: var(--sand); }
+.ws-alt-lens-name {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+}
+.ws-alt-lens-bar {
+  height: 4px;
+  background: var(--muted);
+  border-radius: 0;
+}
+.ws-alt-lens-pct {
+  font-size: 0.55rem;
+  color: var(--muted);
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+/* privacy chip */
+.ws-privacy-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--oxblood);
+  background: var(--cream);
+  font-size: 0.55rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--oxblood);
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.ws-privacy-chip .ws-priv-icon { margin-right: 4px; }
+
+/* editor */
+.ws-editor-label {
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: block;
+}
+.ws-take-field {
+  width: 100%;
+  border: 1px solid var(--muted);
+  background: var(--cream);
+  padding: 8px 10px;
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  font-size: 0.75rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+  resize: vertical;
+  min-height: 50px;
+}
+.ws-editor-textarea {
+  width: 100%;
+  border: 1px solid var(--muted);
+  background: var(--cream);
+  padding: 8px 10px;
+  font-family: Georgia, "Times New Roman", "Source Serif 4", serif;
+  font-size: 0.75rem;
+  color: var(--ink);
+  resize: vertical;
+  min-height: 120px;
+}
+/* counters */
+.ws-counter {
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--muted);
+  text-align: right;
+  margin-bottom: 6px;
+}
+.ws-counter.over { color: var(--oxblood); font-weight: bold; }
+.ws-language-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--muted);
+  font-size: 0.55rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* draft area */
+.ws-draft-area {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--sand);
+}
+.ws-rationale {
+  font-size: 0.65rem;
+  line-height: 1.35;
+  color: var(--muted);
+  font-style: italic;
+  padding: 8px 12px;
+  background: var(--sand);
+  margin: 6px 0;
+}
+.ws-flags {
+  margin: 6px 0;
+  padding: 0;
+  list-style: none;
+}
+.ws-flags li {
+  font-size: 0.6rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--muted);
+  padding: 3px 0 3px 18px;
+  position: relative;
+}
+.ws-flags li::before {
+  content: "☐";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+.ws-flags li.checked::before { content: "☑"; color: var(--oxblood); }
+
+/* buttons */
+.ws-actions {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+.ws-btn {
+  background: transparent;
+  border: 1px solid var(--muted);
+  padding: 5px 16px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  color: var(--ink);
+}
+.ws-btn:hover { background: var(--sand); }
+.ws-btn-primary {
+  background: var(--oxblood);
+  color: var(--cream);
+  border-color: var(--oxblood);
+}
+.ws-btn-primary:hover { background: #7f2830; }
+.ws-btn-approve {
+  background: transparent;
+  border-color: #4a6b3a;
+  color: #4a6b3a;
+}
+.ws-btn-approve:hover { background: #d4e0c8; }
+.ws-btn-dismiss {
+  background: transparent;
+  border-color: #8b4a4a;
+  color: #8b4a4a;
+}
+.ws-btn-dismiss:hover { background: #e8d0c8; }
+
+/* Thread context (commentary) */
+.ws-thread {
+  background: var(--sand);
+  padding: 12px 16px;
+  border: 1px solid var(--muted);
+  margin-bottom: 10px;
+}
+.ws-thread-title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ws-thread-meta {
+  font-size: 0.55rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--muted);
+}
+.ws-thread-body {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+/* Preview card (trends) */
+.ws-preview-card {
+  background: var(--sand);
+  border: 1px solid var(--muted);
+  padding: 10px 14px;
+  margin: 6px 0;
+  font-size: 0.65rem;
+  color: var(--ink);
+}
+.ws-preview-label {
+  font-size: 0.55rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+/* ===== TOAST ===== */
+#toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 8px 24px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--oxblood);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+  z-index: 2000;
+}
+#toast.show { opacity: 1; }
+
+/* ===== SCOUT IN-PROGRESS ===== */
+#scout-loading {
+  position: fixed;
+  inset: 0;
+  background: rgba(246,240,228,0.9);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#scout-loading.active { display: flex; }
+#scout-loading-inner {
+  background: var(--cream);
+  border: 2px solid var(--muted);
+  padding: 32px 48px;
+  text-align: center;
+}
+#scout-loading-text {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.scout-spinner {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 2px solid var(--sand);
+  border-top-color: var(--oxblood);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-bottom: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== RESPONSIVE MIN ===== */
+@media (max-width: 1140px) {
+  body { padding: 0 16px; }
+  #columns { gap: 16px; }
+}
+
+/* ===== MODEL SUGGESTION ===== */
+.ws-model-badge {
+  font-size: 0.5rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: var(--muted);
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== MASTHEAD ===== -->
+<div id="masthead">
+  <span class="masthead-date sans">October 6, 2026</span>
+  <span class="masthead-title">Marketing Scouter</span>
+  <span class="masthead-date sans">No. 1</span>
+</div>
+<div class="masthead-tagline">Read widely. Reply carefully.</div>
+<div class="double-rule"></div>
+
+<!-- ===== COMMAND ===== -->
+<div id="command-area">
+  <button id="btn-scout" class="sans">Scout</button>
+  <div class="panel-tabs">
+    <button class="panel-tab active" data-panel="op-eds">01 Op‑eds</button>
+    <button class="panel-tab" data-panel="trends">02 Trends</button>
+    <button class="panel-tab" data-panel="commentary">03 Commentary</button>
+  </div>
+  <div id="scout-result" class="sans"></div>
+</div>
+<hr>
+
+<!-- ===== COLUMNS ===== -->
+<div id="columns">
+  <div class="column" id="col-op-eds">
+    <div class="column-header">01 Op‑eds</div>
+  </div>
+  <div class="column" id="col-trends">
+    <div class="column-header">02 Trends</div>
+  </div>
+  <div class="column" id="col-commentary">
+    <div class="column-header">03 Commentary</div>
+  </div>
+</div>
+
+<!-- ===== QUIET LINE ===== -->
+<div class="quiet-line">Nothing leaves this app without you.</div>
+
+<!-- ===== SCOUT LOADING ===== -->
+<div id="scout-loading">
+  <div id="scout-loading-inner">
+    <div class="scout-spinner"></div>
+    <div id="scout-loading-text" class="sans">Scouting sources…</div>
+  </div>
+</div>
+
+<!-- ===== WORKSPACE OVERLAY ===== -->
+<div id="workspace-overlay">
+  <button class="workspace-close" id="ws-close">&times;</button>
+  <div class="workspace-spread" id="workspace-spread">
+    <div class="workspace-page" id="ws-left"></div>
+    <div class="workspace-page" id="ws-right"></div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast"></div>
+
+<script>
+(function() {
+// ========================================================
+// EMBEDDED DATA — real items from data.json, 2026-10-06
+// ========================================================
+var DATA = {
+  "interests": [
+    "Synthetic agents as models of human values",
+    "Formal verification for economics",
+    "AI and journalism",
+    "AI in education",
+    "Measurement and construct validity with LLMs",
+    "Economics of AI and productivity",
+    "Automated research and AI agents for science",
+    "Latin American economy and institutions",
+    "Culture, norms and technology",
+    "Causal inference",
+    "Complexity science and the Santa Fe Institute"
+  ],
+  "op-eds": [
+    {"id":"980b562e7667","source_name":"La Gaceta","title":"Dólar e inflación: qué esperan los analistas consultados por el Banco Central","summary":"La autoridad monetaria difundió el REM de septiembre, elaborado a partir de las proyecciones de 44 participantes. Los analistas también estimaron una caída del PIB en el tercer trimestre y una desocupación del 7,5%.","relevance":0.88,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.02,"status":"drafted","meta":{"lang":"es"}},
+    {"id":"4a093cb6fb92","source_name":"La Nación · Economía","title":"El Banco Mundial volvió a recortar la proyección de crecimiento para la Argentina en 2026","summary":"El organismo prevé que el PBI se expanda 2,1%, frente al 3,6% que había pronosticado en junio y al 4% de enero; destacó que habrá tres años consecutivos de crecimiento (2025-2027) por primera vez en casi dos décadas","relevance":0.86,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+    {"id":"a2f173acc01f","source_name":"La Nación · Economía","title":"Impulsan una baja del IVA del huevo del 21% al 10,5% y buscan debatirla con el presupuesto","summary":"El diputado del PRO Javier Sánchez Wrba trabaja en una propuesta y mantiene conversaciones con el oficialismo; según Capia, la formalización de la actividad permitiría compensar la caída inicial de la recaudación y cerrar el primer año con US$40 millones adicionales para el Estado","relevance":0.84,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.03,"status":"new","meta":{"lang":"es"}},
+    {"id":"8ccfbe8b8f9d","source_name":"La Nación · Economía","title":"Para los analistas, la economía cayó en recesión y solo crecería entre 1,2 y 1,5% este año","summary":"Estiman que la inflación se mantendría estabilizada debajo del 2% mensual pero sin bajar mucho, lo que la haría cerrar el año al 30%, apenas por debajo de la del 2025","relevance":0.83,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Causal inference","p":0.02},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+    {"id":"c3d155406d47","source_name":"La Gaceta","title":"El Banco Mundial recortó su pronóstico para Argentina: cuánto crecerá la economía en 2026","summary":"Se trata de la segunda vez consecutiva que el organismo reduce sus proyecciones para el país en su informe de Actualización Económica de América Latina y el Caribe.","relevance":0.80,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+    {"id":"36dc3a83db1b","source_name":"La Gaceta","title":"Dólar hoy: el oficial operó estable y el mayorista quedó a $405 del techo de la banda cambiaria","summary":"En la jornada de este martes, la divisa minorita terminó a $1.540 en las pantallas del Banco Nación.","relevance":0.72,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.02,"status":"new","meta":{"lang":"es"}},
+    {"id":"e54382e68730","source_name":"La Nación · Opinión","title":"Perdedores, de Taormina a la Argentina","summary":"Las actuales tensiones económicas solo podrán resolverse con inversión, mayor productividad y crecimiento, palabras ajenas al vocabulario populista","relevance":0.67,"lens":"Latin American economy and institutions","alt_lenses":[{"name":"Economics of AI and productivity","p":0.05},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.03,"status":"new","meta":{"lang":"es"}}
+  ],
+  "trends": [
+    {"id":"4be705e8da97","source_name":"NBER · New working papers","title":"Avoiding Regulation: Evidence from Nursing Homes -- by Alden Cheng, Riley League","summary":"We study strategic responses by firms to threshold-based regulations. We document extensive bunching in response to additional staffing requirements for California nursing homes with at least 100 beds.","relevance":0.92,"lens":"Causal inference","alt_lenses":[{"name":"Economics of AI and productivity","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.03,"status":"new","meta":{"lang":"en"}},
+    {"id":"275d9953ac2b","source_name":"Statistical Modeling blog","title":"When are Causal Inference Methods Needed to Answer Causal Questions?","summary":"Earlier this year we discussed Donna Spiegelman's talk, \"Rethinking SUTVA and Causal Identification: An Epidemiologist's Perspective.\" She's giving a followup talk online on Mon 12 Oct, 3:30pm.","relevance":0.90,"lens":"Causal inference","alt_lenses":[{"name":"Automated research and AI agents for science","p":0.02},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.04,"status":"new","meta":{"lang":"en"}},
+    {"id":"a39a7216e62b","source_name":"NBER · New working papers","title":"Randomized to Opportunity: Measuring Place Effects for Refugee Children -- by N. Meltem Daysal et al.","summary":"Area-level measures of economic opportunity are increasingly used to guide place-based policies. We study whether these measures predict long-run outcomes for a vulnerable population: over 12,000 refugee children.","relevance":0.88,"lens":"Causal inference","alt_lenses":[{"name":"Measurement and construct validity with LLMs","p":0.02},{"name":"Culture, norms and technology","p":0.02}],"personal_flag":0.08,"status":"new","meta":{"lang":"en"}},
+    {"id":"14edfa994468","source_name":"NBER · New working papers","title":"Does Food Assistance Drive Spending on Sugary Foods? Evidence from the Pandemic Electronic Benefit Transfer Program","summary":"We provide evidence on the extent to which food assistance affects spending on sugary items by studying the Pandemic Electronic Benefit Transfer (P-EBT) program.","relevance":0.80,"lens":"Causal inference","alt_lenses":[{"name":"Culture, norms and technology","p":0.02},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.05,"status":"new","meta":{"lang":"en"}},
+    {"id":"374af4a8b5a0","source_name":"Statistical Modeling blog","title":"Hey—we're hiring two postdocs!","summary":"One project is on generalization for causal inference with a focus on education research. The other project is on multilevel modeling and small-area estimation.","relevance":0.72,"lens":"Causal inference","alt_lenses":[{"name":"AI in education","p":0.05},{"name":"Automated research and AI agents for science","p":0.03}],"personal_flag":0.08,"status":"new","meta":{"lang":"en"}},
+    {"id":"117f48cdc85f","source_name":"Statistical Modeling blog","title":"Using the computer to p-hack … I'd rather use it to fit multilevel models.","summary":"Brian Stone writes: Cognitive psychologist and long time reader of the blog here. I thought you and your audience might appreciate this recent post from Andy Hall: AI is about to write thousands of papers. Will it p-hack them?","relevance":0.58,"lens":"Automated research and AI agents for science","alt_lenses":[{"name":"Culture, norms and technology","p":0.12},{"name":"Measurement and construct validity with LLMs","p":0.06}],"personal_flag":0.04,"status":"new","meta":{"lang":"en"}},
+    {"id":"bae1a89cdc19","source_name":"Hacker News · 14-day discussions","title":"Show HN: HN.watch – Videos of all Hacker News posts","summary":"Hi HN, I'm Per, founder of Scrimba (YC S20). We've spent the last decade teaching people how to code with an HTML-based video format. We've now plugged an LLM into it.","relevance":0.20,"lens":"AI in education","alt_lenses":[{"name":"AI and journalism","p":0.09},{"name":"Culture, norms and technology","p":0.08}],"personal_flag":0.04,"status":"new","meta":{"lang":"en","points":225,"comments":97}}
+  ],
+  "commentary": [
+    {"id":"029aa81d6451","source_name":"r/Economics","title":"Don't be fooled - Canada lags in AI as well as economic growth","summary":"submitted by /u/rdh2dmd","relevance":0.49,"lens":"Economics of AI and productivity","alt_lenses":[{"name":"Culture, norms and technology","p":0.08},{"name":"AI and journalism","p":0.04}],"personal_flag":0.03,"status":"new","meta":{"lang":"en","subreddit":"Economics"}},
+    {"id":"77ddfdf47d33","source_name":"Hacker News · front page","title":"Sharing AI progress in mathematics","summary":"https://github.com/openai/math","relevance":0.41,"lens":"Automated research and AI agents for science","alt_lenses":[{"name":"AI in education","p":0.08},{"name":"Culture, norms and technology","p":0.07}],"personal_flag":0.03,"status":"new","meta":{"lang":"en","points":344,"comments":291}},
+    {"id":"3af25830f129","source_name":"Hacker News · front page","title":"Claude Code's suggested message feature: I think the real customer is the model","summary":"","relevance":0.17,"lens":"Culture, norms and technology","alt_lenses":[{"name":"Economics of AI and productivity","p":0.11},{"name":"Automated research and AI agents for science","p":0.08}],"personal_flag":0.04,"status":"new","meta":{"lang":"en","points":83,"comments":46}},
+    {"id":"7a44c4bc58d4","source_name":"Hacker News · front page","title":"Vibecoding Photoshop: Time and pressure","summary":"","relevance":0.17,"lens":"Culture, norms and technology","alt_lenses":[{"name":"Economics of AI and productivity","p":0.09},{"name":"AI and journalism","p":0.04}],"personal_flag":0.09,"status":"new","meta":{"lang":"en","points":48,"comments":53}},
+    {"id":"841c3bd387ec","source_name":"r/Economics","title":"Transport Affordability and Automobile Debt in the United States","summary":"submitted by /u/Helicase21","relevance":0.07,"lens":"Causal inference","alt_lenses":[{"name":"Culture, norms and technology","p":0.04},{"name":"Synthetic agents as models of human values","p":0.01}],"personal_flag":0.09,"status":"new","meta":{"lang":"en","subreddit":"Economics"}},
+    {"id":"09dccc8c3d13","source_name":"r/econometrics","title":"Economics Or Statistics","summary":"Hey everyone, I recently finished my FSc and I'm planning to start university, but I'm confused about whether I should pursue economics or statistics.","relevance":0.03,"lens":"Causal inference","alt_lenses":[{"name":"Synthetic agents as models of human values","p":0.01},{"name":"Formal verification for economics","p":0.01}],"personal_flag":0.06,"status":"new","meta":{"lang":"en","subreddit":"econometrics"}}
+  ],
+  "sample_draft": {
+    "candidate_id":"980b562e7667",
+    "user_take":"Los pronósticos de inflación de analistas suelen subestimar la dispersión; lo importante es cuánta incertidumbre reportan, no el número central.",
+    "text":"El REM de septiembre que difundió el Banco Central resume las proyecciones de 44 consultoras y bancos con un solo número: la mediana. Inflación de 1,9% para septiembre, dólar a $1.614 en diciembre, PIB cayendo 1,0% en el tercer trimestre. Todo muy preciso. Pero la nota omite un dato que el propio BCRA publica: la dispersión de esas proyecciones.\n\nCuando 44 analistas pronostican la inflación, el número central es apenas la mitad de la historia. Si diez esperan 1,2% y otros diez esperan 2,6%, la mediana de 1,9% escondería un desacuerdo enorme sobre la dirección de los precios. Lo relevante para un empresario que fija salarios o para un ahorrista que elige entre plazo fijo y dólar no es cuánto dicen los analistas en promedio sino cuánto discrepan entre ellos. La incertidumbre se mide con varianza, no con medianas.\n\nEl REM incluye esa información —el BCRA reporta el rango de pronósticos para cada variable— pero la cobertura periodística la ignora sistemáticamente. Una lástima: el número central es el dato menos informativo del relevamiento.",
+    "rationale":"The author's take argues that analyst forecast dispersion matters more than the central estimate. The article reports only medians from 44 participants and never mentions disagreement ranges, making it a clean target for this argument with a concrete, self-contained example drawn from the article's own numbers.",
+    "flags":["Verificar que el REM efectivamente publica el rango o deciles de los pronósticos (el BCRA suele incluir esta información; el autor sabrá el formato exacto del informe de septiembre).","Conteo de palabras: ~165; dentro del límite de 200 pero conviene verificarlo con un contador exacto antes de enviar."],
+    "model":"openrouter/deepseek/deepseek-v4-pro",
+    "lens":"Latin American economy and institutions"
+  }
+};
+
+// ========================================================
+// BUILD CARDS
+// ========================================================
+var statuses = ['new','drafted','approved','dismissed'];
+
+function buildPreview(item) {
+  var previews = {
+    "980b562e7667":"Critique cómo la cobertura del REM ignora la dispersión de pronósticos. La mediana esconde el desacuerdo real entre analistas.",
+    "4a093cb6fb92":"Analizar por qué el Banco Mundial reduce sus proyecciones para Argentina y qué implica este patrón para la credibilidad institucional.",
+    "a2f173acc01f":"Examinar si la baja del IVA al huevo es una política fiscal sólida o un gesto sectorial sin impacto recaudatorio.",
+    "8ccfbe8b8f9d":"Cuestionar el uso de estimaciones de crecimiento que no consideran la varianza entre pronosticadores.",
+    "c3d155406d47":"Discutir el patrón de recortes consecutivos del BM y su efecto sobre la planificación económica.",
+    "36dc3a83db1b":"Reflexionar sobre la estabilidad cambiaria como señal de credibilidad monetaria, no de solidez estructural.",
+    "e54382e68730":"Argumentar que el populismo económico no es una ideología sino una clase de incentivos políticos.",
+    "4be705e8da97":"Examinar cómo las empresas responden a umbrales regulatorios — implicaciones para el diseño de políticas.",
+    "275d9953ac2b":"Discutir cuándo los métodos de inferencia causal son necesarios y cuándo el diseño de investigación basta.",
+    "a39a7216e62b":"Analizar cómo la asignación aleatoria de refugiados permite medir efectos de lugar en resultados de largo plazo.",
+    "14edfa994468":"Preguntar si la asistencia alimentaria realmente impulsa gasto en productos azucarados, o si el diseño del estudio sesga la conclusión.",
+    "374af4a8b5a0":"Notar que la contratación de postdocs en inferencia causal señala hacia dónde va la investigación aplicada.",
+    "117f48cdc85f":"Advertir sobre el riesgo de p-hacking masivo con LLMs y proponer los modelos multinivel como alternativa.",
+    "bae1a89cdc19":"Reflexionar sobre cómo los LLMs que generan tutoriales cambian quién puede enseñar programación.",
+    "029aa81d6451":"Argumentar que la discusión sobre el rezago de Canadá en IA enmascara preguntas más profundas sobre productividad.",
+    "77ddfdf47d33":"Comentar cómo compartir avances en matemáticas con IA cambia lo que significa 'progreso' en la disciplina.",
+    "3af25830f129":"Observar que el verdadero cliente de las sugerencias de Claude Code no es el programador sino el modelo.",
+    "7a44c4bc58d4":"Reflexionar sobre el 'vibecoding' como señal de que la presión por producir software está cambiando cómo se escribe código.",
+    "841c3bd387ec":"Analizar cómo la deuda automotriz revela patrones de asequibilidad del transporte que los indicadores宏观 pierden.",
+    "09dccc8c3d13":"Señalar que la confusión entre economía y estadística es sintomática de cómo enseñamos ciencias sociales cuantitativas."
+  };
+  return previews[item.id] || "Explorar las conexiones entre " + item.lens + " y el tema de esta fuente.";
+}
+
+function buildCard(item, panelName) {
+  var statusClass = item.status === 'drafted' ? 'drafted' : (item.status === 'approved' ? 'approved' : (item.status === 'dismissed' ? 'dismissed' : ''));
+  var relPct = Math.round(item.relevance * 100);
+  var privacyChip = item.personal_flag > 0.3 ? '<span class="card-privacy sans" style="color:var(--oxblood);font-size:0.55rem;border:1px solid var(--oxblood);padding:1px 6px;">⚠ personal</span>' : '';
+  var preview = buildPreview(item);
+  var panelLabel = panelName === 'op-eds' ? 'Op‑ed' : (panelName === 'trends' ? 'Trend' : 'Comment');
+
+  return '<div class="card" data-id="' + item.id + '" data-panel="' + panelName + '">'
+   + '<div class="card-glass">'
+     + '<div class="card-glass-highlight"></div>'
+     + '<div class="card-glass-content">'
+       + '<div class="card-glass-preview">' + preview + '</div>'
+     + '</div>'
+   + '</div>'
+   + '<div class="card-source sans">' + item.source_name + '</div>'
+   + '<div class="card-title">' + item.title + '</div>'
+   + '<div class="card-summary">' + item.summary + '</div>'
+   + '<div class="card-footer">'
+     + '<div class="card-relevance">'
+       + '<span class="card-relevance-bar" style="width:' + relPct + 'px;max-width:60px;"></span>'
+       + '<span class="card-relevance-label">' + relPct + '</span>'
+     + '</div>'
+     + '<span class="card-lens sans">' + item.lens + '</span>'
+     + (privacyChip || '')
+     + '<span class="card-status sans ' + statusClass + '">' + item.status + '</span>'
+   + '</div>'
+ + '</div>';
+}
+
+function renderAll() {
+  var cols = { 'op-eds': [], 'trends': [], 'commentary': [] };
+  DATA['op-eds'].forEach(function(item) { cols['op-eds'].push(buildCard(item, 'op-eds')); });
+  DATA['trends'].forEach(function(item) { cols['trends'].push(buildCard(item, 'trends')); });
+  DATA['commentary'].forEach(function(item) { cols['commentary'].push(buildCard(item, 'commentary')); });
+
+  document.getElementById('col-op-eds').innerHTML = '<div class="column-header">01 Op‑eds</div>' + cols['op-eds'].join('');
+  document.getElementById('col-trends').innerHTML = '<div class="column-header">02 Trends</div>' + cols['trends'].join('');
+  document.getElementById('col-commentary').innerHTML = '<div class="column-header">03 Commentary</div>' + cols['commentary'].join('');
+}
+renderAll();
+
+// ========================================================
+// LIQUID GLASS — cursor-following specular highlight
+// ========================================================
+var cards = document.querySelectorAll('.card');
+cards.forEach(function(card) {
+  var glass = card.querySelector('.card-glass');
+  var highlight = card.querySelector('.card-glass-highlight');
+  if (!glass || !highlight) return;
+
+  card.addEventListener('mouseenter', function() {
+    glass.style.opacity = '1';
+  });
+  card.addEventListener('mouseleave', function() {
+    glass.style.opacity = '0';
+  });
+  card.addEventListener('mousemove', function(e) {
+    var rect = card.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width) * 100;
+    var y = ((e.clientY - rect.top) / rect.height) * 100;
+    highlight.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, rgba(107,30,35,0.08) 0%, transparent 50%)';
+  });
+});
+
+// ========================================================
+// SCOUT BUTTON — demo
+// ========================================================
+document.getElementById('btn-scout').addEventListener('click', function() {
+  var btn = this;
+  var loading = document.getElementById('scout-loading');
+  var result = document.getElementById('scout-result');
+  btn.classList.add('scouting');
+  loading.classList.add('active');
+  setTimeout(function() {
+    loading.classList.remove('active');
+    btn.classList.remove('scouting');
+    var panelItems = DATA['op-eds'].length + DATA['trends'].length + DATA['commentary'].length;
+    result.textContent = 'Scouted ' + panelItems + ' items (demo)';
+    setTimeout(function() { result.textContent = ''; }, 8000);
+  }, 2000);
+});
+
+// ========================================================
+// PANEL TABS — filter columns
+// ========================================================
+var tabs = document.querySelectorAll('.panel-tab');
+tabs.forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    this.classList.add('active');
+    var panel = this.getAttribute('data-panel');
+    document.querySelectorAll('.column').forEach(function(col) {
+      if (col.id === 'col-' + panel) {
+        col.style.display = 'flex';
+      } else {
+        col.style.display = panel === 'all' ? 'flex' : 'none';
+      }
+    });
+  });
+});
+
+// ========================================================
+// WORKSPACE
+// ========================================================
+var wsOverlay = document.getElementById('workspace-overlay');
+var wsLeft = document.getElementById('ws-left');
+var wsRight = document.getElementById('ws-right');
+var wsClose = document.getElementById('ws-close');
+var currentItem = null;
+var currentPanel = null;
+
+function findItem(id, panel) {
+  var list = DATA[panel] || [];
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].id === id) return list[i];
+  }
+  return null;
+}
+
+function openWorkspace(item, panel) {
+  currentItem = item;
+  currentPanel = panel;
+  wsOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  var relPct = Math.round(item.relevance * 100);
+  var privacyHtml = item.personal_flag > 0.3
+    ? '<div class="ws-privacy-chip"><span class="ws-priv-icon">⚠</span> Personal note — double-check tone</div>'
+    : '';
+
+  var langChip = item.meta.lang === 'es'
+    ? '<span class="ws-language-chip">Español</span>'
+    : '<span class="ws-language-chip">English</span>';
+
+  var altLensesHtml = '';
+  if (item.alt_lenses && item.alt_lenses.length) {
+    altLensesHtml += '<div class="ws-alt-lenses">';
+    item.alt_lenses.forEach(function(al) {
+      var w = Math.round(al.p * 100);
+      altLensesHtml += '<div class="ws-alt-lens"><span class="ws-alt-lens-name">' + al.name + '</span><span class="ws-alt-lens-bar" style="width:' + w + 'px;max-width:50px;"></span><span class="ws-alt-lens-pct">' + (al.p * 100).toFixed(0) + '%</span></div>';
+    });
+    altLensesHtml += '</div>';
+  }
+
+  // Source page (left)
+  var leftHtml = '<div class="workspace-page-header sans">Source &sect;</div>';
+  leftHtml += '<div class="ws-source-name sans">' + item.source_name + '</div>';
+  leftHtml += '<div class="ws-source-title">' + item.title + '</div>';
+  leftHtml += '<div class="ws-source-summary">' + item.summary + '</div>';
+  leftHtml += '<div class="ws-meter"><div class="ws-meter-label sans">Relevance</div><div class="ws-meter-bar"><div class="ws-meter-fill" style="width:' + relPct + '%;background:var(--oxblood);"></div></div><div class="ws-meter-value" style="position:static;text-align:right;">' + relPct + '%</div></div>';
+  leftHtml += '<div class="ws-lens sans">&rarr; ' + item.lens + '</div>';
+  leftHtml += altLensesHtml;
+  leftHtml += privacyHtml;
+
+  // Editor page (right) — varies by panel
+  var takeVal = item.id === DATA.sample_draft.candidate_id ? DATA.sample_draft.user_take : '';
+  var rightHtml = '';
+  var editorType = panel;
+
+  if (editorType === 'op-eds') {
+    rightHtml = '<div class="workspace-page-header sans">Letter Editor &sect;</div>';
+    rightHtml += langChip;
+    rightHtml += '<label class="ws-editor-label sans">Your take</label>';
+    rightHtml += '<textarea class="ws-take-field" id="ws-take" rows="2" placeholder="Your angle in one or two sentences…">' + takeVal + '</textarea>';
+    rightHtml += '<label class="ws-editor-label sans">Draft (' + (item.meta.lang === 'es' ? 'ES' : 'EN') + ')</label>';
+    rightHtml += '<textarea class="ws-editor-textarea" id="ws-text" rows="8" placeholder="Write your letter…"></textarea>';
+    rightHtml += '<div class="ws-counter sans" id="ws-counter">0 / 200 words</div>';
+  } else if (editorType === 'trends') {
+    rightHtml = '<div class="workspace-page-header sans">Post Composer &sect;</div>';
+    rightHtml += '<label class="ws-editor-label sans">Your take</label>';
+    rightHtml += '<textarea class="ws-take-field" id="ws-take" rows="2" placeholder="Your angle…">' + takeVal + '</textarea>';
+    rightHtml += '<label class="ws-editor-label sans">Draft</label>';
+    rightHtml += '<textarea class="ws-editor-textarea" id="ws-text" rows="6" placeholder="Write your post…"></textarea>';
+    rightHtml += '<div class="ws-counter sans" id="ws-counter">0 / 1200 characters</div>';
+    rightHtml += '<div class="ws-preview-label sans">Preview</div>';
+    rightHtml += '<div class="ws-preview-card" id="ws-preview">(preview appears here)</div>';
+  } else { // commentary
+    rightHtml = '<div class="workspace-page-header sans">Reply &sect;</div>';
+    rightHtml += '<div class="ws-thread">';
+    rightHtml += '<div class="ws-thread-title">' + item.title + '</div>';
+    rightHtml += '<div class="ws-thread-meta sans">' + item.source_name + '</div>';
+    if (item.summary) rightHtml += '<div class="ws-thread-body">' + item.summary + '</div>';
+    rightHtml += '</div>';
+    rightHtml += '<label class="ws-editor-label sans">Your take</label>';
+    rightHtml += '<textarea class="ws-take-field" id="ws-take" rows="2" placeholder="Your angle…">' + takeVal + '</textarea>';
+    rightHtml += '<label class="ws-editor-label sans">Reply</label>';
+    rightHtml += '<textarea class="ws-editor-textarea" id="ws-text" rows="6" placeholder="Write your reply…"></textarea>';
+    rightHtml += '<div class="ws-counter sans" id="ws-counter">0 / 200 words</div>';
+  }
+
+  // Draft area placeholder + actions common to all
+  rightHtml += '<div class="ws-draft-area" id="ws-draft-area" style="display:none;">'
+    + '<div class="workspace-page-header sans">Model suggestion</div>'
+    + '<div id="ws-draft-text" style="font-size:0.75rem;line-height:1.35;color:var(--ink);margin-bottom:6px;white-space:pre-wrap;"></div>'
+    + '<div class="ws-model-badge sans" id="ws-model-badge"></div>'
+    + '<div class="ws-rationale" id="ws-rationale"></div>'
+    + '<ul class="ws-flags" id="ws-flags"></ul>'
+  + '</div>';
+
+  rightHtml += '<div class="ws-actions">'
+    + '<button class="ws-btn ws-btn-primary" id="ws-draft-btn">Draft</button>'
+    + '<button class="ws-btn" id="ws-copy-btn">Copy to clipboard</button>'
+    + '<button class="ws-btn ws-btn-approve" id="ws-approve-btn">Approve</button>'
+    + '<button class="ws-btn ws-btn-dismiss" id="ws-dismiss-btn">Dismiss</button>'
+  + '</div>';
+
+  wsLeft.innerHTML = leftHtml;
+  wsRight.innerHTML = rightHtml;
+
+  // Wire up word/char counter
+  var textarea = document.getElementById('ws-text');
+  var counterEl = document.getElementById('ws-counter');
+  if (textarea && counterEl) {
+    var maxWords = (editorType === 'op-eds' ? 200 : (editorType === 'trends' ? 0 : 200));
+    var maxChars = (editorType === 'trends' ? 1200 : 0);
+    var updateCounter = function() {
+      var text = textarea.value;
+      if (maxChars > 0) {
+        var len = text.length;
+        counterEl.textContent = len + ' / ' + maxChars + ' characters';
+        if (len > maxChars) counterEl.classList.add('over'); else counterEl.classList.remove('over');
+      } else {
+        var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        counterEl.textContent = words + ' / ' + maxWords + ' words';
+        if (words > maxWords) counterEl.classList.add('over'); else counterEl.classList.remove('over');
+      }
+      // Update preview for trends
+      if (editorType === 'trends' && text.trim()) {
+        var previewEl = document.getElementById('ws-preview');
+        if (previewEl) {
+          var previewText = text.length > 200 ? text.substring(0, 200) + '…' : text;
+          previewEl.textContent = previewText;
+        }
+      }
+    };
+    textarea.addEventListener('input', updateCounter);
+    updateCounter();
+  }
+
+  // Draft button
+  document.getElementById('ws-draft-btn').addEventListener('click', function() {
+    var btn = this;
+    var originalText = btn.textContent;
+    btn.textContent = 'Generating…';
+    btn.disabled = true;
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.disabled = false;
+      var draftArea = document.getElementById('ws-draft-area');
+      draftArea.style.display = 'block';
+      document.getElementById('ws-draft-text').textContent = DATA.sample_draft.text;
+      document.getElementById('ws-model-badge').textContent = 'Model: ' + DATA.sample_draft.model;
+      document.getElementById('ws-rationale').textContent = 'Rationale: ' + DATA.sample_draft.rationale;
+      var flagsList = document.getElementById('ws-flags');
+      flagsList.innerHTML = '';
+      DATA.sample_draft.flags.forEach(function(f) {
+        var li = document.createElement('li');
+        li.textContent = f;
+        li.addEventListener('click', function() { this.classList.toggle('checked'); });
+        flagsList.appendChild(li);
+      });
+      // Fill editor text
+      var ta = document.getElementById('ws-text');
+      if (ta) {
+        ta.value = DATA.sample_draft.text;
+        // trigger counter update
+        var evt = new Event('input');
+        ta.dispatchEvent(evt);
+      }
+      // Fill take field
+      var takeField = document.getElementById('ws-take');
+      if (takeField) takeField.value = DATA.sample_draft.user_take;
+    }, 1200);
+  });
+
+  // Copy to clipboard
+  document.getElementById('ws-copy-btn').addEventListener('click', function() {
+    var text = document.getElementById('ws-text') ? document.getElementById('ws-text').value : '';
+    if (!text && document.getElementById('ws-draft-text')) text = document.getElementById('ws-draft-text').textContent;
+    var toast = document.getElementById('toast');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        toast.textContent = 'Copied to clipboard';
+        toast.classList.add('show');
+        setTimeout(function() { toast.classList.remove('show'); }, 2000);
+      }).catch(function() {
+        toast.textContent = 'Clipboard blocked — copy manually';
+        toast.classList.add('show');
+        setTimeout(function() { toast.classList.remove('show'); }, 2500);
+      });
+    } else {
+      // fallback
+      var ta2 = document.createElement('textarea');
+      ta2.value = text;
+      ta2.style.position = 'fixed'; ta2.style.left = '-9999px';
+      document.body.appendChild(ta2);
+      ta2.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta2);
+      toast.textContent = 'Copied to clipboard';
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2000);
+    }
+  });
+
+  // Approve
+  document.getElementById('ws-approve-btn').addEventListener('click', function() {
+    currentItem.status = 'approved';
+    updateCardStatus(currentItem.id, 'approved');
+    closeWorkspace();
+  });
+
+  // Dismiss
+  document.getElementById('ws-dismiss-btn').addEventListener('click', function() {
+    currentItem.status = 'dismissed';
+    updateCardStatus(currentItem.id, 'dismissed');
+    closeWorkspace();
+  });
+}
+
+function updateCardStatus(id, status) {
+  var cards2 = document.querySelectorAll('.card');
+  cards2.forEach(function(c) {
+    if (c.getAttribute('data-id') === id) {
+      var statusSpan = c.querySelector('.card-status');
+      if (statusSpan) {
+        statusSpan.className = 'card-status sans ' + status;
+        statusSpan.textContent = status;
+      }
+    }
+  });
+}
+
+function closeWorkspace() {
+  wsOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+wsClose.addEventListener('click', closeWorkspace);
+
+// ========================================================
+// CARD CLICK → open workspace
+// ========================================================
+document.querySelectorAll('.card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var id = this.getAttribute('data-id');
+    var panel = this.getAttribute('data-panel');
+    var item = findItem(id, panel);
+    if (item) openWorkspace(item, panel);
+  });
+});
+
+// ========================================================
+// RECLICK: card events after renderAll rebuilds cards
+// We need to re-attach after initial build. Do it now.
+// ========================================================
+(function reattachCardClicks() {
+  document.querySelectorAll('.card').forEach(function(card) {
+    // Remove any existing listener to avoid duplicates — we use a fresh approach
+    // Since cards are only built once at startup, no duplicates exist.
+    // But the initial attach above already runs after renderAll, so cards have it.
+  });
+})();
+
+})();
+</script>
+</body>
+</html>

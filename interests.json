@@ -1,0 +1,46 @@
+[
+ {
+  "name": "Synthetic agents as models of human values",
+  "description": "Using LLMs as synthetic survey respondents or cultural agents; whether aggregate anchors can reproduce real population attitudes; limits and validity of silicon samples."
+ },
+ {
+  "name": "Formal verification for economics",
+  "description": "Lean 4 and theorem proving applied to economic theory, mechanism design and equilibrium proofs; machine-checked guarantees instead of informal arguments."
+ },
+ {
+  "name": "AI and journalism",
+  "description": "How AI changes newsrooms and reporting; deepfakes, misinformation, synthetic media, editorial standards, and press-freedom organisations' responses."
+ },
+ {
+  "name": "AI in education",
+  "description": "AI tutors, lesson design, teacher workflows, learning evidence and what makes AI-generated lessons actually useful in classrooms."
+ },
+ {
+  "name": "Measurement and construct validity with LLMs",
+  "description": "Whether LLM-based measures of social-science constructs (trust, values, attitudes) measure what they claim; psychometrics, benchmarks, evaluation design."
+ },
+ {
+  "name": "Economics of AI and productivity",
+  "description": "Macro and labor effects of AI adoption, productivity paradox, institutions, and what the evidence does and does not show."
+ },
+ {
+  "name": "Automated research and AI agents for science",
+  "description": "Agentic research workflows, reproducibility, human-in-the-loop research tooling, and the reliability of autonomous research pipelines."
+ },
+ {
+  "name": "Latin American economy and institutions",
+  "description": "Argentina and the region: macro policy, inflation, institutional quality, and how technology and AI interact with development."
+ },
+ {
+  "name": "Culture, norms and technology",
+  "description": "How culture and preferences shape technology adoption, and how AI systems encode or flatten cultural differences."
+ },
+ {
+  "name": "Causal inference",
+  "description": "Identification strategies, RCTs, econometrics, DAGs, synthetic control and difference-in-differences; how credible causal claims are from observational data, experiments and ML-based estimators."
+ },
+ {
+  "name": "Complexity science and the Santa Fe Institute",
+  "description": "Complex adaptive systems, agent-based models, emergence, scaling laws and network science; research, people and ideas from the Santa Fe Institute."
+ }
+]

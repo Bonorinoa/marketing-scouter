@@ -1,0 +1,614 @@
+[
+ {
+  "id": "la_gaceta_05",
+  "title": "Dólar e inflación: qué esperan los analistas consultados por el Banco Central",
+  "best": "Latin American economy and institutions",
+  "p": 0.85,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.85,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_times_opinion_03",
+  "title": "Letters to the Editor: Radio has always needed real personalities. AI won't repl",
+  "best": "Culture, norms and technology",
+  "p": 0.46,
+  "all": {
+   "Synthetic agents as models of human values": 0.03,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.1,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.02,
+   "Economics of AI and productivity": 0.06,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.46
+  }
+ },
+ {
+  "id": "la_gaceta_11",
+  "title": "Interna judicial: ordenan a la Asociación de Magistrados abrir sus balances y ex",
+  "best": "Latin American economy and institutions",
+  "p": 0.19,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.19,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_00",
+  "title": "De Mercado Libre a Amazon: Los gigantes tech se reúnen en Tucumán para redefinir",
+  "best": "Latin American economy and institutions",
+  "p": 0.14,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.02,
+   "AI in education": 0.02,
+   "Measurement and construct validity with LLMs": 0.02,
+   "Economics of AI and productivity": 0.06,
+   "Automated research and AI agents for science": 0.03,
+   "Latin American economy and institutions": 0.14,
+   "Culture, norms and technology": 0.07
+  }
+ },
+ {
+  "id": "la_nacion_05",
+  "title": "La Cámpora difundió una protesta contra la Corte Suprema y el fiscal Luciani en ",
+  "best": "Latin American economy and institutions",
+  "p": 0.13,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.13,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_nacion_11",
+  "title": "Elecciones en Brasil, EN VIVO: qué se sabe del balotaje entre Lula y Bolsonaro, ",
+  "best": "Latin American economy and institutions",
+  "p": 0.11,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.11,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_times_opinion_01",
+  "title": "Contributor: Cornell case shows #MeToo is still changing the world",
+  "best": "Culture, norms and technology",
+  "p": 0.07,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.07
+  }
+ },
+ {
+  "id": "la_gaceta_03",
+  "title": "Flor de la V le respondió a Diego Leuco y se negó a pedirle disculpas por una fa",
+  "best": "AI and journalism",
+  "p": 0.05,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.05,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_times_opinion_05",
+  "title": "Letters to the Editor: I have a fragrance allergy. Trying to find hotels I can s",
+  "best": "Culture, norms and technology",
+  "p": 0.04,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.04
+  }
+ },
+ {
+  "id": "la_times_opinion_11",
+  "title": "Letters to the Editor: Even Hollywood has been warning us about our current clim",
+  "best": "Culture, norms and technology",
+  "p": 0.04,
+  "all": {
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Synthetic agents as models of human values": 0.01,
+   "AI in education": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.04
+  }
+ },
+ {
+  "id": "la_nacion_08",
+  "title": "La reflexión de Epicuro que actúa como un mantra en la vida cotidiana: “Ser feli",
+  "best": "Culture, norms and technology",
+  "p": 0.03,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.03
+  }
+ },
+ {
+  "id": "la_times_opinion_00",
+  "title": "Goldberg: Who wins when a state execution fails?",
+  "best": "Culture, norms and technology",
+  "p": 0.03,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.03
+  }
+ },
+ {
+  "id": "la_times_opinion_04",
+  "title": "Letters to the Editor: L.A.'s well-regulated oil sites are less harmful than unc",
+  "best": "Culture, norms and technology",
+  "p": 0.03,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.03
+  }
+ },
+ {
+  "id": "la_nacion_00",
+  "title": "Despedida de Messi: todos los famosos que asistieron al Monumental para el últim",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_nacion_06",
+  "title": "El desconsolado llanto de Scaloni durante la despedida de Messi",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_nacion_09",
+  "title": "Ni gimnasio ni caminata: así es el ejercicio de fuerza indispensable para frenar",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_gaceta_01",
+  "title": "Zaira Nara se reconcilió con Jakob Von Plessen tras más de cuatro años separados",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_gaceta_08",
+  "title": "Christa Pike: así evoluciona la presa que sobrevivió a una ejecución fallida en ",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_gaceta_10",
+  "title": "Murió Carlos Clerici, la voz que durante 35 años acompañó las campañas de Luchem",
+  "best": "Latin American economy and institutions",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.02,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_times_opinion_06",
+  "title": "Letters to the Editor: Financial dishonesty doesn't help California's condo comm",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_times_opinion_07",
+  "title": "Letters to the Editor: An out-of-state senator should have no place on my Califo",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_times_opinion_08",
+  "title": "Contributor: Those who become U.S. citizens have a special relationship to votin",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_times_opinion_09",
+  "title": "Contributor: What America's naval power bought the world",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02
+  }
+ },
+ {
+  "id": "la_times_opinion_10",
+  "title": "The Supreme Court's most consequential cases of the new term",
+  "best": "Culture, norms and technology",
+  "p": 0.02,
+  "all": {
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.02,
+   "Synthetic agents as models of human values": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_01",
+  "title": "Cómo va Argentina vs. Benín por la despedida de Lionel Messi de la selección",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_02",
+  "title": "La despedida de Lionel Messi EN VIVO vs. Benín: videos, mensajes y el minuto a m",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_03",
+  "title": "Inmigrantes contra el Uscis y la nueva demanda para lograr una vía para el ajust",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_04",
+  "title": "Se aproxima un nuevo ingreso de aire frío desde el sur que provocará en 48 horas",
+  "best": "AI and journalism",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.0,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.0,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_07",
+  "title": "El medicamento “estrella” para bajar el colesterol y por qué la dieta sola no al",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_nacion_10",
+  "title": "Messi y una despedida a la altura de su historia: emoción, recuerdos y un Monume",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_02",
+  "title": "Nicole Neumann explotó contra un vecino que la amenazó con matar a sus corderos:",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.0,
+   "Automated research and AI agents for science": 0.0,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_04",
+  "title": "Tucumán bajo alerta meteorológica: qué zonas se verán afectadas por fuertes vien",
+  "best": "AI and journalism",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.0,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.0,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_06",
+  "title": "Mirtha Legrand recibió el alta médica después de 18 días de internación",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_07",
+  "title": "EN VIVO: en la despedida de Messi, Argentina empata 0-0 con Benín",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.0,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_gaceta_09",
+  "title": "Cómo estará el tiempo en Tucumán este miércoles 7 de octubre: prepará el paragua",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.0,
+   "AI and journalism": 0.01,
+   "AI in education": 0.0,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ },
+ {
+  "id": "la_times_opinion_02",
+  "title": "Letters to the Editor: Senator's botched gotcha moment in Jack Smith hearing is ",
+  "best": "Synthetic agents as models of human values",
+  "p": 0.01,
+  "all": {
+   "Synthetic agents as models of human values": 0.01,
+   "Formal verification for economics": 0.01,
+   "AI and journalism": 0.01,
+   "AI in education": 0.01,
+   "Measurement and construct validity with LLMs": 0.01,
+   "Economics of AI and productivity": 0.01,
+   "Automated research and AI agents for science": 0.01,
+   "Latin American economy and institutions": 0.01,
+   "Culture, norms and technology": 0.01
+  }
+ }
+]

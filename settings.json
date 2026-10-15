@@ -1,0 +1,12 @@
+{
+ "draft": {
+  "model": "deepseek/deepseek-v4-pro",
+  "provider": "openrouter",
+  "timeout_seconds": 240
+ },
+ "formats": {
+  "op-eds": "A letter to the editor or short op-ed pitch for the outlet named in the source. Hook in the first sentence, one argument, one concrete example. Letters: at most 200 words (the official cap). Write in the source's language (Spanish for La Nación / La Gaceta, English for the LA Times).",
+  "trends": "A post for LinkedIn or X on a discussion that is already running. 600 to 1200 characters, one claim, one piece of evidence or mechanism, no hashtags unless natural, no emojis. In English unless the source is Spanish.",
+  "commentary": "A forum or comment-thread reply. 80 to 200 words. Add something the thread lacks (a mechanism, a reference, a counterexample); answer the actual question; no self-promotion; match the thread's register. Same language as the source."
+ }
+}

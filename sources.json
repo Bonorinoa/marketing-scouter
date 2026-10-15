@@ -1,0 +1,32 @@
+{
+ "min_relevance": 0.15,
+ "sources": [
+  {"id": "la_nacion_opinion", "panel": "op-eds", "kind": "rss", "lang": "es", "name": "La Nación · Opinión",
+   "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/opinion/?outputType=xml", "limit": 25},
+  {"id": "la_nacion_economia", "panel": "op-eds", "kind": "rss", "lang": "es", "name": "La Nación · Economía",
+   "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/economia/?outputType=xml", "limit": 25},
+  {"id": "la_gaceta", "panel": "op-eds", "kind": "rss", "lang": "es", "name": "La Gaceta",
+   "url": "https://www.lagaceta.com.ar/rss/", "limit": 25},
+  {"id": "la_times_opinion", "panel": "op-eds", "kind": "rss", "lang": "en", "name": "LA Times · Opinion",
+   "url": "https://www.latimes.com/opinion/rss2.0.xml", "limit": 25},
+
+  {"id": "hn_trends", "panel": "trends", "kind": "hn_search", "lang": "en", "name": "Hacker News · 14-day discussions",
+   "days": 14, "min_points": 15, "per_query": 15,
+   "queries": ["causal inference", "Santa Fe Institute", "agent-based model", "complex systems",
+               "formal verification Lean theorem prover", "synthetic survey respondents LLM",
+               "AI productivity economics", "deepfakes journalism", "AI tutor education", "LLM evaluation validity"]},
+  {"id": "nber_new", "panel": "trends", "kind": "rss", "lang": "en", "name": "NBER · New working papers",
+   "url": "https://www.nber.org/rss/new.xml", "limit": 25},
+  {"id": "gelman_blog", "panel": "trends", "kind": "rss", "lang": "en", "name": "Statistical Modeling blog",
+   "url": "https://statmodeling.stat.columbia.edu/feed/", "limit": 15},
+
+  {"id": "reddit_economics", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/Economics", "sub": "Economics", "limit": 25},
+  {"id": "reddit_askeconomics", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/AskEconomics", "sub": "AskEconomics", "limit": 25},
+  {"id": "reddit_econometrics", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/econometrics", "sub": "econometrics", "limit": 25},
+  {"id": "reddit_ml", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/MachineLearning", "sub": "MachineLearning", "limit": 25},
+  {"id": "reddit_artificial", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/artificial", "sub": "artificial", "limit": 25},
+  {"id": "reddit_journalism", "panel": "commentary", "kind": "reddit_rss", "lang": "en", "name": "r/Journalism", "sub": "Journalism", "limit": 25},
+  {"id": "reddit_argentina", "panel": "commentary", "kind": "reddit_rss", "lang": "es", "name": "r/argentina", "sub": "argentina", "limit": 25},
+  {"id": "hn_front", "panel": "commentary", "kind": "hn_front", "lang": "en", "name": "Hacker News · front page", "limit": 30}
+ ]
+}
