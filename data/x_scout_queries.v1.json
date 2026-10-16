@@ -1,0 +1,139 @@
+{
+  "version": "x-scout-queries.v2",
+  "owner": "Researcher",
+  "created": "2026-10-16",
+  "rules": {
+    "reader": "bot routine via Grok Bot public X reads; server never calls X",
+    "budget": {
+      "daily_read_cap": 1000,
+      "per_minute_cap": 30,
+      "max_results_per_call": 25,
+      "planned_runs_per_day": 3,
+      "queries_per_run_max": 11,
+      "target_reads_per_day": "<=400",
+      "note": "1000/day cap is per user across ALL of Augusto's bots, not per routine; count other bots' reads.",
+      "stop_when_remaining_below": 150,
+      "on_stop": "log as deliberate skip, not failure"
+    },
+    "x_language": "X lanes are lang:en only; lang_gate still runs on every post",
+    "spanish": "oped_es rows feed op-ed cards only, never X drafts",
+    "live_gate": "word filter + claim bar; Jev scores logged in shadow only",
+    "excluded": "no lanes or accounts added for PhD applications; no Perwell/Loop Pilot/pricing queries",
+    "accounts": "account watchlist intentionally empty until each handle is verified to exist; add rows with source_tag x.account",
+    "provenance_per_post": [
+      "query_id",
+      "lane",
+      "source_tag",
+      "asset_id",
+      "post_id",
+      "author_id",
+      "created_at",
+      "fetched_at",
+      "run_id"
+    ],
+    "on_missed_run": "queue stays on paste intake; health check reports run as missed"
+  },
+  "queries": [
+    {
+      "query_id": "x-self-mentions",
+      "lane": "self",
+      "source_tag": "x.mentions",
+      "query": "@theholy_hermit -from:theholy_hermit -is:retweet",
+      "reason": "Mentions of Augusto: cheapest reply Win; always top of queue.",
+      "asset_id": null
+    },
+    {
+      "query_id": "x-paper-sca-r2",
+      "lane": "claim_reply",
+      "source_tag": "x.search.claim",
+      "query": "(\"synthetic cultural agents\" OR \"non-WEIRD\" OR \"WEIRD bias\") (LLM OR AI) lang:en -is:retweet",
+      "reason": "Posts discussing the SCA paper or its exact claim; claim-reply candidates.",
+      "asset_id": "asset_sca_nonweird",
+      "rev": 2
+    },
+    {
+      "query_id": "x-sca-1-r2",
+      "lane": "econ-ai-cas",
+      "source_tag": "x.search.fit",
+      "query": "(\"synthetic participants\" OR \"silicon sampling\" OR \"LLM simulations\" OR \"simulated subjects\") (experiment OR survey OR behavior) lang:en -is:retweet -is:reply",
+      "reason": "Core Fit seed for the flagship claim.",
+      "asset_id": "asset_sca_nonweird",
+      "rev": 2
+    },
+    {
+      "query_id": "x-gpt4o-weird-r2",
+      "lane": "econ-ai-cas",
+      "source_tag": "x.search.fit",
+      "query": "(LLM OR GPT OR ChatGPT) (\"World Values Survey\" OR \"WEIRD populations\" OR \"cultural alignment\" OR \"whose values\") lang:en -is:retweet -is:reply",
+      "reason": "LLM value-alignment threads matching the WVS claim.",
+      "asset_id": "asset_gpt4o_weird",
+      "rev": 2
+    },
+    {
+      "query_id": "x-cvp-r2",
+      "lane": "ai-measurement",
+      "source_tag": "x.search.fit",
+      "query": "(LLM OR \"language models\") (\"construct validity\" OR \"Big Five personality\" OR psychometric OR \"personality traits\") lang:en -is:retweet -is:reply",
+      "reason": "Measurement-validity threads for the cvprofiles claim. Bare \"Big Five\" matched publishers in a test run, so it is qualified.",
+      "asset_id": "asset_cvprofiles",
+      "rev": 2
+    },
+    {
+      "query_id": "x-econllm-r2",
+      "lane": "econ-ai-cas",
+      "source_tag": "x.search.fit",
+      "query": "(\"LLM agents\" OR \"language model agents\") (\"game theory\" OR \"ultimatum game\" OR \"dictator game\" OR \"public goods game\" OR \"economic experiments\" OR \"behavioral economics\") lang:en -crypto -token -onchain -NFT -airdrop -is:retweet -is:reply",
+      "reason": "Games/experiments x LLM agents x CAS: the approved econllm claim.",
+      "asset_id": "asset_econllm_lab",
+      "rev": 2
+    },
+    {
+      "query_id": "x-complexity-policy-r2",
+      "lane": "complexity",
+      "source_tag": "x.search.fit",
+      "query": "(\"complexity economics\" OR \"complex systems\" OR \"complex adaptive\") (policy OR economics OR governance) lang:en -is:retweet -is:reply",
+      "reason": "Feedback/emergence vs one-shot optimization claim.",
+      "asset_id": "asset_complexity_policy",
+      "rev": 2
+    },
+    {
+      "query_id": "x-abm-org",
+      "lane": "complexity",
+      "source_tag": "x.search.fit",
+      "query": "(\"agent-based model\" OR \"agent based model\" OR ABM) (organizations OR institutions OR firms) lang:en -is:retweet -is:reply",
+      "reason": "Narrow ABM-organizations claim; topic card unless claim bar clears.",
+      "asset_id": "asset_abm_organizations"
+    },
+    {
+      "query_id": "x-gen-verify",
+      "lane": "ai-society",
+      "source_tag": "x.search.fit",
+      "query": "(AI OR \"generative AI\") (verification OR \"Community Notes\" OR \"local journalism\" OR misinformation) lang:en -is:retweet -is:reply",
+      "reason": "Cheap generation / scarce verification claim, English X side.",
+      "asset_id": "asset_adepa_lagaceta_carta"
+    },
+    {
+      "query_id": "x-surveys-r2",
+      "lane": "econ-ai-cas",
+      "source_tag": "x.search.fit",
+      "query": "(LLM OR GPT) (\"survey design\" OR \"questionnaire design\" OR \"survey research\") lang:en -is:retweet -is:reply",
+      "reason": "LLM-assisted research pipeline claim; low priority.",
+      "asset_id": "asset_smart_surveys",
+      "rev": 2
+    },
+    {
+      "query_id": "noa-oped-es",
+      "lane": "tucuman-noa",
+      "source_tag": "x.search.oped_es",
+      "query": "(Tucumán OR NOA) (\"inteligencia artificial\" OR IA OR desinformación OR periodismo) lang:es -is:retweet",
+      "reason": "Spanish, op-ed lane only: never becomes an X reply draft.",
+      "asset_id": "asset_adepa_lagaceta_carta"
+    }
+  ],
+  "accounts": [],
+  "changelog": [
+    "v2 2026-10-16: tightened x-gpt4o-weird and x-gen-verify (hit 25 cap, likely empty_fit source); widened phrasing of zero-result queries; x-self-mentions unchanged (0 mentions is real).",
+    "v2.1: gpt4o adds 'whose values'; econllm anchored on LLM agents + named games, crypto terms excluded (DA a5fcddc: 13/18 noise).",
+    "v2.2: rev-2 rows renamed with -r2 suffix for provenance; x-gen-verify reverted to v1 text (its v1 yield was masked by the lang bug)."
+  ]
+}

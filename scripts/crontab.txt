@@ -1,0 +1,13 @@
+# Market Scouter plain cron on the box (install: crontab scripts/crontab.txt). No bot routines, no usage pool.
+# Builds and X discovery stay bot routines. Times are box-local (America/Phoenix).
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+# health + keep-alive: one ensure_up pass (writes data/heartbeats/health.json)
+*/15 * * * * /workspace/marketing-scouter/scripts/ensure_up.sh >/dev/null 2>&1
+# daily backup (runs only if the last good backup is >24h old; keeps newest 14; writes data/heartbeats/backup.json)
+20 * * * * /workspace/marketing-scouter/scripts/ensure_up.sh --backup-if-due >/dev/null 2>&1
+# keep the supervisor loop armed after a reboot/crash
+@reboot /workspace/marketing-scouter/scripts/ensure_up.sh --arm >/dev/null 2>&1
+*/30 * * * * /workspace/marketing-scouter/scripts/ensure_up.sh --arm >/dev/null 2>&1
+# cron heartbeat: proves the box scheduler itself is alive (/status warns if older than 30 min)
+*/15 * * * * cd /workspace/marketing-scouter && .venv/bin/python -m src.heartbeat cron_tick ok cron tick >/dev/null 2>&1

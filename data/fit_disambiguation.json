@@ -1,0 +1,8 @@
+{
+  "_note": "Researcher. A keyword hit is never Fit. Fit needs a claim the asset can answer. Posts matching exclude terms get empty_fit.",
+  "sca-nonweird": {"needs_any": ["LLM","language model","GPT","AI agent","synthetic"], "exclude": ["Big Five publisher","publishing house","Penguin","HarperCollins"]},
+  "smart-surveys": {"needs_any": ["survey","questionnaire","respondent"], "exclude": ["airdrop","token","presale"]},
+  "cheap-gen-scarce-verify": {"needs_any": ["misinformation","verification","fact-check","journalism","Community Notes"], "exclude": ["bot log","automated note","rated helpful"]},
+  "verification-local-context": {"needs_any": ["local news","journalism","verification","newsroom"], "exclude": ["bot log","automated note"]},
+  "_global_exclude": ["airdrop","presale","giveaway","TRON","memecoin","pump"]
+}

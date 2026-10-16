@@ -1,0 +1,69 @@
+[
+  {
+    "asset_id": "asset_sca_nonweird",
+    "title": "LLMs Model Non-WEIRD Populations (arXiv 2501.06834)",
+    "url": "https://arxiv.org/abs/2501.06834",
+    "modality": "text",
+    "slugs": ["sca-nonweird", "sca-pilot-ethics", "synthetic-societies-validity"],
+    "door_archive": "EconLLM",
+    "evidence_grade": "A",
+    "one_line_claim": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist",
+    "notes": "Capra & Pantoja — primary X/LI interject asset"
+  },
+  {
+    "asset_id": "asset_cvp_measurement",
+    "title": "cvprofiles — construct validity as measurement layer",
+    "url": "https://pypi.org/project/cvprofiles/",
+    "modality": "text",
+    "slugs": ["cvp-measurement-layer", "cvp-empty-finding", "ai-measurement-policy"],
+    "door_archive": "EconLLM",
+    "evidence_grade": "A",
+    "one_line_claim": "Construct validity = partial ID over a menu of measures; empty M* is a finding",
+    "notes": "Methods package + LI methods posts"
+  },
+  {
+    "asset_id": "asset_gpt4o_weird",
+    "title": "GPT4o is WEIRD! (Medium essay)",
+    "url": "https://medium.com/",
+    "modality": "text",
+    "slugs": ["gpt4o-weird"],
+    "door_archive": "EconLLM",
+    "evidence_grade": "B",
+    "one_line_claim": "Frontier chat models’ WVS-like responses cluster with WEIRD populations",
+    "notes": "Public essay — cultural bias / Global South threads"
+  },
+  {
+    "asset_id": "asset_cheap_gen",
+    "title": "Cheap generation, scarce verification (Adepa / civic op-ed)",
+    "url": null,
+    "modality": "text",
+    "slugs": ["cheap-gen-scarce-verify", "verification-local-context"],
+    "door_archive": "EconLLM",
+    "oped_status": "published",
+    "evidence_grade": "B",
+    "one_line_claim": "Generation/amplification is cheap; verification + local context are scarce — coexist with AI, don’t ban",
+    "notes": "Augusto-civic voice on press threads; archive tag remains EconLLM"
+  },
+  {
+    "asset_id": "asset_complexity_policy",
+    "title": "Complexity methods for policy & organizations (working notes)",
+    "url": null,
+    "modality": "text",
+    "slugs": ["complexity-policy", "econ-ai-cas", "abm-organizations"],
+    "door_archive": "EconLLM",
+    "evidence_grade": "B",
+    "one_line_claim": "Complex policy problems require feedback, emergence and adaptation — not only equilibrium or one-shot optimization",
+    "notes": "PhD/CSS exposure lane"
+  },
+  {
+    "asset_id": "asset_sca_rag",
+    "title": "SCA cultural profiles via scrape + RAG",
+    "url": "https://arxiv.org/abs/2501.06834",
+    "modality": "text",
+    "slugs": ["sca-rag-profiles", "sca-nonweird"],
+    "door_archive": "EconLLM",
+    "evidence_grade": "A",
+    "one_line_claim": "Cultural profiles built via scrape + RAG + system prompts beat naive “act like X” persona prompts",
+    "notes": "Persona-prompting threads"
+  }
+]

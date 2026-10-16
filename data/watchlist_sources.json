@@ -1,0 +1,47 @@
+[
+  {
+    "source_id": "la-gaceta-tucuman",
+    "label": "La Gaceta Tucumán",
+    "surface": "public site / RSS if available",
+    "door": "Augusto-civic",
+    "claim_tags": ["cheap-gen-scarce-verify", "verification-local-context"],
+    "notes": "Argentina/NOA, media, AI, truth, and civic-information threads; start from official/public URLs.",
+    "active": true
+  },
+  {
+    "source_id": "contexto-tucuman",
+    "label": "Contexto Tucumán",
+    "surface": "public site / RSS if available",
+    "door": "Augusto-civic",
+    "claim_tags": ["cheap-gen-scarce-verify", "verification-local-context"],
+    "notes": "Tucumán politics, society, and local-context threads; do not infer virality from source prominence.",
+    "active": true
+  },
+  {
+    "source_id": "adepa",
+    "label": "ADEPA",
+    "surface": "public site / RSS if available",
+    "door": "Augusto-civic",
+    "claim_tags": ["cheap-gen-scarce-verify", "verification-local-context"],
+    "notes": "Journalism, media policy, verification, and AI threads.",
+    "active": true
+  },
+  {
+    "source_id": "noa-citrus-voices",
+    "label": "NOA citrus voices",
+    "surface": "public sites / RSS / paste",
+    "door": "Augusto-civic",
+    "claim_tags": ["cheap-gen-scarce-verify", "sca-nonweird"],
+    "notes": "Citrus, export, Senasa, and regional-economy threads; use sca-nonweird only when culturally relevant.",
+    "active": true
+  },
+  {
+    "source_id": "unt-education-voices",
+    "label": "UNT education voices",
+    "surface": "public sites / RSS / paste",
+    "door": "Augusto-civic",
+    "claim_tags": ["cheap-gen-scarce-verify", "econllm-lab"],
+    "notes": "AI, education, research, and public-knowledge threads; use econllm-lab only when relevant.",
+    "active": true
+  }
+]

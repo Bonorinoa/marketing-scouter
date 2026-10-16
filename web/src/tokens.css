@@ -1,0 +1,58 @@
+/* Market Scouter design tokens — ONLY file allowed to contain color literals. */
+:root {
+  /* Color */
+  --paper: #F7F5F0;
+  --surface: #FFFFFF;
+  --ink: #1C1C1A;
+  --ink-2: #55534E;
+  --ink-3: #6E6B63;
+  --line: #E4E0D7;
+  --line-strong: #CFCABE;
+  --door-econllm: #2F4B9A;
+  --door-econllm-tint: #E9EDF8;
+  --door-civic: #9A4A15;
+  --door-civic-tint: #FBEEE3;
+  --ev-a: #2E6B3F;
+  --ev-a-tint: #E3F1E6;
+  --ev-b: #4A4F5C;
+  --ev-b-tint: #ECEDF1;
+  --ev-soft: #8A6400;
+  --ev-soft-tint: #FFF3CC;
+  --ev-out: #9B2C2C;
+  --ev-out-tint: #FBE5E5;
+  --banner-bg: #1C1C1A;
+  --banner-fg: #FFFFFF;
+  --focus: #2F4B9A;
+
+  /* Type */
+  --font-ui: "Inter Tight", "Geist", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-15: 15px;
+  --fs-18: 18px;
+  --fs-22: 22px;
+
+  /* Space (4px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Radius */
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --motion: 150ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0ms;
+  }
+}

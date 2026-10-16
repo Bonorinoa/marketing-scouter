@@ -1,0 +1,42 @@
+.venv/
+**/node_modules/
+web/dist/
+data/db/
+data/backups/
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.env
+.env.*
+data/pins/*
+data/ensure_up_status.json
+data/ALERT_db_integrity
+!data/pins/freeze_946.sha
+data/freeze_946_result.json
+data/freeze_946_result.dryrun.json
+data/archive/
+data/heartbeats/
+
+# Echo calibration samples (Augusto writing, X links): never commit
+prompts/echo_calibration/samples.md
+prompts/echo_calibration/x_samples.md
+# third-party post text, handles and account lists stay on the box (AT r751)
+data/discovery-*-posts.json
+data/discovery-*-intake-out.json
+data/x_reads.jsonl
+data/x_raw/
+data/bot_accounts.json
+data/brand_accounts.json
+data/self_accounts.json
+# real third-party post text/ids (AT r8f6): kept on the box only; tests use tests/fixtures/*.anon / made-up copies
+data/fit_rubric.json
+data/fit_rubric_fresh/
+data/fit_rubric_marketing/
+data/fit_rubric_snapshots/
+data/demo_candidates.json
+data/seed_score_fixtures.json
+# approved style guide v2 quotes Augusto verbatim: on the box only (drafter reads it from disk)
+prompts/style_augusto.v1.md
+prompts/style_augusto.v2.md

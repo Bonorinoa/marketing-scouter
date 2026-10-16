@@ -1,0 +1,8 @@
+{"version": "hashtag_quote_v1", "note": "DA, written 2026-10-13; not from the 12:15 run",
+ "cases": [
+  {"id": "ht1", "kind": "hashtag_stuffing", "text": "Big week for the team! #survey #questionnaire #AI #pilot #measurement #RCT", "slug_pool": ["smart-surveys", "sca-pilot-ethics", "cvp-measurement-layer"], "expect": []},
+  {"id": "ht2", "kind": "hashtag_plus_one_word", "text": "Our new questionnaire app is out #survey", "slug_pool": ["smart-surveys"], "expect": []},
+  {"id": "tp1", "kind": "topic_named_arguing_else", "text": "Everyone keeps saying construct validity, but this thread is really about my landlord raising rent again.", "slug_pool": ["cvp-measurement-layer"], "expect": ["cvp-measurement-layer"], "graded_expect": "none"},
+  {"id": "q1", "kind": "quoted_relevant_in_offtopic", "text": "My fantasy lineup is cursed. Someone in the group chat wrote \"survey questionnaire pilot measurement\" as a joke and I lost again.", "slug_pool": ["smart-surveys", "sca-pilot-ethics", "cvp-measurement-layer"], "expect": []},
+  {"id": "ok1", "kind": "genuine_two_generic_outside_quotes", "text": "We ran the survey and the questionnaire items drifted between waves.", "slug_pool": ["smart-surveys"], "expect": ["smart-surveys"]}
+ ]}

@@ -1,0 +1,10 @@
+{
+ "t_claim": 0.65,
+ "t_none": 0.2,
+ "fit_n": 25,
+ "fit_claim_examples": 13,
+ "provisional": false,
+ "fit_flips": 0,
+ "fit_acc": "15/25",
+ "fit_claim_recall": "5/13"
+}

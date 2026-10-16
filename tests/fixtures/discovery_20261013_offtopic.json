@@ -1,0 +1,78 @@
+{
+ "run_id": "discovery-2026-10-13T19:35:31Z",
+ "note": "made-up posts (tests/fixtures/gen_anon_fixtures.py docstring): same Fit outcome as the real 12:15 run rows they replace; no real text, handles or ids",
+ "posts": {
+  "0": {
+   "url": "https://x.com/fixture_user_00/status/9000000000000000500",
+   "text": "Made-up post: a publishing house says its jacket copy is now drafted by software. I am fine with that if the rule applies to everyone.",
+   "author_handle": "fixture_user_00",
+   "created_at": "2026-10-13T04:37:53.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "1": {
+   "url": "https://x.com/fixture_user_01/status/9000000000000000501",
+   "text": "\"Made-up quote: several big publishing houses have quietly begun using chatbots for press notes,\" a trade newsletter reports.",
+   "author_handle": "fixture_user_01",
+   "created_at": "2026-10-13T12:22:32.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "6": {
+   "url": "https://x.com/fixture_user_06/status/9000000000000000506",
+   "text": "Made-up post: agentic AI systems behave like complex adaptive systems, with self-organisation, adaptation and emergence that let them persist and evolve.",
+   "author_handle": "fixture_user_06",
+   "created_at": "2026-10-13T06:42:18.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "7": {
+   "url": "https://x.com/fixture_user_07/status/9000000000000000507",
+   "text": "MADE-UP SKETCH OF MIND. Awareness as a systems-level property, drawn from biology, complexity science and emergent behavior. Thoughts?",
+   "author_handle": "fixture_user_07",
+   "created_at": "2026-10-13T17:31:46.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "8": {
+   "url": "https://x.com/fixture_user_08/status/9000000000000000508",
+   "text": "MADE-UP LEDGER CLARITY FOR THE REAL WORLD. A token project says meetings with a police network and a research hub prove trust on-chain. #crypto",
+   "author_handle": "fixture_user_08",
+   "created_at": "2026-10-13T06:39:24.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "17": {
+   "url": "https://x.com/fixture_user_17/status/9000000000000000517",
+   "text": "MODEL ONE. MODEL TWO. MODEL THREE. THE CHAT ERA ENDS SOON. THE NEXT THING WILL NOT TALK, IT WILL REASON AND EXECUTE.",
+   "author_handle": "fixture_user_17",
+   "created_at": "2026-10-13T04:16:35.000Z",
+   "reply_count": 2,
+   "quote_count": 0,
+   "like_count": 44
+  },
+  "20": {
+   "url": "https://x.com/fixture_bot_01/status/9000000000000000520",
+   "text": "Made-up bot log: notes job finished. Processed: 6 posts. Submitted: 1. Not needed: 1. Failed: 4. Next job in 15 minutes.",
+   "author_handle": "fixture_bot_01",
+   "created_at": "2026-10-13T08:16:16.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  },
+  "21": {
+   "url": "https://x.com/fixture_bot_01/status/9000000000000000521",
+   "text": "Made-up bot log: notes job finished. Processed: 6 posts. Submitted: 3. Not needed: 0. Failed: 3. Next job in 15 minutes.",
+   "author_handle": "fixture_bot_01",
+   "created_at": "2026-10-13T08:42:03.000Z",
+   "reply_count": 0,
+   "quote_count": 0,
+   "like_count": 0
+  }
+ }
+}

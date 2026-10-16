@@ -1,0 +1,143 @@
+[
+  {
+    "asset_id": "asset_sca_nonweird",
+    "title": "LLMs Model Non-WEIRD Populations (SCA)",
+    "url": "https://arxiv.org/abs/2501.06834",
+    "modality": "text",
+    "slugs": [
+      "sca-nonweird",
+      "sca-pilot-ethics",
+      "synthetic-societies-validity"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "A",
+    "one_line_claim": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist.",
+    "notes": "Primary SCA paper; anchor asset for WEIRD-bias and synthetic-participant threads.",
+    "surface": "arxiv",
+    "tone_hint": "EconLLM technical / methods"
+  },
+  {
+    "asset_id": "asset_cvprofiles",
+    "title": "cvprofiles — construct-validity measurement layer",
+    "url": "https://pypi.org/project/cvprofiles/",
+    "modality": "text",
+    "slugs": [
+      "cvp-measurement-layer",
+      "cvp-empty-finding",
+      "ai-measurement-policy"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "A",
+    "one_line_claim": "Whether a measure validly captures its construct depends on which version of the measure is used, and finding that no version passes is itself a result.",
+    "notes": "Methods/package asset for Big Five, LLM measurement, and policy-proxy validity discussions.",
+    "surface": "github",
+    "tone_hint": "EconLLM methods / package",
+    "caveat": "Check the measure before claiming cause and effect."
+  },
+  {
+    "asset_id": "asset_gpt4o_weird",
+    "title": "GPT4o is WEIRD! — WVS cultural-bias essay",
+    "url": "https://medium.com/econllm-lab/gpt4o-is-weird-2f5c31aa0629",
+    "modality": "text",
+    "slugs": [
+      "gpt4o-weird"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "B",
+    "one_line_claim": "GPT-4o-mini's answers to WVS-style values questions cluster close to WEIRD, especially US, values.",
+    "notes": "Public essay; use as a compact bridge from cultural-bias discussion to the stronger SCA evidence.",
+    "surface": "medium",
+    "tone_hint": "EconLLM public essay",
+    "caveat": "This is one model on survey-style questions, so read it as a bias signal, not a settled result."
+  },
+  {
+    "asset_id": "asset_adepa_lagaceta_carta",
+    "title": "Adepa / La Gaceta carta — verification and local context",
+    "url": null,
+    "modality": "text",
+    "slugs": [
+      "cheap-gen-scarce-verify",
+      "verification-local-context",
+      "ai-society-governance"
+    ],
+    "door_archive": "Augusto-civic",
+    "oped_status": "pending",
+    "evidence_grade": "B",
+    "one_line_claim": "When AI makes generation and amplification cheap, verification and locally named context become scarce public goods.",
+    "notes": "Not yet published. Evidence spike waits until published; pending civic seed is not a live Evidence-A spike.",
+    "surface": "carta",
+    "tone_hint": "Augusto-civic: English on X/LinkedIn, Spanish only for op-eds / soft Evidence if pending",
+    "caveat": "Not published yet: an argument, not evidence."
+  },
+  {
+    "asset_id": "asset_econllm_lab",
+    "title": "EconLLM Lab",
+    "url": "https://econllm-lab.com",
+    "modality": "text",
+    "slugs": [
+      "econllm-lab",
+      "econ-ai-cas"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "B",
+    "notes": "Public lab/site asset; working-program evidence, useful lightly for research-method threads.",
+    "surface": "lab",
+    "tone_hint": "EconLLM lab / recruiting",
+    "caveat": "This describes a working research program, not a finished result.",
+    "one_line_claim": "Combining games, experiments, LLM agents, and complex-systems methods is a productive way to study heterogeneous behavior."
+  },
+  {
+    "asset_id": "asset_smart_surveys",
+    "title": "Smart Surveys: An Automatic Survey Generation and Analysis Tool (CSEDU 2023)",
+    "url": "https://www.scitepress.org/Papers/2023/119854/119854.pdf",
+    "modality": "text",
+    "slugs": [
+      "smart-surveys"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "A",
+    "one_line_claim": "An LLM-assisted pipeline can support survey generation, collection, text mining, and reporting in research design.",
+    "notes": "CSEDU 2023 paper; cite for survey-design automation rather than generic AI productivity claims.",
+    "surface": "conference",
+    "tone_hint": "EconLLM academic"
+  },
+  {
+    "asset_id": "asset_complexity_policy",
+    "title": "Complexity policy — working paper notes",
+    "url": null,
+    "modality": "text",
+    "slugs": [
+      "complexity-policy"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "B",
+    "one_line_claim": "Complex policy problems need feedback, emergence, and adaptation, not only one-shot optimization.",
+    "notes": "Topic-led working notes only; use lightly until a citable public paper is attached.",
+    "surface": "working_paper",
+    "tone_hint": "EconLLM methods draft — use lightly",
+    "caveat": "These are working notes, and no citable paper is attached yet."
+  },
+  {
+    "asset_id": "asset_abm_organizations",
+    "title": "ABM organizations — working paper notes",
+    "url": null,
+    "modality": "text",
+    "slugs": [
+      "abm-organizations"
+    ],
+    "door_archive": "EconLLM",
+    "oped_status": null,
+    "evidence_grade": "B",
+    "one_line_claim": "Agent-based models link micro-level rules and organizational structure to emergent organizational outcomes.",
+    "notes": "Topic-led working notes only; use lightly for firms, networks, institutional change, and org-design threads.",
+    "surface": "working_paper",
+    "tone_hint": "EconLLM methods draft — use lightly",
+    "caveat": "These are working notes, and no citable paper is attached yet."
+  }
+]

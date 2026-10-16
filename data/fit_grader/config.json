@@ -1,0 +1,19 @@
+{
+  "provider": "openrouter",
+  "base_url": "https://openrouter.ai/api/v1/chat/completions",
+  "api_key_env": "OPENROUTER_API_KEY",
+  "model": "deepseek/deepseek-v4-flash",
+  "temperature": 0,
+  "max_tokens": 16,
+  "prompt_version": "fit_grader.v1",
+  "prompt_file": "prompts/fit_grader.v1.md",
+  "placeholder_prompt_file": "data/fit_grader/prompt_placeholder.v1.txt",
+  "reasoning": {
+    "enabled": false
+  },
+  "typesafe_model": "jev-1.13.0",
+  "votes": 1,
+  "typesafe_criteria_file": "prompts/jev_criteria.v1.json",
+  "typesafe_decision": "argmax",
+  "typesafe_cutoffs_file": "data/fit_grader/jev_cutoffs.v1.json"
+}

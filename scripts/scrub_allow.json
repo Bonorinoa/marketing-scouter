@@ -1,0 +1,263 @@
+{
+ "doc": "Path+rule scoped scrub allowlist (scripts/scrub_check.py load_allow_file). Matches are stored as sha256 so the planted fakes never appear here. Placeholders only under tests/; outside tests/ only the grok bot forms or a pinned line hash.",
+ "entries": [
+  {
+   "path": "scripts/scrub_check.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "scripts/scrub_check.py",
+   "rule": "account_list_handle",
+   "match_sha256": "37e4c8382755cca093f866d162a5adfd20fd27a710473665dc8361ee18c56478",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "scripts/scrub_check.py",
+   "rule": "account_list_handle",
+   "match_sha256": "add92b9cde2bdbf3daaf65a0db79e9b1a7fa428b71b4d6ce38c742eb6dca0c1c",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "src/api/app.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "src/api/core.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "src/bot_accounts.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "src/voice_gate.py",
+   "rule": "handle",
+   "line_sha256": "e0eab5a312097e9b0a9a4c8ac804e6aeb25d53317d35b9219513c6fdfd85690b",
+   "why": "doc example in a file owned by another lane"
+  },
+  {
+   "path": "src/voice_gate.py",
+   "rule": "handle",
+   "line_sha256": "48fc3470c9f265e2d61709c6d541c98d8ae56d0992bd35f75d04872a7a5e359f",
+   "why": "doc example in a file owned by another lane"
+  },
+  {
+   "path": "src/voice_gate.py",
+   "rule": "handle",
+   "line_sha256": "d405832be713bbaed2b6e5bc553343df0c97b0369cb09b8a68817f09b9f4a7f7",
+   "why": "doc example in a file owned by another lane"
+  },
+  {
+   "path": "tests/fixtures/accounts/bot_accounts.json",
+   "rule": "account_list_handle",
+   "match_sha256": "add92b9cde2bdbf3daaf65a0db79e9b1a7fa428b71b4d6ce38c742eb6dca0c1c",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_bot_authors.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_bot_authors.py",
+   "rule": "account_list_handle",
+   "match_sha256": "37e4c8382755cca093f866d162a5adfd20fd27a710473665dc8361ee18c56478",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_bot_authors.py",
+   "rule": "account_list_handle",
+   "match_sha256": "add92b9cde2bdbf3daaf65a0db79e9b1a7fa428b71b4d6ce38c742eb6dca0c1c",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_draft_post_first.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_evidence_url.py",
+   "rule": "email",
+   "match_sha256": "cf509b75924abd940c8a954fe646f373f23edaaeefaec1fd0698c1dfcbd3a472",
+   "why": "made-up test address"
+  },
+  {
+   "path": "tests/test_evidence_url.py",
+   "rule": "email",
+   "match_sha256": "35041386aa3383177ab536f6aeaa77d27addd1d144dbb92fbfc880149dfb5ab0",
+   "why": "made-up test address"
+  },
+  {
+   "path": "tests/test_fit_jev_se.py",
+   "rule": "handle",
+   "line_sha256": "2e6a0c55a25cd9c6f8e676b230163976cc3ee833435977589e3bbe7e099e42cc",
+   "why": "vendor model id string, not an X handle"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "email",
+   "match_sha256": "00605bc213a3bd9e29d642fd88e6036168d28b0fd68274ad843633a60ab2482c",
+   "why": "made-up test address"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "email_obfuscated",
+   "match_sha256": "c2bea570d0337a88002df16f11ba9ed11b38c201a8166983b7149969505410d7",
+   "why": "scrub test planted fake"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "email_obfuscated",
+   "match_sha256": "c971ae22f8484d454bcd0d39c55b2a73726d9f52e3a4dcab9247d25c2e4453a6",
+   "why": "scrub test planted fake"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "d1f80d6b14d8b816a35ce8e02426c70fc6ed5cb22a7d3ac8aa3ab8d306e7e4c3",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "17386c4c91b9dadcfe7a08e9b418a173e383e59e3138d0f6db3df01de87e10fa",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "a4c22c8799f1af070c0aedc7c29474a0cd931ab58cf353dbc8adc1fd67ab231f",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "e6968a616eff087d4ddfd5de760ba33ec2405320ad198a1c4ba956c6ac9ebff4",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "074eca245ca5ad7ce159e56d9864dcacb27a53633770da5d7c79eb78f801ed15",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "c262075372f818e05b89e2a51fc8acbb00f9203df2e4480585a65104b0beab9d",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "handle",
+   "match_sha256": "eb1e86ed4add3d3921a47fadad1102fe80bae0c9cffebb9125c3102dcbb03512",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "openrouter_key",
+   "match_sha256": "5032c164e7984c345169aef511f2ba7b19fdcde920d29fc674c11beaa4c1083d",
+   "why": "scrub test planted fake"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "snowflake_id",
+   "match_sha256": "be483321e72f1b52500a2abaaccb61180546e2d1c2a1d985468cbf6382e0f81f",
+   "why": "scrub test planted fake"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "subq_key",
+   "match_sha256": "54afbff8947249e7c82a381210002d419f23bd16ca78d1e6033261a736887448",
+   "why": "scrub test planted fake"
+  },
+  {
+   "path": "tests/test_voice_gate_x_rules.py",
+   "rule": "handle",
+   "match_sha256": "2b31df77059871a9cbc3f87dd9d0f6170ea9ab9002c187ade44e275a8f660f51",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_voice_gate_x_rules.py",
+   "rule": "handle",
+   "match_sha256": "acccfb2fd5bc2f7832cb32b967f93805385ec208534193f4194338ff4ae01a27",
+   "why": "made-up placeholder / npm scope in a test"
+  },
+  {
+   "path": "tests/test_x_discovery_batch_se.py",
+   "rule": "account_list_handle",
+   "match_sha256": "add92b9cde2bdbf3daaf65a0db79e9b1a7fa428b71b4d6ce38c742eb6dca0c1c",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "web/src/api/schema.d.ts",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "docs/FRONTEND-DIRECTION-2026-10-16.md",
+   "rule": "handle",
+   "line_sha256": "a1e1546d1ede9668c800f9ed9f47693d75c3d3d7af7ab34474d8699517898601",
+   "why": "generic at-handle placeholder in prose (no account)"
+  },
+  {
+   "path": "docs/SPRINT-2026-10-13.md",
+   "rule": "account_list_handle",
+   "match_sha256": "29cdbef6db324091420d04fae533503ddda3f25fc279b93ee7f934217328b625",
+   "why": "public platform bot (grok)"
+  },
+  {
+   "path": "tests/test_bot_authors.py",
+   "rule": "x_status_handle",
+   "match_sha256": "38ec9f2d3bd8579114b5757993842e6bfba743c93b580241d2a71c3e87544fd2",
+   "why": "public platform bot (grok) status URL"
+  },
+  {
+   "path": "tests/test_draft_post_first.py",
+   "rule": "x_status_handle",
+   "match_sha256": "38ec9f2d3bd8579114b5757993842e6bfba743c93b580241d2a71c3e87544fd2",
+   "why": "public platform bot (grok) status URL"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "x_status_handle",
+   "match_sha256": "e55160f527b62832c1a782b8c19503ddcf99f5f0b1773d180d876e0e9dd3ff71",
+   "why": "planted fake for the status-handle test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "x_status_handle",
+   "match_sha256": "3c8f072d048466f362e2301481e2532a2bcad9923f4c8a8ee6590155b2c7ef2c",
+   "why": "planted fake for the status-handle test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "x_status_handle",
+   "match_sha256": "ea125ef0a4f6efb9afc28090460ededa6b6f27251cbb4c5ac942010418503084",
+   "why": "planted fake for the status-handle test"
+  },
+  {
+   "path": "tests/test_scrub_check_se.py",
+   "rule": "x_handle_path",
+   "match_sha256": "d8c9f93fd44a719075adc8d5420aadde3b8b4fab6adc98d17886378aea030915",
+   "why": "planted fake for the escaped-slash profile URL test"
+  }
+ ]
+}

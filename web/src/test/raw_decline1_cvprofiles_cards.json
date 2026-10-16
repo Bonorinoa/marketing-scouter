@@ -1,0 +1,193 @@
+[
+ {
+  "predraft": {
+   "status": "ok",
+   "code": null,
+   "message": null,
+   "model": "deepseek/deepseek-v4-flash",
+   "style_version": "style_augusto.v1",
+   "style_sha": "2b1b3c86738630f47f7cc3bd86e4d3694fb303752b8f8891049dbbba46e8cb16",
+   "caveat_appended": true,
+   "lang": "en",
+   "gate": {
+    "ok": true,
+    "reasons": [],
+    "warnings": []
+   },
+   "copy_enabled": true
+  },
+  "copy_enabled": true,
+  "card_id": "card_ed8c823e651c",
+  "url": "https://x.com/fixture_user_30/status/9000000000000000700",
+  "outlet": "x",
+  "labels": [],
+  "fit_level": "claim",
+  "fit_trace": {
+   "p": {
+    "claim": 0.99,
+    "topic": 0.01,
+    "none": 0.0
+   },
+   "decision_rule": "cutoffs:jev_cutoffs.v1+55d7c0c658:c0.65,n0.2,tNone",
+   "confidence": 0.98,
+   "word_filter": {
+    "pass": false,
+    "slugs": [],
+    "asset_id": null,
+    "tie_assets": []
+   }
+  },
+  "post_dedupe": null,
+  "rank_reason": null,
+  "door": "EconLLM",
+  "slug": "cvp-measurement-layer",
+  "slugs": [
+   "cvp-measurement-layer"
+  ],
+  "claim": "Whether a measure validly captures its construct depends on which version of the measure is used, and finding that no version passes is itself a result.",
+  "caveat": "Check the measure before claiming cause and effect.",
+  "author": "@fixture_user_30",
+  "post_text": "Celebrating that no Big Five variant passes as 'itself a result' is a cute escape hatch. Sometimes the measure is junk and the finding is that you should stop publishing until one works.",
+  "age": "25 minutes ago",
+  "age_hours": 0.42,
+  "created_at": "2026-10-14T16:57:34.406744+00:00",
+  "S": 88.0,
+  "factors": {
+   "Fit": 0.75,
+   "Urgency": 1.0,
+   "FormatPrior": 0.7,
+   "Evidence": 1.0,
+   "DoorMatch": 1.0,
+   "EffortPenalty": 0.0
+  },
+  "likes_info": 40,
+  "T_status": "ok",
+  "state": "open",
+  "move": "reply",
+  "draft": "A measurement that fails every variant is a finding about measurement, not about the phenomenon. The escape hatch is the point. Check the measure before claiming cause and effect.",
+  "lang": "en",
+  "mode": "scoped",
+  "format": "social",
+  "xbrief_slugs": [
+   "cvp-measurement-layer"
+  ],
+  "handoff_blocked": null,
+  "asset": {
+   "asset_id": "asset_cvprofiles",
+   "title": "cvprofiles \u2014 construct-validity measurement layer",
+   "url": "https://pypi.org/project/cvprofiles/",
+   "type": "github",
+   "surface": "github",
+   "tone_hint": "EconLLM methods / package",
+   "caveat": "Check the measure before claiming cause and effect.",
+   "door": "EconLLM",
+   "slugs": [
+    "cvp-measurement-layer",
+    "cvp-empty-finding",
+    "ai-measurement-policy"
+   ],
+   "primary_slug": "cvp-measurement-layer",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "builder-readme",
+   "format": "social"
+  },
+  "source_chip": null
+ },
+ {
+  "predraft": {
+   "status": "error",
+   "code": "xbrief_no_draft",
+   "message": "x-brief didn't write a draft for this post. Copy the handoff instead.",
+   "model": "unknown",
+   "style_version": "style_augusto.v1",
+   "style_sha": "2b1b3c86738630f47f7cc3bd86e4d3694fb303752b8f8891049dbbba46e8cb16",
+   "caveat_appended": null,
+   "gate": null,
+   "copy_enabled": false
+  },
+  "copy_enabled": false,
+  "card_id": "card_20747fbd4e57",
+  "url": "https://x.com/fixture_user_31/status/9000000000000000701",
+  "outlet": "x",
+  "labels": [],
+  "fit_level": "claim",
+  "fit_trace": {
+   "p": {
+    "claim": 0.79,
+    "topic": 0.14,
+    "none": 0.07
+   },
+   "decision_rule": "cutoffs:jev_cutoffs.v1+55d7c0c658:c0.65,n0.2,tNone",
+   "confidence": 0.69,
+   "word_filter": {
+    "pass": true,
+    "slugs": [
+     "cvp-measurement-layer"
+    ],
+    "asset_id": "asset_cvprofiles",
+    "tie_assets": []
+   }
+  },
+  "post_dedupe": null,
+  "rank_reason": null,
+  "door": "EconLLM",
+  "slug": "cvp-measurement-layer",
+  "slugs": [
+   "cvp-measurement-layer"
+  ],
+  "claim": "Whether a measure validly captures its construct depends on which version of the measure is used, and finding that no version passes is itself a result.",
+  "caveat": "Check the measure before claiming cause and effect.",
+  "author": "@fixture_user_31",
+  "post_text": "Whether a fancam validly captures the performance depends on which edit you watch, and finding that no cut passes the stan poll is itself a finding. Construct validity, but for comeback stages.",
+  "age": "25 minutes ago",
+  "age_hours": 0.42,
+  "created_at": "2026-10-14T16:57:01.619093+00:00",
+  "S": 88.0,
+  "factors": {
+   "Fit": 0.75,
+   "Urgency": 1.0,
+   "FormatPrior": 0.7,
+   "Evidence": 1.0,
+   "DoorMatch": 1.0,
+   "EffortPenalty": 0.0
+  },
+  "likes_info": 40,
+  "T_status": "ok",
+  "state": "open",
+  "move": "reply",
+  "draft": "Whether a measure validly captures its construct depends on which version of the measure is used, and finding that no version passes is itself a result. Check the measure before claiming cause and effect.\n\nhttps://pypi.org/project/cvprofiles/",
+  "lang": "en",
+  "mode": "scoped",
+  "format": "social",
+  "xbrief_slugs": [
+   "cvp-measurement-layer"
+  ],
+  "handoff_blocked": null,
+  "asset": {
+   "asset_id": "asset_cvprofiles",
+   "title": "cvprofiles \u2014 construct-validity measurement layer",
+   "url": "https://pypi.org/project/cvprofiles/",
+   "type": "github",
+   "surface": "github",
+   "tone_hint": "EconLLM methods / package",
+   "caveat": "Check the measure before claiming cause and effect.",
+   "door": "EconLLM",
+   "slugs": [
+    "cvp-measurement-layer",
+    "cvp-empty-finding",
+    "ai-measurement-policy"
+   ],
+   "primary_slug": "cvp-measurement-layer",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "builder-readme",
+   "format": "social"
+  },
+  "source_chip": null
+ }
+]

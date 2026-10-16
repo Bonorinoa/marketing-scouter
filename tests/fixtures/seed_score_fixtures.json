@@ -1,0 +1,145 @@
+{
+  "description": "Seed Candidate + InventoryAsset + expected §9 factor breakdowns for DA / Systems tests.",
+  "formula": "S = 30*Fit + 20*Urgency + 15*FormatPrior + 20*Evidence + 15*DoorMatch - EffortPenalty",
+  "fixtures": [
+    {
+      "id": "econllm-sca-x-reply",
+      "label": "EconLLM SCA — fresh X substantive reply on high-fit thread",
+      "asset": {
+        "asset_id": "asset_sca_nonweird",
+        "title": "LLMs Model Non-WEIRD Populations (arXiv 2501.06834)",
+        "url": "https://arxiv.org/abs/2501.06834",
+        "modality": "text",
+        "slugs": [
+          "sca-nonweird"
+        ],
+        "door_archive": "EconLLM",
+        "evidence_grade": "A",
+        "one_line_claim": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist"
+      },
+      "candidate": {
+        "candidate_id": "cand_x_sca_001",
+        "adapter": "x.seed",
+        "outlet": "x",
+        "url": "https://example.invalid/post/1",
+        "title_or_snippet": "Made-up post: does any LLM-as-subjects work go beyond US college samples?",
+        "author": "@fixture_user_01",
+        "age_hours": 12,
+        "reply_count": 8,
+        "quote_count": 2,
+        "like_count": 400,
+        "T_status": "ok"
+      },
+      "score_inputs": {
+        "fit": 1.0,
+        "age_hours": 12,
+        "format_kind": "substantive_reply",
+        "evidence": "A",
+        "voice_door": "EconLLM",
+        "intended_door": "EconLLM",
+        "effort_penalty": 0
+      },
+      "expected_factors": {
+        "Fit": 1.0,
+        "Urgency": 0.9,
+        "FormatPrior": 0.7,
+        "Evidence": 1.0,
+        "DoorMatch": 1.0,
+        "EffortPenalty": 0.0
+      },
+      "expected_S": 93.5,
+      "notes": "likes=400 must not change S; FormatPrior=0.7 for substantive reply on high-fit X thread."
+    },
+    {
+      "id": "augusto-civic-verification-li",
+      "label": "Augusto-civic — LinkedIn carousel on verification / local context (2–7d)",
+      "asset": {
+        "asset_id": "asset_verify_local",
+        "title": "Cheap generation, scarce verification (Adepa / civic)",
+        "url": null,
+        "modality": "text+image",
+        "slugs": [
+          "verification-local-context",
+          "cheap-gen-scarce-verify"
+        ],
+        "door_archive": "EconLLM",
+        "oped_status": "published",
+        "evidence_grade": "B",
+        "one_line_claim": "Cheap generation/amplification makes verified local context a scarce public good"
+      },
+      "candidate": {
+        "candidate_id": "cand_li_civic_001",
+        "adapter": "li.google_site",
+        "outlet": "linkedin",
+        "url": "https://example.invalid/post/2",
+        "title_or_snippet": "Made-up post: city papers buried in AI filler; how can local context stay verifiable?",
+        "author": "@fixture_user_02",
+        "age_hours": 72,
+        "comment_count": null,
+        "like_count": 55,
+        "T_status": "unknown"
+      },
+      "score_inputs": {
+        "fit": 0.8,
+        "age_hours": 72,
+        "format_kind": "carousel",
+        "evidence": "B",
+        "voice_door": "Augusto-civic",
+        "intended_door": "Augusto-civic",
+        "effort_penalty": 10
+      },
+      "expected_factors": {
+        "Fit": 0.8,
+        "Urgency": 0.6,
+        "FormatPrior": 1.0,
+        "Evidence": 0.6,
+        "DoorMatch": 1.0,
+        "EffortPenalty": 10.0
+      },
+      "expected_S": 68.0,
+      "notes": "DoorMatch=1.0 for Augusto-civic on provincial/civic thread; Evidence B=0.6; EffortPenalty 10 for ~30–45m draft."
+    },
+    {
+      "id": "empty-fit-no-card",
+      "label": "Empty Fit → S uses Fit=0; kill empty_fit; do not create card",
+      "asset": {
+        "asset_id": "asset_none",
+        "title": "Unmatched inventory",
+        "slugs": [],
+        "door_archive": "EconLLM",
+        "evidence_grade": "A"
+      },
+      "candidate": {
+        "candidate_id": "cand_generic_ai",
+        "adapter": "manual.paste",
+        "outlet": "x",
+        "url": "https://example.invalid/post/3",
+        "title_or_snippet": "Made-up post: general AI chatter with no claim overlap.",
+        "age_hours": 6,
+        "like_count": 9999
+      },
+      "score_inputs": {
+        "fit": 0.0,
+        "age_hours": 6,
+        "format_kind": "reply",
+        "evidence": "A",
+        "voice_door": "EconLLM",
+        "intended_door": "EconLLM",
+        "effort_penalty": 0
+      },
+      "expected_factors": {
+        "Fit": 0.0,
+        "Urgency": 0.95,
+        "FormatPrior": 0.7,
+        "Evidence": 1.0,
+        "DoorMatch": 1.0,
+        "EffortPenalty": 0.0
+      },
+      "expected_S": 64.5,
+      "kill_reasons": [
+        "empty_fit"
+      ],
+      "notes": "Fit empty → do NOT create a card / do not enqueue even though raw S math is defined."
+    }
+  ]
+}

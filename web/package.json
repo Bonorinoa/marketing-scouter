@@ -1,0 +1,37 @@
+{
+  "name": "market-scouter-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "gen:api": "openapi-typescript http://127.0.0.1:8710/openapi.json -o src/api/schema.d.ts",
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "build": "tsc -b && vite build",
+    "test": "vitest run",
+    "ui-check": "vitest run --reporter=json --outputFile=../reports/_ui_vitest.json",
+    "lint:tokens": "python3 ../scripts/lint_tokens.py",
+    "test:e2e": "playwright test",
+    "test:card-visibility": "playwright test e2e/card-visibility.spec.ts"
+  },
+  "dependencies": {
+    "@fontsource/inter-tight": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "openapi-fetch": "^0.17.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^25.0.1",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "vitest": "^2.1.9"
+  }
+}

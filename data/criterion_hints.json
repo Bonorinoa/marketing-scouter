@@ -1,0 +1,15 @@
+{
+  "_note": "Closed list for Win.criterion_hint. A hint for the lawyer, not a legal determination. Source: 8 CFR 214.2(o)(3)(iii)(B). Default depends on win_type (see default_by_win_type); Augusto can override on confirm.",
+  "values": {
+    "original_contribution": "Experts engaging, adopting or building on a named claim (iii)(B)(5)",
+    "published_about": "Published material in professional or major media about Augusto and his work (iii)(B)(3)",
+    "scholarly_authorship": "Citation of his scholarly articles in professional journals or major media (iii)(B)(6)",
+    "judging": "Invited to judge or review others' work, e.g. a referee or panel invite (iii)(B)(4)",
+    "none": "Engagement worth logging that supports no criterion"
+  },
+  "default_by_win_type": {
+    "claim_named_reply": "original_contribution",
+    "warm_intro": "none",
+    "evidence_ab": "scholarly_authorship"
+  }
+}

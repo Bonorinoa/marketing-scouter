@@ -1,0 +1,1 @@
+{"doc": "Test fixture (made-up list; platform bot handles only). Real list: data/bot_accounts.json, gitignored.", "handles": ["grok", "fixture_bot_01", "fixture_bot_02", "fakebot_test"]}

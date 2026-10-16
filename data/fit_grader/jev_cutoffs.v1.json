@@ -1,0 +1,10 @@
+{
+  "version": "jev_cutoffs.v1",
+  "criteria_file": "prompts/jev_criteria.v1.json",
+  "criteria_sha": "32d86b8dc6226ed38c6b58afbc65e7442d5d556e47cc33cc6538b9ab64257d2c",
+  "claim": 0.65,
+  "none": 0.2,
+  "topic": null,
+  "rule": "claim if p(claim)>=claim; else none if p(none)>=none; else topic",
+  "source": "Data Analyst frozen cut-offs, reports/eval/jev_cutoffs_frozen.json (t_claim=0.65, t_none=0.2; fit_n=25, frozen before scoring by eval_jev_rubric.py; used by stability_eval.py rule jev_cutoffs). Copied 2026-10-13 15:30 PT."
+}

@@ -1,0 +1,917 @@
+{
+ "inventory": [
+  {
+   "asset_id": "asset_abm_organizations",
+   "title": "ABM organizations — working paper notes",
+   "url": null,
+   "type": "working_paper",
+   "surface": "working_paper",
+   "tone_hint": "EconLLM methods draft — use lightly",
+   "caveat": "These are working notes, and no citable paper is attached yet.",
+   "door": "EconLLM",
+   "slugs": [
+    "abm-organizations"
+   ],
+   "primary_slug": "abm-organizations",
+   "evidence_grade": "B",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "working-notes",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_complexity_policy",
+   "title": "Complexity policy — working paper notes",
+   "url": null,
+   "type": "working_paper",
+   "surface": "working_paper",
+   "tone_hint": "EconLLM methods draft — use lightly",
+   "caveat": "These are working notes, and no citable paper is attached yet.",
+   "door": "EconLLM",
+   "slugs": [
+    "complexity-policy"
+   ],
+   "primary_slug": "complexity-policy",
+   "evidence_grade": "B",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "working-notes",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_smart_surveys",
+   "title": "Smart Surveys: An Automatic Survey Generation and Analysis Tool (CSEDU 2023)",
+   "url": "https://www.scitepress.org/Papers/2023/119854/119854.pdf",
+   "type": "conference",
+   "surface": "conference",
+   "tone_hint": "EconLLM academic",
+   "caveat": null,
+   "door": "EconLLM",
+   "slugs": [
+    "smart-surveys"
+   ],
+   "primary_slug": "smart-surveys",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "academic-finding",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_econllm_lab",
+   "title": "EconLLM Lab",
+   "url": "https://econllm-lab.com",
+   "type": "lab",
+   "surface": "lab",
+   "tone_hint": "EconLLM lab / recruiting",
+   "caveat": "This describes a working research program, not a finished result.",
+   "door": "EconLLM",
+   "slugs": [
+    "econllm-lab",
+    "econ-ai-cas"
+   ],
+   "primary_slug": "econllm-lab",
+   "evidence_grade": "B",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "program-overview",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_adepa_lagaceta_carta",
+   "title": "Adepa / La Gaceta carta — verification and local context",
+   "url": null,
+   "type": "carta",
+   "surface": "carta",
+   "tone_hint": "Augusto-civic: English on X/LinkedIn, Spanish only for op-eds / soft Evidence if pending",
+   "caveat": "Not published yet: an argument, not evidence.",
+   "door": "Augusto-civic",
+   "slugs": [
+    "cheap-gen-scarce-verify",
+    "verification-local-context",
+    "ai-society-governance"
+   ],
+   "primary_slug": "cheap-gen-scarce-verify",
+   "evidence_grade": "B",
+   "evidence_status": "soft_pending",
+   "oped_status": "pending",
+   "lang": "es",
+   "tone": "civic-provincial",
+   "format": "op-ed"
+  },
+  {
+   "asset_id": "asset_gpt4o_weird",
+   "title": "GPT4o is WEIRD! — WVS cultural-bias essay",
+   "url": "https://medium.com/econllm-lab/gpt4o-is-weird-2f5c31aa0629",
+   "type": "medium",
+   "surface": "medium",
+   "tone_hint": "EconLLM public essay",
+   "caveat": "This is one model on survey-style questions, so read it as a bias signal, not a settled result.",
+   "door": "EconLLM",
+   "slugs": [
+    "gpt4o-weird"
+   ],
+   "primary_slug": "gpt4o-weird",
+   "evidence_grade": "B",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "public-essay",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_cvprofiles",
+   "title": "cvprofiles — construct-validity measurement layer",
+   "url": "https://pypi.org/project/cvprofiles/",
+   "type": "github",
+   "surface": "github",
+   "tone_hint": "EconLLM methods / package",
+   "caveat": "Check the measure before claiming cause and effect.",
+   "door": "EconLLM",
+   "slugs": [
+    "cvp-measurement-layer",
+    "cvp-empty-finding",
+    "ai-measurement-policy"
+   ],
+   "primary_slug": "cvp-measurement-layer",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "builder-readme",
+   "format": "social"
+  },
+  {
+   "asset_id": "asset_sca_nonweird",
+   "title": "LLMs Model Non-WEIRD Populations (SCA)",
+   "url": "https://arxiv.org/abs/2501.06834",
+   "type": "arxiv",
+   "surface": "arxiv",
+   "tone_hint": "EconLLM technical / methods",
+   "caveat": null,
+   "door": "EconLLM",
+   "slugs": [
+    "sca-nonweird",
+    "sca-pilot-ethics",
+    "synthetic-societies-validity"
+   ],
+   "primary_slug": "sca-nonweird",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "lang": "en",
+   "tone": "academic-finding",
+   "format": "social"
+  }
+ ],
+ "rec_sca": {
+  "ok": true,
+  "mode": "scoped",
+  "status": "enqueue",
+  "replaced_card_id": null,
+  "kill_reasons": [],
+  "slugs": [
+   "sca-nonweird"
+  ],
+  "card": {
+   "predraft": null,
+   "copy_enabled": null,
+   "card_id": "card_01e2212daa42",
+   "url": "https://x.com/fixture_user_54/status/1",
+   "outlet": "x",
+   "labels": [],
+   "fit_level": null,
+   "fit_trace": null,
+   "rank_reason": null,
+   "door": "EconLLM",
+   "slug": "sca-nonweird",
+   "slugs": [
+    "sca-nonweird"
+   ],
+   "claim": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist.",
+   "author": "@fixture_user_23",
+   "post_text": "Are LLM synthetic participants just WEIRD? non-WEIRD cultural agent results",
+   "age": "just now",
+   "age_hours": 2.4850000000000003e-06,
+   "created_at": "2026-10-13T23:55:42.928390+00:00",
+   "S": 91.0,
+   "factors": {
+    "Fit": 0.85,
+    "Urgency": 1.0,
+    "FormatPrior": 0.7,
+    "Evidence": 1.0,
+    "DoorMatch": 1.0,
+    "EffortPenalty": 0.0
+   },
+   "likes_info": 900,
+   "T_status": "ok",
+   "state": "open",
+   "move": "reply",
+   "draft": "One thing our SCA non-WEIRD pilots keep showing: when you swap WEIRD priors for local cultural agents, the ‘empty’ finding isn’t noise — it’s the measurement layer telling you the survey never asked the right question.\n\nhttps://arxiv.org/abs/2501.06834",
+   "lang": "en",
+   "mode": "scoped",
+   "format": "social",
+   "xbrief_slugs": [
+    "sca-nonweird"
+   ],
+   "handoff_blocked": null,
+   "asset": {
+    "asset_id": "asset_sca_nonweird",
+    "title": "LLMs Model Non-WEIRD Populations (SCA)",
+    "url": "https://arxiv.org/abs/2501.06834",
+    "type": "arxiv",
+    "surface": "arxiv",
+    "tone_hint": "EconLLM technical / methods",
+    "caveat": null,
+    "door": "EconLLM",
+    "slugs": [
+     "sca-nonweird",
+     "sca-pilot-ethics",
+     "synthetic-societies-validity"
+    ],
+    "primary_slug": "sca-nonweird",
+    "evidence_grade": "A",
+    "evidence_status": "hard",
+    "oped_status": null,
+    "lang": "en",
+    "tone": "academic-finding",
+    "format": "social"
+   },
+   "source_chip": null
+  },
+  "started_at": "2026-10-13T23:55:42.925642+00:00",
+  "duration_ms": 11.8
+ },
+ "rec_civic": {
+  "ok": true,
+  "mode": "scoped",
+  "status": "enqueue",
+  "replaced_card_id": null,
+  "kill_reasons": [],
+  "slugs": [
+   "cheap-gen-scarce-verify",
+   "verification-local-context"
+  ],
+  "card": {
+   "predraft": null,
+   "copy_enabled": null,
+   "card_id": "card_3c1994da7d7f",
+   "url": "https://www.lagaceta.com.ar/nota/1",
+   "outlet": "x",
+   "labels": [],
+   "fit_level": null,
+   "fit_trace": null,
+   "rank_reason": null,
+   "door": "Augusto-civic",
+   "slug": "cheap-gen-scarce-verify",
+   "slugs": [
+    "cheap-gen-scarce-verify",
+    "verification-local-context"
+   ],
+   "claim": "When AI makes generation and amplification cheap, verification and locally named context become scarce public goods.",
+   "author": "@fixture_user_22",
+   "post_text": "Desinformación en Tucumán: Community Notes y verificación con contexto local",
+   "age": "just now",
+   "age_hours": 7.605555555555556e-07,
+   "created_at": "2026-10-13T23:55:42.943529+00:00",
+   "S": 87.5,
+   "factors": {
+    "Fit": 1.0,
+    "Urgency": 1.0,
+    "FormatPrior": 0.7,
+    "Evidence": 0.6,
+    "DoorMatch": 1.0,
+    "EffortPenalty": 0.0
+   },
+   "likes_info": null,
+   "T_status": "ok",
+   "state": "open",
+   "move": "reply",
+   "draft": "Generation/amplification is cheap; verification + local context are scarce — coexist with AI, don’t ban In Tucumán the problem isn't a lack of data, it's a lack of checking in context: if a story doesn't name its local source and time frame, Community Notes isn't enough. Not published yet: an argument, not evidence.",
+   "lang": "en",
+   "mode": "scoped",
+   "format": "social",
+   "xbrief_slugs": [],
+   "handoff_blocked": null,
+   "asset": {
+    "asset_id": "asset_adepa_lagaceta_carta",
+    "title": "Adepa / La Gaceta carta — verification and local context",
+    "url": null,
+    "type": "carta",
+    "surface": "carta",
+    "tone_hint": "Augusto-civic: English on X/LinkedIn, Spanish only for op-eds / soft Evidence if pending",
+    "caveat": "Not published yet: an argument, not evidence.",
+    "door": "Augusto-civic",
+    "slugs": [
+     "cheap-gen-scarce-verify",
+     "verification-local-context",
+     "ai-society-governance"
+    ],
+    "primary_slug": "cheap-gen-scarce-verify",
+    "evidence_grade": "B",
+    "evidence_status": "soft_pending",
+    "oped_status": "pending",
+    "lang": "es",
+    "tone": "civic-provincial",
+    "format": "op-ed"
+   },
+   "source_chip": null
+  },
+  "started_at": "2026-10-13T23:55:42.941231+00:00",
+  "duration_ms": 5.1
+ },
+ "rec_kill": {
+  "ok": false,
+  "mode": "scoped",
+  "status": "killed",
+  "kill_id": "empty_fit",
+  "kill_reasons": [
+   "empty_fit",
+   "promo_cta"
+  ],
+  "card": null,
+  "slugs": [],
+  "labels": [],
+  "started_at": "2026-10-13T23:55:42.949498+00:00",
+  "duration_ms": 4.7
+ },
+ "rec_general": {
+  "ok": false,
+  "mode": "general",
+  "status": "asset_pick_required",
+  "slugs": [
+   "cvp-measurement-layer",
+   "sca-nonweird"
+  ],
+  "asset_options": [
+   {
+    "asset_id": "asset_cvprofiles",
+    "title": "cvprofiles — construct-validity measurement layer",
+    "url": "https://pypi.org/project/cvprofiles/",
+    "type": "github",
+    "surface": "github",
+    "tone_hint": "EconLLM methods / package",
+    "caveat": "Check the measure before claiming cause and effect.",
+    "door": "EconLLM",
+    "slugs": [
+     "cvp-measurement-layer",
+     "cvp-empty-finding",
+     "ai-measurement-policy"
+    ],
+    "primary_slug": "cvp-measurement-layer",
+    "evidence_grade": "A",
+    "evidence_status": "hard",
+    "oped_status": null,
+    "lang": "en",
+    "tone": "builder-readme",
+    "format": "social"
+   },
+   {
+    "asset_id": "asset_sca_nonweird",
+    "title": "LLMs Model Non-WEIRD Populations (SCA)",
+    "url": "https://arxiv.org/abs/2501.06834",
+    "type": "arxiv",
+    "surface": "arxiv",
+    "tone_hint": "EconLLM technical / methods",
+    "caveat": null,
+    "door": "EconLLM",
+    "slugs": [
+     "sca-nonweird",
+     "sca-pilot-ethics",
+     "synthetic-societies-validity"
+    ],
+    "primary_slug": "sca-nonweird",
+    "evidence_grade": "A",
+    "evidence_status": "hard",
+    "oped_status": null,
+    "lang": "en",
+    "tone": "academic-finding",
+    "format": "social"
+   }
+  ],
+  "card": null,
+  "kill_reasons": [],
+  "started_at": "2026-10-13T23:55:42.957765+00:00",
+  "duration_ms": 1.5
+ },
+ "handoff_sca": {
+  "payload": {
+   "handoff_id": "hand_78a6cf423fc3",
+   "scout_card_id": "card_01e2212daa42",
+   "url": "https://x.com/fixture_user_54/status/1",
+   "matched_slugs": [
+    "sca-nonweird"
+   ],
+   "scout_slug": "sca-nonweird",
+   "door": "EconLLM",
+   "claim_one_liner": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist.",
+   "evidence_grade": "A",
+   "evidence_status": "hard",
+   "oped_status": null,
+   "asset_id": "asset_sca_nonweird",
+   "asset_type": "arxiv",
+   "outlet": "x",
+   "interest_seed_closed": true,
+   "xbrief_slugs": [
+    "sca-nonweird"
+   ],
+   "xbrief_active_count": 10,
+   "xbrief_interests": {
+    "active": [
+     "abm-nroy-policy",
+     "abm-organizations",
+     "ai-measurement-policy",
+     "campus-odqa",
+     "civic-policy-simulation",
+     "complexity-policy",
+     "cvp-empty-finding",
+     "cvp-measurement-layer",
+     "cvp-not-identification",
+     "econ-ai-cas",
+     "econllm-lab",
+     "gpt4o-weird",
+     "sca-nonweird",
+     "sca-pilot-ethics",
+     "sca-rag-profiles",
+     "smart-surveys",
+     "synthetic-societies-validity"
+    ],
+    "paused": [
+     "ai-society-governance",
+     "cheap-gen-scarce-verify",
+     "human-ai-collective-action",
+     "verification-local-context"
+    ]
+   },
+   "pause_checksum": "0b6690640f56fc0765c0974413bf6048935a9e901903e1b7cc6273045e68614c",
+   "lang": "en",
+   "expires_at": "2026-10-16T23:55:42.962824+00:00"
+  },
+  "seal": "835c5d5dc2938368a56ef71e5c97cf5c05b6a4e5f5bf8ff863581f3b42d6779e"
+ },
+ "rec_civic_mix": {
+  "ok": true,
+  "mode": "scoped",
+  "status": "enqueue",
+  "replaced_card_id": null,
+  "kill_reasons": [],
+  "slugs": [
+   "verification-local-context",
+   "ai-society-governance"
+  ],
+  "card": {
+   "predraft": null,
+   "copy_enabled": null,
+   "card_id": "card_3c682e836822",
+   "url": "https://www.lagaceta.com.ar/nota/2",
+   "outlet": "x",
+   "labels": [],
+   "fit_level": null,
+   "fit_trace": null,
+   "rank_reason": null,
+   "door": "Augusto-civic",
+   "slug": "verification-local-context",
+   "slugs": [
+    "verification-local-context",
+    "ai-society-governance"
+   ],
+   "claim": "Cheap generation/amplification makes verified local context a scarce public good",
+   "author": "@fixture_user_22",
+   "post_text": "Desinformación en Tucumán: Community Notes y verificación con contexto local - ai governance",
+   "age": "just now",
+   "age_hours": 6.030555555555556e-07,
+   "created_at": "2026-10-13T23:55:42.978599+00:00",
+   "S": 87.5,
+   "factors": {
+    "Fit": 1.0,
+    "Urgency": 1.0,
+    "FormatPrior": 0.7,
+    "Evidence": 0.6,
+    "DoorMatch": 1.0,
+    "EffortPenalty": 0.0
+   },
+   "likes_info": null,
+   "T_status": "ok",
+   "state": "open",
+   "move": "reply",
+   "draft": "Cheap generation/amplification makes verified local context a scarce public good In Tucumán the problem isn't a lack of data, it's a lack of checking in context: if a story doesn't name its local source and time frame, Community Notes isn't enough.",
+   "lang": "en",
+   "mode": "scoped",
+   "format": "social",
+   "xbrief_slugs": [
+    "ai-society-governance"
+   ],
+   "handoff_blocked": null,
+   "asset": {
+    "asset_id": "asset_civic_mix",
+    "title": "Carta mix",
+    "url": null,
+    "type": "carta",
+    "surface": "carta",
+    "tone_hint": "civic Spanish op-ed",
+    "caveat": null,
+    "door": "Augusto-civic",
+    "slugs": [
+     "verification-local-context",
+     "ai-society-governance"
+    ],
+    "primary_slug": "verification-local-context",
+    "evidence_grade": "A",
+    "evidence_status": "soft_pending",
+    "oped_status": "pending",
+    "lang": "es",
+    "tone": "civic-provincial",
+    "format": "op-ed"
+   },
+   "source_chip": null
+  },
+  "started_at": "2026-10-13T23:55:42.977794+00:00",
+  "duration_ms": 3.0
+ },
+ "handoff_civic": {
+  "payload": {
+   "handoff_id": "hand_579a21df3db3",
+   "scout_card_id": "card_3c682e836822",
+   "url": "https://www.lagaceta.com.ar/nota/2",
+   "matched_slugs": [
+    "verification-local-context",
+    "ai-society-governance"
+   ],
+   "scout_slug": "verification-local-context",
+   "door": "Augusto-civic",
+   "claim_one_liner": "Cheap generation/amplification makes verified local context a scarce public good",
+   "evidence_grade": "B",
+   "evidence_status": "soft_pending",
+   "oped_status": "pending",
+   "asset_id": "asset_civic_mix",
+   "asset_type": "carta",
+   "outlet": "x",
+   "interest_seed_closed": true,
+   "xbrief_slugs": [
+    "ai-society-governance"
+   ],
+   "xbrief_active_count": 10,
+   "xbrief_interests": {
+    "active": [
+     "ai-society-governance",
+     "cheap-gen-scarce-verify",
+     "verification-local-context"
+    ],
+    "paused": [
+     "abm-nroy-policy",
+     "abm-organizations",
+     "ai-measurement-policy",
+     "campus-odqa",
+     "civic-policy-simulation",
+     "complexity-policy",
+     "cvp-empty-finding",
+     "cvp-measurement-layer",
+     "cvp-not-identification",
+     "econ-ai-cas",
+     "econllm-lab",
+     "gpt4o-weird",
+     "human-ai-collective-action",
+     "sca-nonweird",
+     "sca-pilot-ethics",
+     "sca-rag-profiles",
+     "smart-surveys",
+     "synthetic-societies-validity"
+    ]
+   },
+   "pause_checksum": "9c0f522e0c404d2170a2d589c249d6fccbac3ab3c2377605b56f3429f265608f",
+   "lang": "en",
+   "expires_at": "2026-10-16T23:55:42.984601+00:00"
+  },
+  "seal": "5575978720583108edec3256e6c94ab4f9c1267f03ecefdc6d09676b54ab2c8d"
+ },
+ "pending": [
+  {
+   "payload": {
+    "handoff_id": "hand_78a6cf423fc3",
+    "scout_card_id": "card_01e2212daa42",
+    "url": "https://x.com/fixture_user_54/status/1",
+    "matched_slugs": [
+     "sca-nonweird"
+    ],
+    "scout_slug": "sca-nonweird",
+    "door": "EconLLM",
+    "claim_one_liner": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist.",
+    "evidence_grade": "A",
+    "evidence_status": "hard",
+    "oped_status": null,
+    "asset_id": "asset_sca_nonweird",
+    "asset_type": "arxiv",
+    "outlet": "x",
+    "interest_seed_closed": true,
+    "xbrief_slugs": [
+     "sca-nonweird"
+    ],
+    "xbrief_active_count": 10,
+    "xbrief_interests": {
+     "active": [
+      "abm-nroy-policy",
+      "abm-organizations",
+      "ai-measurement-policy",
+      "campus-odqa",
+      "civic-policy-simulation",
+      "complexity-policy",
+      "cvp-empty-finding",
+      "cvp-measurement-layer",
+      "cvp-not-identification",
+      "econ-ai-cas",
+      "econllm-lab",
+      "gpt4o-weird",
+      "sca-nonweird",
+      "sca-pilot-ethics",
+      "sca-rag-profiles",
+      "smart-surveys",
+      "synthetic-societies-validity"
+     ],
+     "paused": [
+      "ai-society-governance",
+      "cheap-gen-scarce-verify",
+      "human-ai-collective-action",
+      "verification-local-context"
+     ]
+    },
+    "pause_checksum": "0b6690640f56fc0765c0974413bf6048935a9e901903e1b7cc6273045e68614c",
+    "lang": "en",
+    "expires_at": "2026-10-16T23:55:42.962824+00:00"
+   },
+   "seal": "835c5d5dc2938368a56ef71e5c97cf5c05b6a4e5f5bf8ff863581f3b42d6779e",
+   "status": "pending",
+   "expires_at": "2026-10-16T23:55:42.962824+00:00",
+   "asset_title": "LLMs Model Non-WEIRD Populations (SCA)"
+  },
+  {
+   "payload": {
+    "handoff_id": "hand_579a21df3db3",
+    "scout_card_id": "card_3c682e836822",
+    "url": "https://www.lagaceta.com.ar/nota/2",
+    "matched_slugs": [
+     "verification-local-context",
+     "ai-society-governance"
+    ],
+    "scout_slug": "verification-local-context",
+    "door": "Augusto-civic",
+    "claim_one_liner": "Cheap generation/amplification makes verified local context a scarce public good",
+    "evidence_grade": "B",
+    "evidence_status": "soft_pending",
+    "oped_status": "pending",
+    "asset_id": "asset_civic_mix",
+    "asset_type": "carta",
+    "outlet": "x",
+    "interest_seed_closed": true,
+    "xbrief_slugs": [
+     "ai-society-governance"
+    ],
+    "xbrief_active_count": 10,
+    "xbrief_interests": {
+     "active": [
+      "ai-society-governance",
+      "cheap-gen-scarce-verify",
+      "verification-local-context"
+     ],
+     "paused": [
+      "abm-nroy-policy",
+      "abm-organizations",
+      "ai-measurement-policy",
+      "campus-odqa",
+      "civic-policy-simulation",
+      "complexity-policy",
+      "cvp-empty-finding",
+      "cvp-measurement-layer",
+      "cvp-not-identification",
+      "econ-ai-cas",
+      "econllm-lab",
+      "gpt4o-weird",
+      "human-ai-collective-action",
+      "sca-nonweird",
+      "sca-pilot-ethics",
+      "sca-rag-profiles",
+      "smart-surveys",
+      "synthetic-societies-validity"
+     ]
+    },
+    "pause_checksum": "9c0f522e0c404d2170a2d589c249d6fccbac3ab3c2377605b56f3429f265608f",
+    "lang": "en",
+    "expires_at": "2026-10-16T23:55:42.984601+00:00"
+   },
+   "seal": "5575978720583108edec3256e6c94ab4f9c1267f03ecefdc6d09676b54ab2c8d",
+   "status": "pending",
+   "expires_at": "2026-10-16T23:55:42.984601+00:00",
+   "asset_title": "Carta mix"
+  }
+ ],
+ "queue": {
+  "selected_asset": null,
+  "cap": {
+   "x": "3/7",
+   "linkedin": "0/7"
+  },
+  "cards": [
+   {
+    "predraft": null,
+    "copy_enabled": null,
+    "card_id": "card_01e2212daa42",
+    "url": "https://x.com/fixture_user_54/status/1",
+    "outlet": "x",
+    "labels": [],
+    "fit_level": null,
+    "fit_trace": null,
+    "rank_reason": null,
+    "door": "EconLLM",
+    "slug": "sca-nonweird",
+    "slugs": [
+     "sca-nonweird"
+    ],
+    "claim": "LLM synthetic cultural agents can qualitatively track non-WEIRD experimental behavior where human data exist.",
+    "author": "@fixture_user_23",
+    "post_text": "Are LLM synthetic participants just WEIRD? non-WEIRD cultural agent results",
+    "age": "just now",
+    "age_hours": 1.9008333333333336e-05,
+    "created_at": "2026-10-13T23:55:42.928390+00:00",
+    "S": 91.0,
+    "factors": {
+     "Fit": 0.85,
+     "Urgency": 1.0,
+     "FormatPrior": 0.7,
+     "Evidence": 1.0,
+     "DoorMatch": 1.0,
+     "EffortPenalty": 0.0
+    },
+    "likes_info": 900,
+    "T_status": "ok",
+    "state": "awaiting_approval",
+    "move": "reply",
+    "draft": "One thing our SCA non-WEIRD pilots keep showing: when you swap WEIRD priors for local cultural agents, the ‘empty’ finding isn’t noise — it’s the measurement layer telling you the survey never asked the right question.\n\nhttps://arxiv.org/abs/2501.06834",
+    "lang": "en",
+    "mode": "scoped",
+    "format": "social",
+    "xbrief_slugs": [
+     "sca-nonweird"
+    ],
+    "handoff_blocked": null,
+    "asset": {
+     "asset_id": "asset_sca_nonweird",
+     "title": "LLMs Model Non-WEIRD Populations (SCA)",
+     "url": "https://arxiv.org/abs/2501.06834",
+     "type": "arxiv",
+     "surface": "arxiv",
+     "tone_hint": "EconLLM technical / methods",
+     "caveat": null,
+     "door": "EconLLM",
+     "slugs": [
+      "sca-nonweird",
+      "sca-pilot-ethics",
+      "synthetic-societies-validity"
+     ],
+     "primary_slug": "sca-nonweird",
+     "evidence_grade": "A",
+     "evidence_status": "hard",
+     "oped_status": null,
+     "lang": "en",
+     "tone": "academic-finding",
+     "format": "social"
+    },
+    "source_chip": null
+   },
+   {
+    "predraft": null,
+    "copy_enabled": null,
+    "card_id": "card_3c682e836822",
+    "url": "https://www.lagaceta.com.ar/nota/2",
+    "outlet": "x",
+    "labels": [],
+    "fit_level": null,
+    "fit_trace": null,
+    "rank_reason": null,
+    "door": "Augusto-civic",
+    "slug": "verification-local-context",
+    "slugs": [
+     "verification-local-context",
+     "ai-society-governance"
+    ],
+    "claim": "Cheap generation/amplification makes verified local context a scarce public good",
+    "author": "@fixture_user_22",
+    "post_text": "Desinformación en Tucumán: Community Notes y verificación con contexto local - ai governance",
+    "age": "just now",
+    "age_hours": 5.143888888888889e-06,
+    "created_at": "2026-10-13T23:55:42.978599+00:00",
+    "S": 87.5,
+    "factors": {
+     "Fit": 1.0,
+     "Urgency": 1.0,
+     "FormatPrior": 0.7,
+     "Evidence": 0.6,
+     "DoorMatch": 1.0,
+     "EffortPenalty": 0.0
+    },
+    "likes_info": null,
+    "T_status": "ok",
+    "state": "awaiting_approval",
+    "move": "reply",
+    "draft": "Cheap generation/amplification makes verified local context a scarce public good In Tucumán the problem isn't a lack of data, it's a lack of checking in context: if a story doesn't name its local source and time frame, Community Notes isn't enough.",
+    "lang": "en",
+    "mode": "scoped",
+    "format": "social",
+    "xbrief_slugs": [
+     "ai-society-governance"
+    ],
+    "handoff_blocked": null,
+    "asset": {
+     "asset_id": "asset_civic_mix",
+     "title": "Carta mix",
+     "url": null,
+     "type": "carta",
+     "surface": "carta",
+     "tone_hint": "civic Spanish op-ed",
+     "caveat": null,
+     "door": "Augusto-civic",
+     "slugs": [
+      "verification-local-context",
+      "ai-society-governance"
+     ],
+     "primary_slug": "verification-local-context",
+     "evidence_grade": "A",
+     "evidence_status": "soft_pending",
+     "oped_status": "pending",
+     "lang": "es",
+     "tone": "civic-provincial",
+     "format": "op-ed"
+    },
+    "source_chip": null
+   },
+   {
+    "predraft": null,
+    "copy_enabled": null,
+    "card_id": "card_3c1994da7d7f",
+    "url": "https://www.lagaceta.com.ar/nota/1",
+    "outlet": "x",
+    "labels": [],
+    "fit_level": null,
+    "fit_trace": null,
+    "rank_reason": null,
+    "door": "Augusto-civic",
+    "slug": "cheap-gen-scarce-verify",
+    "slugs": [
+     "cheap-gen-scarce-verify",
+     "verification-local-context"
+    ],
+    "claim": "When AI makes generation and amplification cheap, verification and locally named context become scarce public goods.",
+    "author": "@fixture_user_22",
+    "post_text": "Desinformación en Tucumán: Community Notes y verificación con contexto local",
+    "age": "just now",
+    "age_hours": 1.4953611111111111e-05,
+    "created_at": "2026-10-13T23:55:42.943529+00:00",
+    "S": 87.5,
+    "factors": {
+     "Fit": 1.0,
+     "Urgency": 1.0,
+     "FormatPrior": 0.7,
+     "Evidence": 0.6,
+     "DoorMatch": 1.0,
+     "EffortPenalty": 0.0
+    },
+    "likes_info": null,
+    "T_status": "ok",
+    "state": "open",
+    "move": "reply",
+    "draft": "Generation/amplification is cheap; verification + local context are scarce — coexist with AI, don’t ban In Tucumán the problem isn't a lack of data, it's a lack of checking in context: if a story doesn't name its local source and time frame, Community Notes isn't enough. Not published yet: an argument, not evidence.",
+    "lang": "en",
+    "mode": "scoped",
+    "format": "social",
+    "xbrief_slugs": [],
+    "handoff_blocked": null,
+    "asset": {
+     "asset_id": "asset_adepa_lagaceta_carta",
+     "title": "Adepa / La Gaceta carta — verification and local context",
+     "url": null,
+     "type": "carta",
+     "surface": "carta",
+     "tone_hint": "Augusto-civic: English on X/LinkedIn, Spanish only for op-eds / soft Evidence if pending",
+     "caveat": "Not published yet: an argument, not evidence.",
+     "door": "Augusto-civic",
+     "slugs": [
+      "cheap-gen-scarce-verify",
+      "verification-local-context",
+      "ai-society-governance"
+     ],
+     "primary_slug": "cheap-gen-scarce-verify",
+     "evidence_grade": "B",
+     "evidence_status": "soft_pending",
+     "oped_status": "pending",
+     "lang": "es",
+     "tone": "civic-provincial",
+     "format": "op-ed"
+    },
+    "source_chip": null
+   }
+  ],
+  "later": []
+ }
+}
